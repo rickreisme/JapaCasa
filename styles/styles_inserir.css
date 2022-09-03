@@ -1,0 +1,102 @@
+@font-face{
+    font-family: Bankai;
+    src:url(Bankai.otf);
+  }
+  .buttons-escolha {
+      width: 20rem;
+      height: 2.5rem;
+      border: 0;
+      border-radius: 10px;
+      border: 1px solid red;
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin: 1rem 0 1rem 0;
+      font-family: 'Cascadia Code', sans-serif;
+      color: red;
+      cursor: pointer;
+  }
+  body{
+    background-image: url(honey-yanibel-minaya-cruz-w95BkIgqkqY-unsplash.jpg);
+    backdrop-filter: blur(2px);
+  }
+  .header p{
+    font-family:'Bankai' , sans-serif; 
+    text-align:center;
+  }
+  .header {
+    font-family:'Bankai' , sans-serif; 
+    text-align:center;
+    color: red;
+    font-size: 50px;
+  }
+  .header2{
+    font-family: 'Cascadia Code', sans-serif;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+  }
+  .header1{
+    font-family: 'Cascadia Code', sans-serif;
+    text-align: center;
+    color: red;
+    font-size: 15px;
+  }
+  .cab{
+    background-color: black;
+    height: 73px;
+  }
+  .opçoes{
+    text-align:left;
+    font-family: 'Cascadia Code', sans-serif;
+    font-size: 17px;
+    color: white;
+  }
+  .opçoes2{
+    text-align:right;
+    font-family: 'Cascadia Code', sans-serif;
+    font-size: 17px;
+    color: white;
+  }
+  .rodapeIns{
+    text-align: center;
+    font-family: 'Cascadia Code', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+  }
+  .menu{
+    background-color: rgb(164, 8, 8);
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    color: white;
+    font-family: 'Cascadia Code', sans-serif;
+    text-align: center;
+    width: auto;
+  }
+  a:active{
+    color: white;
+  }
+  a:visited{
+      color: white;
+  }
+  a:hover{
+      color: black;
+  }
+  a{
+    text-decoration: none;
+  }
+  #contato a{
+    color: white;
+  }
+  #contato a:hover{
+    color: black;
+  }
+  .header a{
+    color: red;
+  }
+  .header14{
+    font-family:'Bankai' , sans-serif; 
+    text-align:center;
+    color: red;
+    font-size: 90px;
+  }
