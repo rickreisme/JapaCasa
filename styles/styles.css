@@ -1,0 +1,268 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+:root{
+    --bkgradiente: linear-gradient(180deg, rgba(255,255,255,1) 27%, rgba(255,0,0,1) 67%, rgba(0,0,0,1) 100%);
+}
+
+body{
+    background: rgb(12, 12, 12);
+    height: 100vh;
+}
+
+navbar{
+    display: flex;
+    z-index: 1000;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: black;
+    width: 100%;
+    position: fixed;
+    border-bottom: 2px red solid;
+}
+
+.logo{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 20px;
+    padding-right: 50px;
+}
+
+.logo span{
+    color: red;
+    transition: color 0.2s ease-in, transform 0.3s ease-in;
+}
+
+.logo h1{
+    color: white;
+    font-family: 'Bungee', sans-serif;
+    font-size: 36px;
+    transition: color 0.3s ease-in, transform 0.3s ease-in;
+}
+
+.logo span:hover{
+    color: white;
+    transform: scale(1.1);
+}
+
+.logo h1:hover{
+    transform: scale(1.1);
+    color: red;
+}
+
+.options{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 90px;
+    margin-right: 90px;
+    top: 0;
+    margin-top: 20px;
+    z-index: 1;
+    padding: 20px 0;
+    margin: 20px;
+}
+
+.menu a{
+    color: white;
+    font-family: 'Bungee', sans-serif;
+    margin-left: 40px;
+    transition: color 0.3s ease-in;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu a:hover{
+    color: red;
+}
+
+#home{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-house, .fa-utensils, .fa-pen-to-square, .fa-phone{
+    font-size: 15px;
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content_home{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    margin-top: 200px;
+    padding-left: 80px;
+    padding-right: 80px;
+    color: white;
+    font-family: 'Bungee', sans-serif;
+}
+
+.home_esquerda{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.home_esquerda h2{
+    font-size: 28px;
+    font-family: 'Bungee', sans-serif;
+}
+
+.content_home #spjapa2{
+    color: red;
+}
+
+.content_home #spcasa{
+    color: white;
+}
+
+.home_direita img{
+    width: 500px;
+    height: 300px;
+}
+
+.content_carda{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    margin-top: 200px;
+    padding-left: 80px;
+    padding-right: 80px;
+    color: white;
+    font-family: 'Bungee', sans-serif;
+    text-align: center;
+}
+
+.content_carda img{
+    width: 500px;
+    height: 300px;
+}
+
+.content_carda h2{
+    font-size: 28px;
+    font-family: 'Bungee', sans-serif;
+    line-height: 40px;
+}
+
+.home_direita{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn1{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    transition: color 0.3s ease-in, background-color 0.3s ease-in;
+}
+
+.btn1:hover{
+    color: black;
+    background-color: white;
+}
+
+.content_local{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 87vw;
+    margin-top: 200px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 60px;
+    padding-bottom: 80px;
+
+    background-image: url("/assets/img/buffet-g10561976a_640.jpg");
+    background-size: cover;
+
+    color: white;
+    font-family: 'Bungee', sans-serif;
+    text-align: center;
+}
+
+.content_local h1{
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 200;
+    color: black;
+    padding-bottom: 10px;
+}
+
+.home_local{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    height: 40vh;
+    color: red;
+    padding-right: 70px;
+    padding-left: 70px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 10px 10px 20px rgb(114, 5, 5);
+}
+
+.home_local h2{
+    font-size: 18px;
+}
+
+.home_local p{
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+
+#endereco{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+#funcionamento{
+    display: flex;
+    flex-direction: column;
+    border-left: 1px red solid;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    display: flex;
+}
+
+form{
+    top: 50x;
+    color: white;
+}
