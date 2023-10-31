@@ -23,15 +23,15 @@ navbar{
     background-color: black;
     width: 100%;
     position: fixed;
-    border-bottom: 2px red solid;
+    border-bottom: 1px red solid;
+    box-shadow: 10px 0px 40px rgb(114, 5, 5);
 }
 
 .logo{
     display: flex;
     justify-content: start;
     align-items: center;
-    margin: 20px;
-    padding-right: 50px;
+    margin-right: 90px;
 }
 
 .logo span{
@@ -62,7 +62,6 @@ navbar{
     justify-content: center;
     align-items: center;
     margin-left: 90px;
-    margin-right: 90px;
     top: 0;
     margin-top: 20px;
     z-index: 1;
@@ -77,6 +76,7 @@ navbar{
     transition: color 0.3s ease-in;
     justify-content: center;
     align-items: center;
+    font-weight: 200;
 }
 
 .menu a:hover{
@@ -101,6 +101,8 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-left: 90px;
+    padding-right: 90px;
 }
 
 .content_home{
@@ -126,6 +128,7 @@ main{
 .home_esquerda h2{
     font-size: 28px;
     font-family: 'Bungee', sans-serif;
+    font-weight: 300;
 }
 
 .content_home #spjapa2{
@@ -164,6 +167,7 @@ main{
     font-size: 28px;
     font-family: 'Bungee', sans-serif;
     line-height: 40px;
+    font-weight: 300;
 }
 
 .home_direita{
@@ -260,9 +264,30 @@ main{
 
 footer{
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+
+    margin-top: 50px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    padding-left: 80px;
+    padding-right: 80px;
+    margin-left: 80px;
+    margin-right: 80px;
+
+    border-top: 1px solid red;
 }
 
-form{
-    top: 50x;
-    color: white;
+footer span{
+    color: #06cd27;
+    font-size: 15px;
+}
+
+footer jp{
+    color: red;
 }
