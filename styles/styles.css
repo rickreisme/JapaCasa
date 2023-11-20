@@ -127,25 +127,17 @@ main{
     font-weight: 300;
 }
 
-.content_home #spjapa2{
+#spjapa2{
     color: red;
 }
 
-.content_home #spcasa{
+#spcasa{
     color: white;
 }
 
 .home_direita img{
     width: 500px;
     height: 300px;
-    border-bottom: 0px red solid;
-    box-shadow: 0px 0px 0px red;
-    transition: border-bottom 0.3 ease-in, box-shadow 0.3 ease-in;
-}
-
-.home_direita:hover img{
-    border-bottom: 1px red solid;
-    box-shadow: 10px 0px 40px rgb(114, 5, 5);
 }
 
 .content_carda{
@@ -349,4 +341,80 @@ footer span{
 
 footer jp{
     color: red;
+}
+
+.content_homeC{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+    color: white;
+    font-family: 'Bungee', sans-serif;
+}
+
+.carda_title{
+    align-items: center;
+    justify-content: center;
+    margin-top: 170px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.carda_title h2{
+    font-size: 32px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 300;
+    color: white;
+}
+
+.carda_title span{
+    color: red;
+}
+
+.food-card{
+    display: flex;
+    flex-direction: column;
+    justify-items: start;
+    align-items: center;
+    background-color: rgb(207, 5, 5);
+    padding:  20px;
+    border-radius: 15px;
+    width: 350px;
+    height: 370px;
+    border-inline: 0px white solid;
+    transition: border-inline 0.2s ease-in;
+}
+
+.food-card:hover{
+    border-inline: 3px white solid;
+    cursor: pointer;
+}
+
+.food-card img{
+    width: 330px;
+    height: 200px;
+}
+
+.food-card h2{
+    font-size: 20px;
+    font-family: 'Bungee', sans-serif;
+    font-weight: 200;
+    color: white;
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.food-card h3, h4{
+    line-height: 1.5;
+    font-weight: 100;
+}
+
+.food-card h4{
+    font-size: 18px;
+    color: black;
 }
