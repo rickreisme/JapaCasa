@@ -5,10 +5,6 @@
     text-decoration: none;
 }
 
-:root{
-    --bkgradiente: linear-gradient(180deg, rgba(255,255,255,1) 27%, rgba(255,0,0,1) 67%, rgba(0,0,0,1) 100%);
-}
-
 body{
     background: rgb(12, 12, 12);
     height: 100vh;
@@ -142,6 +138,14 @@ main{
 .home_direita img{
     width: 500px;
     height: 300px;
+    border-bottom: 0px red solid;
+    box-shadow: 0px 0px 0px red;
+    transition: border-bottom 0.3 ease-in, box-shadow 0.3 ease-in;
+}
+
+.home_direita:hover img{
+    border-bottom: 1px red solid;
+    box-shadow: 10px 0px 40px rgb(114, 5, 5);
 }
 
 .content_carda{
@@ -195,6 +199,59 @@ main{
     background-color: white;
 }
 
+.content_breve{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 75vw;
+    margin-top: 200px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    background-color: red;
+    opacity: 0.8;
+
+    color: white;
+    font-family: 'Bungee', sans-serif;
+    text-align: center;
+    
+    transition: opacity 0.3s ease-in, border-radius 0.3s ease-in;
+}
+
+.content_breve:hover{
+    opacity: 1;
+    border-radius: 20px;
+}
+
+.content_breve h1{
+    font-size: 50px;
+}
+
+.home_breve{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 40vh;
+    color: red;
+    padding-right: 70px;
+    padding-left: 70px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 10px 10px 20px rgb(114, 5, 5);
+}
+
+.home_breve h2{
+    line-height: 25px;
+}
+
+.home_breve h3{
+    line-height: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+
 .content_local{
     display: flex;
     flex-direction: column;
@@ -219,8 +276,14 @@ main{
     font-size: 24px;
     line-height: 30px;
     font-weight: 200;
-    color: black;
+    color: white;
     padding-bottom: 10px;
+    text-shadow:
+    2px 2px 0 red,
+    -2px 2px 0 red,
+    -2px -2px 0 red,
+    2px -2px 0 red;
+
 }
 
 .home_local{
@@ -234,10 +297,6 @@ main{
     justify-content: center;
     align-items: center;
     box-shadow: 10px 10px 20px rgb(114, 5, 5);
-}
-
-.home_local h2{
-    font-size: 18px;
 }
 
 .home_local p{
