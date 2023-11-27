@@ -401,17 +401,31 @@ footer jp{
     transition: border-inline 0.2s ease-in;
 }
 
-.food-card:hover{
+.food-cardC{
+    display: flex;
+    flex-direction: column;
+    justify-items: start;
+    align-items: center;
+    background-color: rgb(207, 5, 5);
+    padding:  20px;
+    border-radius: 15px;
+    width: 350px;
+    height: 430px;
+    border-inline: 0px white solid;
+    transition: border-inline 0.2s ease-in;
+}
+
+.food-card:hover, .food-cardC:hover{
     border-inline: 3px white solid;
     cursor: pointer;
 }
 
-.food-card img{
+.food-card img, .food-cardC img{
     width: 330px;
     height: 200px;
 }
 
-.food-card h2{
+.food-card h2, .food-cardC h2{
     font-size: 20px;
     font-family: 'Bungee', sans-serif;
     font-weight: 200;
@@ -421,14 +435,26 @@ footer jp{
     margin-top: 10px;
 }
 
-.food-card h3, h4{
+.food-card h3, .food-cardC h3{
     line-height: 1.5;
     font-weight: 100;
 }
 
-.food-card h4{
+.food-card h4, .food-cardC h4{
     font-size: 18px;
     color: black;
+    text-shadow:
+    1px 1px 2px white,
+    -1px 1px 2px white,
+    -1px -1px 2px white,
+    1px -1px 2px white;
+    
+}
+
+.food-cardC h5{
+    font-weight: 200;
+    line-height: 1.5;
+    text-align: center;
 }
 
 .content_bottom{
@@ -479,14 +505,19 @@ footer jp{
     text-align: center;
 }
 
-.text-H:hover{
+.spjapa2{
+    color: red;
+    text-shadow:
+    1px 1px 40px black,
+    -1px 1px 10px rgb(42, 38, 38),
+    -1px -1px 0 rgb(42, 38, 38),
+    1px -1px 0 rgb(42, 38, 38);
+}
+
+.spcasa2{
     text-shadow:
     2px 2px 40px rgb(42, 38, 38),
     -2px 2px 10px rgb(42, 38, 38),
     -2px -2px 0 rgb(42, 38, 38),
     2px -2px 0 rgb(42, 38, 38);
-}
-
-.spjapa2{
-    color: red;
 }
