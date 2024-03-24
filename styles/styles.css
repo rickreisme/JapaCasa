@@ -357,7 +357,7 @@ footer jp{
 
 .content_homeC{
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
@@ -396,7 +396,8 @@ footer jp{
     padding:  20px;
     border-radius: 15px;
     width: 350px;
-    height: 370px;
+    height: auto;
+    min-height: 480px;
     border-inline: 0px white solid;
     transition: border-inline 0.2s ease-in;
 }
@@ -451,10 +452,13 @@ footer jp{
     
 }
 
-.food-cardC h5{
-    font-weight: 200;
-    line-height: 1.5;
+.food-card h5{
+    font-size: 14px;
+    font-weight: normal;
     text-align: center;
+    color: black;
+    line-height: 1.4;
+    margin-top: 10px;
 }
 
 .content_bottom{
