@@ -23,17 +23,21 @@
     <link rel="stylesheet" href="/styles/index.css">
     <link rel="stylesheet" href="/styles/cardapio.css">
     <link rel="stylesheet" href="/styles/sobre.css">
+    <link rel="stylesheet" href="styles/media query/max-600px.css">
 </head>
 <body>
     <header>
-        <navbar class="menu">
+        <navbar class="menu" id="nav">
+            <button id="btn-mobile" aria-label="Abri Menu" aria-haspopup="true" aria-controls="menu" aria-expanded="false">
+                <span id="hamburger"></span>
+            </button>
             <div class="logo">
                 <a href="index.html">
                     <h1 id="japacasa"><span id="spjapa">Japa</span>Casa!</h1>
                 </a>
             </div>
 
-            <div class="options">
+            <div class="options" id="menu" role="menu">
                 <a href="" id="home">
                     <i class="fa-solid fa-house"></i> Home
                 </a>
@@ -133,6 +137,7 @@
         <h3>Desenvolvido por Rick Reis</h3>
     </footer>
 
+    <script src="scripts/mobile_menu.js"></script>
     <script src="scripts/scripts.js"></script>
 </body>
 </html>
