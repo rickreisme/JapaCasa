@@ -7,4 +7,4 @@ Utilizei uma api para preencher os produtos disponíveis no cardápio, a api est
 
 ## Créditos
 #### Para fazer esta versão, me ispirei no site do restaurante Ashin Sushi Bar (https://anshinsushibar.com.br) e também no site do restaurante Shogá Holl (https://www.shogaholl.com.br).
-#### Algumas imagens ilustrativas foram retiradas ou inspiradas do site do Japa Temakeria (https://japatemakeria.com.br/cardapio/categoria/combinados/)
+#### Algumas imagens ilustrativas foram retiradas de ou inspiradas por: Japa Temakeria, link do site (https://japatemakeria.com.br/cardapio/categoria/combinados/)
