@@ -96,9 +96,9 @@
 
 .content_breve{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    gap: 20px;
     width: 75vw;
     margin-top: 200px;
     padding-left: 80px;
@@ -122,6 +122,7 @@
 
 .content_breve h1{
     font-size: 50px;
+    line-height: 1.2;
 }
 
 .home_breve{
@@ -135,6 +136,10 @@
     justify-content: center;
     align-items: center;
     box-shadow: 10px 10px 20px rgb(114, 5, 5);
+}
+
+.home_breve h4{
+    display: none;
 }
 
 .home_breve h2{
@@ -165,6 +170,25 @@
     color: white;
     font-family: 'Bungee', sans-serif;
     text-align: center;
+}
+
+.text-card{
+    display: inline;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(99, 6, 6);
+    padding: 0px 20px;
+    margin-top: 90px;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    transition: background-color 0.4s ease, transform 0.4s ease;
+}
+
+.text-card:hover{
+    background-color: red;
+    transform: scale(1.05);
 }
 
 .text-card2{

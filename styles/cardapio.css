@@ -109,25 +109,6 @@
     height: 300px;
 }
 
-.text-card{
-    display: inline;
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-    background-color: rgb(99, 6, 6);
-    padding: 0px 20px;
-    margin-top: 90px;
-    margin-bottom: 20px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    transition: background-color 0.4s ease, transform 0.4s ease;
-}
-
-.text-card:hover{
-    background-color: red;
-    transform: scale(1.05);
-}
-
 .text-H{
     font-size: 28px;
     font-family: 'Bungee', sans-serif;

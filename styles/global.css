@@ -28,8 +28,6 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-left: 90px;
-    padding-right: 90px;
 }
 
 footer{

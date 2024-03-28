@@ -54,14 +54,14 @@
     color: red;
 }
 
-#home{
+#home, #carda, #sobre, #conta{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.fa-house, .fa-utensils, .fa-pen-to-square, .fa-phone{
+.fa-house, .fa-utensils, .fa-circle-info, .fa-phone{
     font-size: 15px;
     margin-right: 5px;
     margin-left: 10px;
