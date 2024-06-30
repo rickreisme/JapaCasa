@@ -1,27 +1,10 @@
-# React + TypeScript + Vite
+# JapaCasa! (3)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Terceira versão reformulada da página na web para um restaurante de comida japonesa (fictício) focado em delivery.
+### Agora desenvolvida com Vite React.js.
 
-Currently, two official plugins are available:
+Utilizei uma api para preencher os produtos disponíveis no cardápio, a api está rodando no json-server e foi feita com Node.js.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Créditos
+#### Para fazer esta versão, me ispirei no site do restaurante Ashin Sushi Bar (https://anshinsushibar.com.br) e também no site do restaurante Shogá Holl (https://www.shogaholl.com.br).
+#### Algumas imagens ilustrativas foram retiradas de ou inspiradas por: Japa Temakeria, link do site (https://japatemakeria.com.br/cardapio/categoria/combinados/)
