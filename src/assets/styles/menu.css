@@ -1,0 +1,90 @@
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 90px;
+  height: 3.5rem;
+}
+
+.logo span {
+  color: red;
+  transition: color 0.2s ease-in, transform 0.3s ease-in;
+}
+
+.logo h1 {
+  color: white;
+  font-family: "Bungee", sans-serif;
+  font-size: 36px;
+  transition: color 0.3s ease-in, transform 0.3s ease-in;
+}
+
+.logo span:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+.logo h1:hover {
+  transform: scale(1.1);
+  color: red;
+}
+
+.menu{
+  display: flex;
+  z-index: 1000;
+  flex-direction: row;
+  align-items: center;
+  background-color: #0f0f0f;
+  width: 100%;
+  border-bottom: 1px red solid;
+  box-shadow: 10px 0px 40px rgb(114, 5, 5);
+}
+
+.navbar-brand {
+  padding-bottom: 0px;
+}
+
+.navbar-nav{
+  font-size: 1.3rem;
+}
+
+.nav-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icons {
+  display: flex;
+  font-size: 1.1rem;
+  margin-right: 8px;
+  margin-bottom: 2px;
+}
+
+.navbar-nav .nav-link.active{
+  color: red;
+}
+
+.menu a {
+  color: white;
+  font-family: "Bungee", sans-serif;
+  margin-left: 40px;
+  transition: color 0.3s ease-in;
+  justify-content: center;
+  align-items: center;
+  font-weight: 200;
+}
+
+.menu a:hover {
+  color: red;
+}
+
+#home, #carda, #sobre, #conta {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#btn-mobile {
+  display: none;
+}/*# sourceMappingURL=menu.css.map */
