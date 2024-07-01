@@ -45,6 +45,8 @@
 .home_direita img{
     width: 500px;
     height: 300px;
+    border: 1px #7d0202 solid;
+    box-shadow: 0px 0px 25px rgb(114, 5, 5);
 }
 
 .content_carda{
@@ -64,6 +66,8 @@
 .content_carda img{
     width: 500px;
     height: 300px;
+    border: 1px #7d0202 solid;
+    box-shadow: 0px 0px 25px rgb(114, 5, 5);
 }
 
 .content_carda h2{

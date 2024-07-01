@@ -1,10 +1,14 @@
 import '../assets/styles/home.css'
 import sushiHome from '../assets/img/sushi-home.jpeg'
 import sushi from '../assets/img/sushi.jpg'
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     return (
         <>
+            <Helmet>
+                <title>JapaCasa! | Comida Japonesa e Delivery</title>
+            </Helmet>
             <div className="container-home">
                 <div className="content_home">
                     <div className="home_esquerda">

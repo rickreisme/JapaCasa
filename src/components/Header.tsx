@@ -39,22 +39,25 @@ const Header: React.FC = () => {
         <header>
             <Navbar variant="dark" expand="lg" fixed="top" className="menu" data-bs-theme="dark">
                 <Container>
-                    <Navbar.Brand href="index.html" className='logo'>
+                    <Navbar.Brand href="/" className='logo'>
                         <h1 id="japacasa"><span id="spjapa" style={{ color: 'red' }}>Japa</span>Casa!</h1>
                     </Navbar.Brand>
                     
                     <Navbar.Toggle aria-controls="navbarSupportedContent" />
                     <Navbar.Collapse id="navbarSupportedContent">
                         <Nav className="me-auto mb-2 mb-lg-0 ms-lg-5" >
-                            <Nav.Link href="index.html" id="home" aria-current="page">
+                            <Nav.Link href="/" id="home" aria-current="page">
                                 <i className="fa-solid fa-house menu-icons"></i> Home
                             </Nav.Link>
-                            <Nav.Link href="cardapio.html" id="carda">
+
+                            <Nav.Link href="cardapio" id="carda">
                                 <i className="fa-solid fa-utensils menu-icons"></i> Cardápio
                             </Nav.Link>
-                            <Nav.Link href="sobre.html" id="sobre">
+
+                            <Nav.Link href="sobre" id="sobre">
                                 <i className="fa-solid fa-circle-info menu-icons"></i> Sobre
                             </Nav.Link>
+
                             <Nav.Link href="#cont_local" id="conta">
                                 <i className="fa-solid fa-phone menu-icons"></i> Contato
                             </Nav.Link>
