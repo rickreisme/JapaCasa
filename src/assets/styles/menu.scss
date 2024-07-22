@@ -1,72 +1,88 @@
-.logo{
+.menu {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 90px;
-}
-
-.logo span{
-    color: red;
-    transition: color 0.2s ease-in, transform 0.3s ease-in;
-}
-
-.logo h1{
-    color: white;
-    font-family: 'Bungee', sans-serif;
-    font-size: 36px;
-    transition: color 0.3s ease-in, transform 0.3s ease-in;
-}
-
-.logo span:hover{
-    color: white;
-    transform: scale(1.1);
-}
-
-.logo h1:hover{
-    transform: scale(1.1);
-    color: red;
-}
-
-.options{
-    display: flex;
+    z-index: 1000;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    margin-left: 90px;
-    top: 0;
-    margin-top: 20px;
-    z-index: 1;
-    padding: 20px 0;
-    margin: 20px;
-}
+    background-color: #101010;
+    width: 100%;
+    border-bottom: 1px red solid;
+    box-shadow: 10px 0px 40px rgb(114, 5, 5);
 
-.menu a{
-    color: white;
-    font-family: 'Bungee', sans-serif;
-    margin-left: 40px;
-    transition: color 0.3s ease-in;
-    justify-content: center;
-    align-items: center;
-    font-weight: 200;
-}
+ 
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 90px;
+        height: 3.5rem;
+        padding-bottom: 0;
 
-.menu a:hover{
-    color: red;
-}
+        span {
+            color: red;
+            transition: color 0.2s ease-in, transform 0.3s ease-in;
+        }
+        span:hover {
+            color: white;
+            transform: scale(1.1);
+        }
 
-#home, #carda, #sobre, #conta{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
+        h1 {
+            color: white;
+            font-family: "Bungee", sans-serif;
+            font-size: 36px;
+            transition: color 0.3s ease-in, transform 0.3s ease-in;
+        }
+        h1:hover {
+            transform: scale(1.1);
+            color: red;
+        }
+    }
 
-.fa-house, .fa-utensils, .fa-circle-info, .fa-phone{
-    font-size: 15px;
-    margin-right: 5px;
-    margin-left: 10px;
-}
+    .navbar-nav {
+        font-size: 1.3rem;
 
-#btn-mobile{
-    display: none;
+        .nav-link.active {
+            color: red;
+        }
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu-icons {
+        display: flex;
+        font-size: 1.1rem;
+        margin-right: 8px;
+        margin-bottom: 2px;
+    }
+
+    #home,
+    #carda,
+    #sobre,
+    #conta {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    a {
+        color: white;
+        font-family: "Bungee", sans-serif;
+        margin-left: 40px;
+        transition: color 0.3s ease-in;
+        justify-content: center;
+        align-items: center;
+        font-weight: 200;
+    }
+    a:hover {
+        color: red;
+    }
+
+    #btn-mobile {
+        display: none;
+    }
 }

@@ -1,10 +1,8 @@
-
-import React, { useEffect } from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import '../assets/styles/menu.css'
-
+import React, { useEffect } from "react";
+import { Navbar, Nav, Container } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "../assets/styles/menu.scss";
 const Header: React.FC = () => {
     useEffect(() => {
         const japa = document.getElementById("japacasa");
@@ -37,29 +35,44 @@ const Header: React.FC = () => {
 
     return (
         <header>
-            <Navbar variant="dark" expand="lg" fixed="top" className="menu" data-bs-theme="dark">
+            <Navbar
+                variant="dark"
+                expand="lg"
+                fixed="top"
+                className="menu"
+                data-bs-theme="dark"
+            >
                 <Container>
-                    <Navbar.Brand href="/" className='logo'>
-                        <h1 id="japacasa"><span id="spjapa" style={{ color: 'red' }}>Japa</span>Casa!</h1>
+                    <Navbar.Brand href="/" className="logo">
+                        <h1 id="japacasa">
+                            <span id="spjapa" style={{ color: "red" }}>
+                                Japa
+                            </span>
+                            Casa!
+                        </h1>
                     </Navbar.Brand>
-                    
+
                     <Navbar.Toggle aria-controls="navbarSupportedContent" />
                     <Navbar.Collapse id="navbarSupportedContent">
-                        <Nav className="me-auto mb-2 mb-lg-0 ms-lg-5" >
+                        <Nav className="me-auto mb-2 mb-lg-0 ms-lg-5">
                             <Nav.Link href="/" id="home" aria-current="page">
-                                <i className="fa-solid fa-house menu-icons"></i> Home
+                                <i className="fa-solid fa-house menu-icons"></i>{" "}
+                                Home
                             </Nav.Link>
 
                             <Nav.Link href="cardapio" id="carda">
-                                <i className="fa-solid fa-utensils menu-icons"></i> Cardápio
+                                <i className="fa-solid fa-utensils menu-icons"></i>{" "}
+                                Cardápio
                             </Nav.Link>
 
                             <Nav.Link href="sobre" id="sobre">
-                                <i className="fa-solid fa-circle-info menu-icons"></i> Sobre
+                                <i className="fa-solid fa-circle-info menu-icons"></i>{" "}
+                                Sobre
                             </Nav.Link>
 
                             <Nav.Link href="#cont_local" id="conta">
-                                <i className="fa-solid fa-phone menu-icons"></i> Contato
+                                <i className="fa-solid fa-phone menu-icons"></i>{" "}
+                                Contato
                             </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
