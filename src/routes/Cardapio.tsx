@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import "../assets/styles/cardapio.scss";
 import sushi from "../assets/img/sushi-crop.jpg";
-import { useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import { useEffect, useState, useTransition } from "react";
 
 type Produto = {
     id: number;
@@ -17,6 +18,7 @@ const Cardapio = () => {
     const [produtos, setProdutos] = useState<Produto[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedTipo, setSelectedTipo] = useState<string | null>(null);
+    const [, startTransition] = useTransition();
 
     useEffect(() => {
         const fetchProdutos = async () => {
@@ -85,7 +87,9 @@ const Cardapio = () => {
     };
 
     const handleTipoClick = (tipo: string | null) => {
-        setSelectedTipo(tipo);
+        startTransition(() => {
+            setSelectedTipo(tipo);
+        });
     };
 
     return (
@@ -108,93 +112,113 @@ const Cardapio = () => {
                     </div>
                 </div>
 
-                <div className="filtros">
-                    <span>Filtre pelo tipo:</span>
+                <div className="pesquisa-filtro">
+                    <div className="pesquisa">
+                        <span>Pesquisar pelo nome:</span>
 
-                    <button
-                        className="filtro-card"
-                        onClick={() => handleTipoClick(null)}
-                    >
-                        Todos
-                    </button>
+                        <div className="pesquisa-box">
+                            <input
+                                type="text"
+                                id="input-search"
+                                value={searchTerm}
+                                onChange={handleSearchInputChange}
+                                placeholder="Digite um termo"
+                            />
 
-                    <button
-                        className={`filtro-card ${
-                            selectedTipo === null
-                                ? ""
-                                : selectedTipo === "sushi"
-                                ? "selected"
-                                : ""
-                        }`}
-                        onClick={() => handleTipoClick("sushi")}
-                    >
-                        Sushi
-                    </button>
+                            <span id="icon-search">
+                                <FaSearch />
+                            </span>
+                        </div>
+                    </div>
 
-                    <button
-                        className={`filtro-card ${
-                            selectedTipo === null
-                                ? ""
-                                : selectedTipo === "temaki"
-                                ? "selected"
-                                : ""
-                        }`}
-                        onClick={() => handleTipoClick("temaki")}
-                    >
-                        Temaki
-                    </button>
+                    <div className="filtros">
+                        <span>Filtre pelo tipo:</span>
 
-                    <button
-                        className={`filtro-card ${
-                            selectedTipo === null
-                                ? ""
-                                : selectedTipo === "niguiri"
-                                ? "selected"
-                                : ""
-                        }`}
-                        onClick={() => handleTipoClick("niguiri")}
-                    >
-                        Niguiri
-                    </button>
+                        <button
+                            className="filtro-card"
+                            onClick={() => handleTipoClick(null)}
+                        >
+                            Todos
+                        </button>
 
-                    <button
-                        className={`filtro-card ${
-                            selectedTipo === null
-                                ? ""
-                                : selectedTipo === "uramaki"
-                                ? "selected"
-                                : ""
-                        }`}
-                        onClick={() => handleTipoClick("uramaki")}
-                    >
-                        Uramaki
-                    </button>
+                        <button
+                            className={`filtro-card ${
+                                selectedTipo === null
+                                    ? ""
+                                    : selectedTipo === "sushi"
+                                    ? "selected"
+                                    : ""
+                            }`}
+                            onClick={() => handleTipoClick("sushi")}
+                        >
+                            Sushi
+                        </button>
 
-                    <button
-                        className={`filtro-card ${
-                            selectedTipo === null
-                                ? ""
-                                : selectedTipo === "yakisoba"
-                                ? "selected"
-                                : ""
-                        }`}
-                        onClick={() => handleTipoClick("yakisoba")}
-                    >
-                        Yakisoba
-                    </button>
+                        <button
+                            className={`filtro-card ${
+                                selectedTipo === null
+                                    ? ""
+                                    : selectedTipo === "temaki"
+                                    ? "selected"
+                                    : ""
+                            }`}
+                            onClick={() => handleTipoClick("temaki")}
+                        >
+                            Temaki
+                        </button>
 
-                    <button
-                        className={`filtro-card ${
-                            selectedTipo === null
-                                ? ""
-                                : selectedTipo === "combo"
-                                ? "selected"
-                                : ""
-                        }`}
-                        onClick={() => handleTipoClick("combo")}
-                    >
-                        Combo
-                    </button>
+                        <button
+                            className={`filtro-card ${
+                                selectedTipo === null
+                                    ? ""
+                                    : selectedTipo === "niguiri"
+                                    ? "selected"
+                                    : ""
+                            }`}
+                            onClick={() => handleTipoClick("niguiri")}
+                        >
+                            Niguiri
+                        </button>
+
+                        <button
+                            className={`filtro-card ${
+                                selectedTipo === null
+                                    ? ""
+                                    : selectedTipo === "uramaki"
+                                    ? "selected"
+                                    : ""
+                            }`}
+                            onClick={() => handleTipoClick("uramaki")}
+                        >
+                            Uramaki
+                        </button>
+
+                        <button
+                            className={`filtro-card ${
+                                selectedTipo === null
+                                    ? ""
+                                    : selectedTipo === "yakisoba"
+                                    ? "selected"
+                                    : ""
+                            }`}
+                            onClick={() => handleTipoClick("yakisoba")}
+                        >
+                            Yakisoba
+                        </button>
+
+                        <button
+                            className={`filtro-card ${
+                                selectedTipo === null
+                                    ? ""
+                                    : selectedTipo === "combo"
+                                    ? "selected"
+                                    : ""
+                            }`}
+                            onClick={() => handleTipoClick("combo")}
+                        >
+                            Combo
+                        </button>
+                    </div>
                 </div>
 
                 <div className="content_homeC">{renderProdutos()}</div>
