@@ -15,6 +15,7 @@ type Produto = {
 };
 
 const Cardapio = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const [produtos, setProdutos] = useState<Produto[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedTipo, setSelectedTipo] = useState<string | null>(null);
@@ -23,7 +24,7 @@ const Cardapio = () => {
     useEffect(() => {
         const fetchProdutos = async () => {
             try {
-                const response = await fetch("http://localhost:5000/produtos");
+                const response = await fetch(apiUrl);
 
                 if (!response.ok) {
                     throw new Error("Erro ao recuperar os produtos:");
