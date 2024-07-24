@@ -39,7 +39,7 @@ const Cardapio = () => {
         };
 
         fetchProdutos();
-    }, []);
+    }, [apiUrl]);
 
     const filtProdutos = produtos.filter(
         (produto) =>
