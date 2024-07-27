@@ -7,7 +7,7 @@ footer {
     color: white;
     background-color: #0f0f0f;
     font-family: "Montserrat", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     border-top: 1px solid #ff0000;
     margin-top: 100px;
     padding: 0;
@@ -15,17 +15,40 @@ footer {
     .container-footer {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: 100%;
-        max-width: 1200px;
-        padding: 10px 20px;
+        margin: 10px 60px;
 
-        .rickreisme {
-            color: #06cd27;
-            font-size: 1.5rem;
-        }
+        .logos {
+            display: flex;
+            align-items: center;
+            gap: 15px;
 
-        span {
-            color: red;
+            span {
+                color: red;
+            }
+
+            .jpc {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .jpc-logo {
+                    font-family: "Bungee", sans-serif;
+                }
+
+                &::after {
+                    content: "";
+                    border: 1px solid red;
+                    height: 25px;
+                    margin-left: 5px;
+                }
+            }
+
+            .rickreisme {
+                color: #06cd27;
+                font-size: 1.5rem;
+            }
         }
     }
 }
