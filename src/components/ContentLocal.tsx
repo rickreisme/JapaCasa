@@ -13,16 +13,16 @@ const ContentLocal = () => {
                 <div id="endereco">
                     <h2>Endereço</h2>
                     <p>
-                        Rua Prof. Jackson, 1958, Jd. Terra do Nunca, <br />{" "}
-                        Ribeirão Preto - SP
+                        Rua Professor Jackson, 1958, Jardim Terra do Nunca,{" "}
+                        <br /> Ribeirão Preto - SP
                     </p>
                 </div>
 
                 <div id="funcionamento">
                     <h2>Horário de funcionamento</h2>
                     <p>
-                        Segunda á Sábado <br /> Almoço das 11h ás 15h00 e Jantar
-                        das 18h ás 23h00
+                        Segunda a Sábado <br /> Almoço das 11h às 16h00 e Jantar
+                        das 18h às 23h00
                     </p>
                 </div>
 
@@ -30,7 +30,7 @@ const ContentLocal = () => {
                     <h2>Contato</h2>
                     <p>
                         Delivery: (16) 98765-4321 <br />
-                        Peça também pelo WhatsApp ou pelo iFood
+                        Peça também pelo WhatsApp ou pelo iFood!
                     </p>
                 </div>
             </div>
