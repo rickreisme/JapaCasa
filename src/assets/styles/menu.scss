@@ -7,8 +7,8 @@
     width: 100%;
     border-bottom: 1px red solid;
     box-shadow: 10px 0px 40px rgb(114, 5, 5);
+    font-family: "Bungee", sans-serif;
 
- 
     .logo {
         display: flex;
         justify-content: center;
@@ -19,7 +19,9 @@
 
         span {
             color: red;
-            transition: color 0.2s ease-in, transform 0.3s ease-in;
+            transition:
+                color 0.2s ease-in,
+                transform 0.3s ease-in;
         }
         span:hover {
             color: white;
@@ -28,9 +30,11 @@
 
         h1 {
             color: white;
-            font-family: "Bungee", sans-serif;
             font-size: 36px;
-            transition: color 0.3s ease-in, transform 0.3s ease-in;
+            font-family: "Bungee", sans-serif;
+            transition:
+                color 0.3s ease-in,
+                transform 0.3s ease-in;
         }
         h1:hover {
             transform: scale(1.1);
