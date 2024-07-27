@@ -4,13 +4,12 @@ const ContentLocal = () => {
     return (
         <div className="content_local" id="cont_local">
             <div className="text-card2">
-                <h1>
-                    Caso preferir, você pode buscar sua refeição em nossa
-                    unidade física
-                </h1>
+                Caso preferir, você pode buscar sua refeição em nossa unidade
+                física
             </div>
+
             <div className="home_local">
-                <div id="endereco">
+                <div id="endereco" className="dados-local">
                     <h2>Endereço</h2>
                     <p>
                         Rua Professor Jackson, 1958, Jardim Terra do Nunca,{" "}
@@ -18,7 +17,7 @@ const ContentLocal = () => {
                     </p>
                 </div>
 
-                <div id="funcionamento">
+                <div id="funcionamento" className="dados-local">
                     <h2>Horário de funcionamento</h2>
                     <p>
                         Segunda a Sábado <br /> Almoço das 11h às 16h00 e Jantar
@@ -26,7 +25,7 @@ const ContentLocal = () => {
                     </p>
                 </div>
 
-                <div id="funcionamento">
+                <div id="contato" className="dados-local">
                     <h2>Contato</h2>
                     <p>
                         Delivery: (16) 98765-4321 <br />
