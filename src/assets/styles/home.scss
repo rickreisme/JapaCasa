@@ -25,38 +25,6 @@
       p {
         font-size: 1.4rem;
       }
-
-      .text-card {
-        display: flex;
-        justify-content: center;
-        background-color: rgb(99, 6, 6);
-        border-radius: 20px;
-        margin-top: 90px;
-        margin-bottom: 20px;
-        transition: background-color 0.4s ease, transform 0.4s ease;
-
-        .text-H {
-          display: flex;
-          margin-top: 10px;
-
-          #spjapa2,
-          #spcasa {
-            font-family: "Bungee", sans-serif;
-          }
-
-          #spjapa2 {
-            margin-left: 5px;
-            color: red;
-          }
-
-          #spcasa {
-            color: white;
-          }
-        }
-      }
-      .text-card:hover {
-        transform: scale(1.05);
-      }
     }
 
     .home_direita img {
@@ -180,78 +148,5 @@
   .content_breve:hover {
     opacity: 1;
     border-radius: 20px;
-  }
-
-  .content_local {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: 87vw;
-    margin-top: 200px;
-    padding-left: 80px;
-    padding-right: 80px;
-    padding-top: 60px;
-    padding-bottom: 80px;
-    background-image: url("/assets/img/buffet-g10561976a_640.jpg");
-    background-size: cover;
-    color: white;
-    font-family: "Bungee", sans-serif;
-    text-align: center;
-
-    .text-card2 {
-      display: inline;
-      font-size: 16px;
-      font-family: "Montserrat", sans-serif;
-      background-color: rgb(168, 9, 9);
-      padding: 10px 15px;
-      margin-bottom: 30px;
-      justify-content: center;
-      align-items: center;
-      border-radius: 20px;
-      transition: background-color 0.3s ease;
-
-      h1 {
-        font-size: 24px;
-        line-height: 30px;
-        font-weight: 600;
-        color: white;
-      }
-    }
-
-    .home_local {
-      display: flex;
-      flex-direction: row;
-      background-color: white;
-      height: 40vh;
-      color: red;
-      padding-right: 70px;
-      padding-left: 70px;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 10px 10px 20px rgb(114, 5, 5);
-
-      p {
-        font-family: "Montserrat", sans-serif;
-        color: black;
-      }
-
-      #endereco {
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        justify-content: center;
-        align-items: center;
-      }
-
-      #funcionamento {
-        display: flex;
-        flex-direction: column;
-        border-left: 1px red solid;
-        padding: 20px;
-        justify-content: center;
-        align-items: center;
-      }
-    }
   }
 }

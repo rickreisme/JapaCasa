@@ -3,6 +3,7 @@ import "../assets/styles/cardapio.scss";
 import sushi from "../assets/img/sushi-crop.jpg";
 import { FaSearch } from "react-icons/fa";
 import { useEffect, useState, useTransition } from "react";
+import ContentLocal from "../components/ContentLocal";
 
 type Produto = {
     id: number;
@@ -224,50 +225,7 @@ const Cardapio = () => {
 
                 <div className="content_homeC">{renderProdutos()}</div>
 
-                <div className="content_local" id="cont_local">
-                    <div className="text-card2">
-                        <h1>
-                            Caso preferir, você pode buscar sua refeição em
-                            nossa unidade física
-                        </h1>
-                    </div>
-
-                    <div className="home_local">
-                        <div id="endereco">
-                            <h2>Endereço</h2>
-                            <p>
-                                Rua Michael Jackson, 1958
-                                <br />
-                                Jardim Neverland,
-                                <br />
-                                Ribeirão Preto - SP
-                            </p>
-                        </div>
-
-                        <div id="funcionamento">
-                            <h2>Horário de funcionamento</h2>
-                            <p>
-                                Segunda á Sábado
-                                <br />
-                                Almoço das 11h ás 15h00
-                                <br />
-                                Jantar das 18h ás 23h00
-                            </p>
-                        </div>
-
-                        <div id="funcionamento">
-                            <h2>Contato</h2>
-                            <p>
-                                Delivery: (16) 98888-8888
-                                <br />
-                                Peça também pelo WhatsApp
-                                <br />
-                                ou pelo iFood
-                                <br />
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <ContentLocal/>
             </main>
         </>
     );

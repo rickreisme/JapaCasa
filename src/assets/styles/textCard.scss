@@ -1,0 +1,35 @@
+.text-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(99, 6, 6);
+    color: white;
+    border-radius: 20px;
+    margin: 90px 0 20px 0;
+    padding: 0 10px;
+    transition:
+        background-color 0.4s ease,
+        transform 0.4s ease;
+
+    .text-H {
+        display: flex;
+        margin-top: 10px;
+
+        #spjapa2,
+        #spcasa {
+            font-family: "Bungee", sans-serif;
+        }
+
+        #spjapa2 {
+            margin-left: 5px;
+            color: red;
+        }
+
+        #spcasa {
+            color: white;
+        }
+    }
+}
+.text-card:hover {
+    transform: scale(1.05);
+}
