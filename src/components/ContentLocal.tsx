@@ -13,24 +13,24 @@ const ContentLocal = () => {
                 <div id="endereco">
                     <h2>Endereço</h2>
                     <p>
-                        Rua Michael Jackson, 1958 Jardim Neverland, Ribeirão
-                        Preto - SP
+                        Rua Prof. Jackson, 1958, Jd. Terra do Nunca, <br />{" "}
+                        Ribeirão Preto - SP
                     </p>
                 </div>
 
                 <div id="funcionamento">
                     <h2>Horário de funcionamento</h2>
                     <p>
-                        Segunda á Sábado Almoço das 11h ás 15h00 Jantar das 18h
-                        ás 23h00
+                        Segunda á Sábado <br /> Almoço das 11h ás 15h00 e Jantar
+                        das 18h ás 23h00
                     </p>
                 </div>
 
                 <div id="funcionamento">
                     <h2>Contato</h2>
                     <p>
-                        Delivery: (16) 98888-8888 Peça também pelo WhatsApp ou
-                        pelo iFood
+                        Delivery: (16) 98765-4321 <br />
+                        Peça também pelo WhatsApp ou pelo iFood
                     </p>
                 </div>
             </div>
