@@ -105,7 +105,7 @@
         border-radius: 15px;
         max-width: 350px;
         min-height: 500px;
-        transition: 0.2s ease-in;
+        transition: 0.3s ease-in-out;
 
         .img {
             display: flex;
@@ -132,32 +132,45 @@
             max-width: 95%;
         }
 
-        .preco{
+        .preco {
             font-weight: 600;
         }
 
-        .preco, .qtd{
+        .preco,
+        .qtd {
             font-size: 1.2rem;
         }
 
-        .detalhe{
+        .detalhe {
             font-size: 1.2rem;
             text-align: center;
             max-width: 100%;
         }
 
-        .preco, .qtd, .detalhe  {
+        .preco,
+        .qtd,
+        .detalhe {
             font-family: $fonte-secundaria;
         }
 
-        h5 {
-            font-size: 14px;
-            font-weight: normal;
-            text-align: center;
-            color: black;
-            line-height: 1.4;
-            margin-top: 10px;
+        .btnAddCarrinho {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5px;
+            font-size: 1.5rem;
+            transition: 0.2s ease-in-out;
+
+            .plusIcon {
+                font-size: 1rem;
+            }
         }
+        .btnAddCarrinho:hover {
+            transform: scale(1.2);
+        }
+    }
+    .food-card:hover {
+        box-shadow: 1px 1px 3px 3px #dbdbdb22;
     }
 }
 

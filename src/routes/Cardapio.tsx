@@ -4,6 +4,7 @@ import sushi from "../assets/img/sushi-crop.jpg";
 import { FaSearch } from "react-icons/fa";
 import { useEffect, useState, useTransition } from "react";
 import ContentLocal from "../components/ContentLocal";
+import BtnAddCarinho from "../components/BtnAddCarinho";
 
 type Produto = {
     id: number;
@@ -61,6 +62,7 @@ const Cardapio = () => {
             <div
                 className="food-card"
                 key={produto.id}
+                title={produto.nome}
                 // onClick={}
             >
                 <div className="img">
@@ -76,8 +78,11 @@ const Cardapio = () => {
                         maximumFractionDigits: 2,
                     })}
                 </h4>
+
                 <h4 className="qtd">{produto.quantidade}</h4>
                 <h4 className="detalhe">{produto.quantidadeDtd}</h4>
+
+                <BtnAddCarinho/>
             </div>
         ));
     };
