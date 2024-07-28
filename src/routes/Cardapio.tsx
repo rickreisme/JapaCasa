@@ -45,7 +45,7 @@ const Cardapio = () => {
     const filtProdutos = produtos.filter(
         (produto) =>
             (!selectedTipo || produto.tipo === selectedTipo) &&
-            produto.nome.toLowerCase().includes(searchTerm.toLowerCase())
+            produto.nome.toLowerCase().includes(searchTerm.toLowerCase()),
     );
 
     const renderProdutos = () => {
@@ -67,23 +67,23 @@ const Cardapio = () => {
                     <img src={produto.imagem} />
                 </div>
 
-                <h3>{produto.nome}</h3>
+                <h3 className="nome">{produto.nome}</h3>
 
-                <h4>
+                <h4 className="preco">
                     R${" "}
                     {produto.preco.toLocaleString("pt-BR", {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                     })}
                 </h4>
-                <h4>{produto.quantidade}</h4>
-                <h4>{produto.quantidadeDtd}</h4>
+                <h4 className="qtd">{produto.quantidade}</h4>
+                <h4 className="detalhe">{produto.quantidadeDtd}</h4>
             </div>
         ));
     };
 
     const handleSearchInputChange = (
-        event: React.ChangeEvent<HTMLInputElement>
+        event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         setSearchTerm(event.target.value);
     };
@@ -148,8 +148,8 @@ const Cardapio = () => {
                                 selectedTipo === null
                                     ? ""
                                     : selectedTipo === "sushi"
-                                    ? "selected"
-                                    : ""
+                                      ? "selected"
+                                      : ""
                             }`}
                             onClick={() => handleTipoClick("sushi")}
                         >
@@ -161,8 +161,8 @@ const Cardapio = () => {
                                 selectedTipo === null
                                     ? ""
                                     : selectedTipo === "temaki"
-                                    ? "selected"
-                                    : ""
+                                      ? "selected"
+                                      : ""
                             }`}
                             onClick={() => handleTipoClick("temaki")}
                         >
@@ -174,8 +174,8 @@ const Cardapio = () => {
                                 selectedTipo === null
                                     ? ""
                                     : selectedTipo === "niguiri"
-                                    ? "selected"
-                                    : ""
+                                      ? "selected"
+                                      : ""
                             }`}
                             onClick={() => handleTipoClick("niguiri")}
                         >
@@ -187,8 +187,8 @@ const Cardapio = () => {
                                 selectedTipo === null
                                     ? ""
                                     : selectedTipo === "uramaki"
-                                    ? "selected"
-                                    : ""
+                                      ? "selected"
+                                      : ""
                             }`}
                             onClick={() => handleTipoClick("uramaki")}
                         >
@@ -200,8 +200,8 @@ const Cardapio = () => {
                                 selectedTipo === null
                                     ? ""
                                     : selectedTipo === "yakisoba"
-                                    ? "selected"
-                                    : ""
+                                      ? "selected"
+                                      : ""
                             }`}
                             onClick={() => handleTipoClick("yakisoba")}
                         >
@@ -213,8 +213,8 @@ const Cardapio = () => {
                                 selectedTipo === null
                                     ? ""
                                     : selectedTipo === "combo"
-                                    ? "selected"
-                                    : ""
+                                      ? "selected"
+                                      : ""
                             }`}
                             onClick={() => handleTipoClick("combo")}
                         >
@@ -223,9 +223,9 @@ const Cardapio = () => {
                     </div>
                 </div>
 
-                <div className="content_homeC">{renderProdutos()}</div>
+                <div className="content_home">{renderProdutos()}</div>
 
-                <ContentLocal/>
+                <ContentLocal />
             </main>
         </>
     );

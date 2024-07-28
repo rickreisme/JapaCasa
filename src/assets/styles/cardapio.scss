@@ -1,3 +1,5 @@
+@import "vars.scss";
+
 .carda_title {
     align-items: center;
     justify-content: center;
@@ -82,12 +84,12 @@
     }
 }
 
-.content_homeC {
+.content_home {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    gap: 30px;
     margin-top: 80px;
     padding: 0 80px;
     color: white;
@@ -99,34 +101,53 @@
         justify-items: start;
         align-items: center;
         background-color: rgb(207, 5, 5);
-        padding: 20px;
+        padding: 10px;
         border-radius: 15px;
-        width: 350px;
-        height: auto;
-        min-height: 480px;
-        border-inline: 0px white solid;
-        transition: border-inline 0.2s ease-in;
+        max-width: 350px;
+        min-height: 500px;
+        transition: 0.2s ease-in;
 
-        img {
-            width: auto;
+        .img {
+            display: flex;
+            align-items: center;
+            min-width: 100%;
             height: 200px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 15px;
+            }
         }
 
-        h3 {
-            font-size: 20px;
-            font-family: "Bungee", sans-serif;
+        .nome {
+            font-size: 1.3rem;
+            font-family: $fonte-principal;
             font-weight: 200;
             color: white;
             text-align: center;
             line-height: 1.5;
             margin-top: 10px;
+            max-width: 95%;
         }
 
-        h4 {
-            font-size: 18px;
-            color: black;
-            text-shadow: 1px 1px 2px white, -1px 1px 2px white,
-                -1px -1px 2px white, 1px -1px 2px white;
+        .preco{
+            font-weight: 600;
+        }
+
+        .preco, .qtd{
+            font-size: 1.2rem;
+        }
+
+        .detalhe{
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 100%;
+        }
+
+        .preco, .qtd, .detalhe  {
+            font-family: $fonte-secundaria;
         }
 
         h5 {
@@ -137,64 +158,6 @@
             line-height: 1.4;
             margin-top: 10px;
         }
-    }
-    .food-card:hover {
-        border-inline: 3px white solid;
-        cursor: pointer;
-    }
-
-    .food-cardC {
-        display: flex;
-        flex-direction: column;
-        justify-items: start;
-        align-items: center;
-        background-color: rgb(207, 5, 5);
-        padding: 20px;
-        border-radius: 15px;
-        width: 350px;
-        height: 430px;
-        border-inline: 0px white solid;
-        transition: border-inline 0.2s ease-in;
-
-        img {
-            width: 330px;
-            height: 200px;
-        }
-
-        h2 {
-            font-size: 20px;
-            font-family: "Bungee", sans-serif;
-            font-weight: 200;
-            color: white;
-            text-align: center;
-            line-height: 1.5;
-            margin-top: 10px;
-        }
-
-        h3 {
-            line-height: 1.5;
-            font-weight: 100;
-        }
-
-        h4 {
-            font-size: 18px;
-            color: black;
-            text-shadow: 1px 1px 2px white, -1px 1px 2px white,
-                -1px -1px 2px white, 1px -1px 2px white;
-        }
-
-        h5 {
-            font-size: 14px;
-            font-weight: normal;
-            text-align: center;
-            color: black;
-            line-height: 1.4;
-            margin-top: 10px;
-        }
-    }
-    .food-cardC:hover {
-        border-inline: 3px white solid;
-        cursor: pointer;
     }
 }
 
