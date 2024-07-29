@@ -5,6 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { useEffect, useState, useTransition } from "react";
 import ContentLocal from "../components/ContentLocal";
 import BtnAddCarinho from "../components/BtnAddCarinho";
+import formatCurrency from "../utils/formatCurrency";
 
 type Produto = {
     id: number;
@@ -73,12 +74,7 @@ const Cardapio = () => {
 
                 <h4 className="preco">
                     
-                    {produto.preco.toLocaleString("pt-BR", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                        style: 'currency',
-                        currency: 'BRL'
-                    })}
+                    {formatCurrency(produto.preco)}
                 </h4>
 
                 <h4 className="qtd">{produto.quantidade}</h4>
