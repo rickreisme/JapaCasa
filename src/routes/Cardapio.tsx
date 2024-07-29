@@ -72,10 +72,12 @@ const Cardapio = () => {
                 <h3 className="nome">{produto.nome}</h3>
 
                 <h4 className="preco">
-                    R${" "}
+                    
                     {produto.preco.toLocaleString("pt-BR", {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
+                        style: 'currency',
+                        currency: 'BRL'
                     })}
                 </h4>
 
