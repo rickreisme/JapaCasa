@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import formatCurrency from "../utils/formatCurrency";
 import "../assets/styles/carrinho.scss";
 import { Helmet } from "react-helmet-async";
