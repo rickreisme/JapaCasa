@@ -19,6 +19,7 @@ type Produto = {
     quantidadeDtd: string;
     quantidadeCarrinho: number;
     imagem: string;
+    observacoes: string;
 };
 
 const Cardapio = () => {
@@ -127,7 +128,8 @@ const Cardapio = () => {
             quantidade: '',
             quantidadeDtd: '',
             quantidadeCarrinho,
-            imagem: ''
+            imagem: '',
+            observacoes,
         };
 
         try{
@@ -137,7 +139,9 @@ const Cardapio = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(produto),
+                
             });
+            console.log(produto)
 
             if(!response.ok){
                 throw new Error("Erro ao adicionar produto ao carrinho");
@@ -146,6 +150,7 @@ const Cardapio = () => {
             const result = await response.json();
             console.log("Produto adicionado ao carrinho: ", result);
             addProduto(produto, quantidadeCarrinho, observacoes)
+            
 
         }catch(error){
             console.error(error);

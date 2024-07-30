@@ -12,6 +12,10 @@ const Carrinho = () => {
         fetchCarrinho();
     },[]);
 
+    useEffect(() => {
+        console.log("Dados do carrinho:", carrinho);
+    }, [carrinho]);
+
     const renderCarrinho = () => {
         if (!carrinho || carrinho.length === 0) {
             return (

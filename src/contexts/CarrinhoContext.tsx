@@ -42,7 +42,7 @@ export const CarrinhoProvider = ({children}: {children: ReactNode}) =>{
 
     const addProduto = (produto: Produto, quantidadeCarrinho: number, observacoes: string) => {
         setCarrinho((prevCarrinho) => [...prevCarrinho, {produto, quantidadeCarrinho, observacoes}]);
-    };
+    };    
 
     const removeProduto = async (id: number) => {
         setCarrinho((prevCarrinho) => prevCarrinho.filter(item => item.produto.id !== id));

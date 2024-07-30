@@ -48,6 +48,13 @@ const ModalCarrinho: React.FC<ModalProps> = ({
     };
 
     const handleConfirm = () => {
+        console.log("Confirmando adição ao carrinho:", {
+            id: produtoModal.id,
+            nome: produtoModal.nome,
+            quantidadeCarrinho,
+            precoCarrinho,
+            observacoes
+        });
         onConfirm(produtoModal.id, produtoModal.nome, quantidadeCarrinho, precoCarrinho, observacoes);
     };
 
