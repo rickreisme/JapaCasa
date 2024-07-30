@@ -6,28 +6,40 @@ import { useEffect, useState, useTransition } from "react";
 import ContentLocal from "../components/ContentLocal";
 import BtnAddCarinho from "../components/BtnAddCarinho";
 import formatCurrency from "../utils/formatCurrency";
+import { useCarrinho } from "../contexts/CarrinhoContext";
+import ModalCarrinho from "../components/ModalCarrinho";
+import BtnCarrinho from "../components/BtnCarrinho";
 
 type Produto = {
     id: number;
     nome: string;
     tipo: string;
     preco: number;
-    quantidade: number;
-    quantidadeDtd: number;
+    quantidade: string;
+    quantidadeDtd: string;
+    quantidadeCarrinho: number;
     imagem: string;
 };
 
 const Cardapio = () => {
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL
+    const apiUrlP = `${apiUrl}/produtos`;
+    const apiUrlC = `${apiUrl}/carrinho`;
+
     const [produtos, setProdutos] = useState<Produto[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedTipo, setSelectedTipo] = useState<string | null>(null);
     const [, startTransition] = useTransition();
+    const [selectedProduto, setSelectedProduto] = useState<Produto | null>(
+        null,
+    );
+    const [modalOpen, setModalOpen] = useState(false);
+    const {addProduto} = useCarrinho();
 
     useEffect(() => {
         const fetchProdutos = async () => {
             try {
-                const response = await fetch(apiUrl);
+                const response = await fetch(apiUrlP);
 
                 if (!response.ok) {
                     throw new Error("Erro ao recuperar os produtos:");
@@ -42,7 +54,7 @@ const Cardapio = () => {
         };
 
         fetchProdutos();
-    }, [apiUrl]);
+    }, [apiUrlP]);
 
     const filtProdutos = produtos.filter(
         (produto) =>
@@ -60,27 +72,19 @@ const Cardapio = () => {
         }
 
         return filtProdutos.map((produto) => (
-            <div
-                className="food-card"
-                key={produto.id}
-                title={produto.nome}
-                // onClick={}
-            >
+            <div className="food-card" key={produto.id} title={produto.nome}>
                 <div className="img">
                     <img src={produto.imagem} />
                 </div>
 
                 <h3 className="nome">{produto.nome}</h3>
 
-                <h4 className="preco">
-                    
-                    {formatCurrency(produto.preco)}
-                </h4>
+                <h4 className="preco">{formatCurrency(produto.preco)}</h4>
 
                 <h4 className="qtd">{produto.quantidade}</h4>
                 <h4 className="detalhe">{produto.quantidadeDtd}</h4>
 
-                <BtnAddCarinho/>
+                <BtnAddCarinho onClick={() => handleOpenModal(produto)} />
             </div>
         ));
     };
@@ -95,6 +99,59 @@ const Cardapio = () => {
         startTransition(() => {
             setSelectedTipo(tipo);
         });
+    };
+
+    const handleOpenModal = (produto: Produto) => {
+        setSelectedProduto(produto);
+        setModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+        setSelectedProduto(null);
+    };
+
+    const handleConfirmAddToCart = async (
+        id: number,
+        nome: string,
+        quantidadeCarrinho: number,
+        preco: number,
+        observacoes: string,
+    ) => {
+
+        const produto: Produto = {
+            id,
+            nome,
+            tipo: selectedProduto?.tipo || '',
+            preco,
+            quantidade: '',
+            quantidadeDtd: '',
+            quantidadeCarrinho,
+            imagem: ''
+        };
+
+        try{
+            const response = await fetch(apiUrlC, {
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(produto),
+            });
+
+            if(!response.ok){
+                throw new Error("Erro ao adicionar produto ao carrinho");
+            }
+
+            const result = await response.json();
+            console.log("Produto adicionado ao carrinho: ", result);
+            addProduto(produto, quantidadeCarrinho, observacoes)
+
+        }catch(error){
+            console.error(error);
+        }finally{
+            handleCloseModal();
+        }
     };
 
     return (
@@ -227,6 +284,17 @@ const Cardapio = () => {
                 </div>
 
                 <div className="content_home">{renderProdutos()}</div>
+
+                <BtnCarrinho/>
+
+                {modalOpen && selectedProduto && (
+                    <ModalCarrinho
+                        produtoModal={selectedProduto}
+                        onClose={handleCloseModal}
+                        onConfirm={handleConfirmAddToCart}
+                        modalOpen={modalOpen}
+                    />
+                )}
 
                 <ContentLocal />
             </main>

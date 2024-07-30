@@ -3,6 +3,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../assets/styles/menu.scss";
+
 const Header: React.FC = () => {
     useEffect(() => {
         const japa = document.getElementById("japacasa");
@@ -54,7 +55,7 @@ const Header: React.FC = () => {
 
                     <Navbar.Toggle aria-controls="navbarSupportedContent" />
                     <Navbar.Collapse id="navbarSupportedContent">
-                        <Nav className="me-auto mb-2 mb-lg-0 ms-lg-5">
+                        <Nav className="me-auto mb-2 mb-lg-0 ms-lg-5 menuItems">
                             <Nav.Link href="/" id="home" aria-current="page">
                                 <i className="fa-solid fa-house menu-icons"></i>{" "}
                                 Home

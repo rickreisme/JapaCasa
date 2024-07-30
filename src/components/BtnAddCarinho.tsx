@@ -1,11 +1,16 @@
 import { FaPlusCircle, FaShoppingCart } from "react-icons/fa";
 
-const BtnAddCarinho = () => {
+type BtnAddCarrinhoProps = {
+    onClick: () => void;
+};
+
+const BtnAddCarinho: React.FC<BtnAddCarrinhoProps> = ({onClick}) => {
     return (
         <>
             <button
                 className="btnAddCarrinho"
                 title="Adicionar pedido ao carrinho"
+                onClick={onClick}
             >
                 <FaPlusCircle className="plusIcon" />
                 <FaShoppingCart />

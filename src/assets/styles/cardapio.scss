@@ -200,3 +200,22 @@
         }
     }
 }
+
+.modalCarrinho {
+    .quantidade-control {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+        font-size: 1.2rem;
+
+        .icon-quantidade-control{
+           
+        }
+    }
+
+    .modal-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}
