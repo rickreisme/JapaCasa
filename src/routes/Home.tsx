@@ -27,6 +27,7 @@ const Home = () => {
 
                     <div className="home_direita">
                         <img src={sushiHome} />
+                        
                     </div>
                 </div>
 
