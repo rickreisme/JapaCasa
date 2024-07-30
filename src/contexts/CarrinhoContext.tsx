@@ -54,7 +54,7 @@ export const CarrinhoProvider = ({children}: {children: ReactNode}) =>{
             const response = await fetch(apiUrlC, {
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'aplication/json',
+                    'Content-Type': 'application/json',
                 },
             });
 

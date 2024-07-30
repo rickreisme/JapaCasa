@@ -21,8 +21,6 @@ const Carrinho = () => {
             );
         }
 
-        console.log(carrinho)
-
         return carrinho.map((data) => (
             <div
                 className="carrinho-card"
