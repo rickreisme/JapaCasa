@@ -10,7 +10,7 @@ const Carrinho = () => {
 
     useEffect(() => {
         fetchCarrinho();
-    },[]);
+    }, []);
 
     useEffect(() => {
         console.log("Dados do carrinho:", carrinho);

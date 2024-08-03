@@ -23,7 +23,7 @@ type Produto = {
 };
 
 const Cardapio = () => {
-    const apiUrl = import.meta.env.VITE_API_URL
+    const apiUrl = import.meta.env.VITE_API_URL;
     const apiUrlP = `${apiUrl}/produtos`;
     const apiUrlC = `${apiUrl}/carrinho`;
 
@@ -35,7 +35,7 @@ const Cardapio = () => {
         null,
     );
     const [modalOpen, setModalOpen] = useState(false);
-    const {addProduto} = useCarrinho();
+    const { addProduto } = useCarrinho();
 
     useEffect(() => {
         const fetchProdutos = async () => {
@@ -119,42 +119,38 @@ const Cardapio = () => {
         preco: number,
         observacoes: string,
     ) => {
-
         const produto: Produto = {
             id,
             nome,
-            tipo: selectedProduto?.tipo || '',
+            tipo: selectedProduto?.tipo || "",
             preco,
-            quantidade: '',
-            quantidadeDtd: '',
+            quantidade: "",
+            quantidadeDtd: "",
             quantidadeCarrinho,
-            imagem: '',
+            imagem: "",
             observacoes,
         };
 
-        try{
+        try {
             const response = await fetch(apiUrlC, {
                 method: "POST",
-                headers:{
+                headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(produto),
-                
             });
-            console.log(produto)
+            console.log(produto);
 
-            if(!response.ok){
+            if (!response.ok) {
                 throw new Error("Erro ao adicionar produto ao carrinho");
             }
 
             const result = await response.json();
             console.log("Produto adicionado ao carrinho: ", result);
-            addProduto(produto, quantidadeCarrinho, observacoes)
-            
-
-        }catch(error){
+            addProduto(produto, quantidadeCarrinho, observacoes);
+        } catch (error) {
             console.error(error);
-        }finally{
+        } finally {
             handleCloseModal();
         }
     };
@@ -290,7 +286,7 @@ const Cardapio = () => {
 
                 <div className="content_home">{renderProdutos()}</div>
 
-                <BtnCarrinho/>
+                <BtnCarrinho />
 
                 {modalOpen && selectedProduto && (
                     <ModalCarrinho
