@@ -15,7 +15,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <a target="_blank" href="https://github.com/rickreisme">
+                        <a target="_blank" href="https://rickreisme-portfolio.vercel.app">
                             <span className="rickreisme">
                                 &lt;rickreisme/&gt;
                             </span>

@@ -32,65 +32,160 @@
 
     .carrinho-card {
         display: flex;
-        flex-direction: column;
-        justify-items: start;
+        flex-direction: row;
         align-items: center;
-        background-color: rgb(207, 5, 5);
-        padding: 10px;
+        justify-content: space-between;
+        background-color: #cf0505;
+        padding: 0 20px;
         border-radius: 15px;
-        max-width: 350px;
-        min-height: 200px;
+        width: 95%;
+        height: 150px;
         transition: 0.3s ease-in-out;
-
-        .img {
-            display: flex;
-            align-items: center;
-            min-width: 100%;
-            height: 200px;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 15px;
-            }
-        }
-
-        .nome {
-            font-size: 1.3rem;
-            font-family: $fonte-principal;
-            font-weight: 200;
-            color: white;
-            text-align: center;
-            line-height: 1.5;
-            margin-top: 10px;
-            max-width: 95%;
-        }
-
-        .preco {
-            font-weight: 600;
-        }
-
-        .preco,
-        .qtd {
-            font-size: 1.2rem;
-        }
-
-        .detalhe {
-            font-size: 1.2rem;
-            text-align: center;
-            max-width: 100%;
-        }
 
         .preco,
         .qtd,
-        .detalhe,
         .obs {
             font-family: $fonte-secundaria;
+        }
+
+        .infos {
+            display: flex;
+            align-items: center;
+            min-width: 70%;
+            gap: 10px;
+            height: 120px;
+
+            .img {
+                display: flex;
+                align-items: center;
+                height: 120px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 15px;
+                }
+            }
+
+            .info-produto {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex-grow: 1;
+                width: 30%;
+                max-width: 50%;
+
+                .nome {
+                    font-family: $fonte-principal;
+                    font-weight: 200;
+                    color: white;
+                }
+
+                .preco {
+                    font-weight: 600;
+                }
+
+                .obs {
+                    line-height: 1;
+                    max-height: 60px;
+                    height: 50px;
+                    overflow-y: auto;
+
+                    &::-webkit-scrollbar {
+                        width: 4px;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background: #f1f1f1;
+                        border-radius: 10px;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background: #212121;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+
+        .controle {
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            gap: 20px;
+
+            .qtd {
+                display: flex;
+                gap: 10px;
+
+                .btn-qtd {
+                    color: white;
+                    transition: 0.2s ease-in-out;
+
+                    &:hover {
+                        color: #212121;
+                    }
+                }
+            }
+
+            .btn-remover-item {
+                display: flex;
+                color: white;
+                transition: 0.2s ease-in-out;
+
+                &:hover {
+                    color: #212121;
+                }
+            }
         }
     }
     .carrinho-card:hover {
         box-shadow: 1px 1px 3px 3px #dbdbdb22;
+    }
+}
+
+.carrinho_total {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin: 50px 50px 0;
+
+    .total {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        border-top: 1px solid red;
+        width: 40%;
+        padding: 15px 0;
+
+        span {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .subtotal,
+        .frete {
+            font-size: 1.1rem;
+        }
+
+        .subtotal,
+        .total-frete {
+            color: white;
+        }
+
+        .frete {
+            color: #828282;
+        }
+
+        .total-frete {
+            font-size: 1.4rem;
+
+            .valor {
+                color: red;
+            }
+        }
     }
 }
 

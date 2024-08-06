@@ -7,6 +7,7 @@ import formatCurrency from "../utils/formatCurrency";
 type ProdutoModal = {
     id: number;
     nome: string;
+    imagem: string;
     preco: number;
     quantidadeCarrinho: number;
     observacoes?: string;
@@ -19,6 +20,7 @@ type ModalProps = {
     onConfirm: (
         id: number,
         nome: string,
+        imagem: string,
         quantidadeCarrinho: number,
         preco: number,
         observacoes: string,
@@ -51,11 +53,12 @@ const ModalCarrinho: React.FC<ModalProps> = ({
         console.log("Confirmando adição ao carrinho:", {
             id: produtoModal.id,
             nome: produtoModal.nome,
+            imagem: produtoModal.imagem,
             quantidadeCarrinho,
             precoCarrinho,
             observacoes
         });
-        onConfirm(produtoModal.id, produtoModal.nome, quantidadeCarrinho, precoCarrinho, observacoes);
+        onConfirm(produtoModal.id, produtoModal.nome, produtoModal.imagem, quantidadeCarrinho, precoCarrinho, observacoes);
     };
 
     return (

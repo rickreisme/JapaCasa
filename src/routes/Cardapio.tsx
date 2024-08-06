@@ -115,6 +115,7 @@ const Cardapio = () => {
     const handleConfirmAddToCart = async (
         id: number,
         nome: string,
+        imagem: string,
         quantidadeCarrinho: number,
         preco: number,
         observacoes: string,
@@ -127,7 +128,7 @@ const Cardapio = () => {
             quantidade: "",
             quantidadeDtd: "",
             quantidadeCarrinho,
-            imagem: "",
+            imagem,
             observacoes,
         };
 
@@ -146,7 +147,9 @@ const Cardapio = () => {
             }
 
             const result = await response.json();
+
             console.log("Produto adicionado ao carrinho: ", result);
+
             addProduto(produto, quantidadeCarrinho, observacoes);
         } catch (error) {
             console.error(error);
