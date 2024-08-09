@@ -9,42 +9,54 @@ import {
 } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 import { useCarrinho } from "../contexts/CarrinhoContext";
-import { useEffect } from "react";
+import { Alert, AlertTitle, CircularProgress } from "@mui/material";
+import { useTransition } from "react";
 
 const Carrinho = () => {
     const {
         carrinho,
         valorTotal,
         valorTotalFrete,
+        isLoading,
+        isError,
         removeProduto,
-        fetchCarrinho,
         updateQuantidade,
     } = useCarrinho();
 
+    const [, startTransition] = useTransition();
+
     const handleQuantidadeChange = (id: number, delta: number) => {
-        updateQuantidade(id, delta);
+        startTransition(() =>{
+            updateQuantidade(id, delta);
+        })
     };
-
-    useEffect(() => {
-        fetchCarrinho();
-    }, []);
-
-    useEffect(() => {
-        console.log("Dados do carrinho:", carrinho);
-        console.log("Valor total do carrinho:", valorTotal);
-        console.log("Valor total do carrinho com frete:", valorTotalFrete);
-    }, [carrinho, valorTotal, valorTotalFrete]);
+    
 
     const renderCarrinho = () => {
+        
+        if (isLoading) {
+            return <CircularProgress color="error" />;
+        }
+
+        if (isError) {
+            return (
+                <Alert variant="filled" severity="error">
+                    <AlertTitle>Erro</AlertTitle>
+                    Não foi possível carregar os dados do carrinho.
+                </Alert>
+            );
+        }
+
         if (!carrinho || carrinho.length === 0) {
             return (
                 <div className="no-service">
-                    <p>Nenhum produto encontrado no carrinho...</p>
+                    <p>Nenhum produto foi adicionado ao carrinho</p>
                 </div>
             );
         }
 
         return carrinho.map((data) => {
+            console.log(data.quantidadeCarrinho)
             return (
                 <div
                     className="carrinho-card"
@@ -157,7 +169,13 @@ const Carrinho = () => {
             <div className="carrinho_total">{renderTotal()}</div>
 
             <div className="rotas-carrinho">
-                <a href="/cardapio">Voltar</a>
+                <a href="/cardapio" className="btn-rotas btn-carrinho-voltar">
+                    Voltar para o cardápio
+                </a>
+
+                <a href="" className="btn-rotas btn-carrinho-continuar">
+                    Continuar para o checkout
+                </a>
             </div>
         </>
     );

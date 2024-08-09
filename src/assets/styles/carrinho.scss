@@ -30,6 +30,22 @@
     color: white;
     font-family: "Bungee", sans-serif;
 
+    .no-service {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #cf0505;
+        height: auto;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-family: $fonte-secundaria;
+        font-size: 1.2rem;
+
+        p {
+            margin: 0;
+        }
+    }
+
     .carrinho-card {
         display: flex;
         flex-direction: row;
@@ -155,7 +171,7 @@
         display: flex;
         flex-direction: column;
         align-items: end;
-        border-top: 1px solid red;
+        border-top: 1px solid #cf0505;
         width: 40%;
         padding: 15px 0;
 
@@ -232,5 +248,27 @@
         font-weight: 600;
         color: black;
         background-color: whitesmoke;
+    }
+}
+
+.rotas-carrinho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 50px 0px;
+
+    .btn-rotas {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #cf0505;
+        font-size: 1.2rem;
+        padding: 10px;
+        border-radius: 50px;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+            background: #6e0014;
+        }
     }
 }

@@ -2,13 +2,15 @@ import { Helmet } from "react-helmet-async";
 import "../assets/styles/cardapio.scss";
 import sushi from "../assets/img/sushi-crop.jpg";
 import { FaSearch } from "react-icons/fa";
-import { useEffect, useState, useTransition } from "react";
 import ContentLocal from "../components/ContentLocal";
 import BtnAddCarinho from "../components/BtnAddCarinho";
 import formatCurrency from "../utils/formatCurrency";
 import { useCarrinho } from "../contexts/CarrinhoContext";
 import ModalCarrinho from "../components/ModalCarrinho";
 import BtnCarrinho from "../components/BtnCarrinho";
+import { useProdutos } from "../hooks/useProdutos";
+import { useState, useTransition } from "react";
+import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 
 type Produto = {
     id: number;
@@ -23,11 +25,7 @@ type Produto = {
 };
 
 const Cardapio = () => {
-    const apiUrl = import.meta.env.VITE_API_URL;
-    const apiUrlP = `${apiUrl}/produtos`;
-    const apiUrlC = `${apiUrl}/carrinho`;
-
-    const [produtos, setProdutos] = useState<Produto[]>([]);
+    const { data, isLoading, isError, error } = useProdutos();
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedTipo, setSelectedTipo] = useState<string | null>(null);
     const [, startTransition] = useTransition();
@@ -37,33 +35,29 @@ const Cardapio = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const { addProduto } = useCarrinho();
 
-    useEffect(() => {
-        const fetchProdutos = async () => {
-            try {
-                const response = await fetch(apiUrlP);
-
-                if (!response.ok) {
-                    throw new Error("Erro ao recuperar os produtos:");
-                }
-
-                const data = await response.json();
-
-                setProdutos(data);
-            } catch (error) {
-                console.error("Erro ao recuperar os serviços:", error);
-            }
-        };
-
-        fetchProdutos();
-    }, [apiUrlP]);
-
+    const produtos = data || [];
     const filtProdutos = produtos.filter(
-        (produto) =>
+        (produto: Produto) =>
             (!selectedTipo || produto.tipo === selectedTipo) &&
             produto.nome.toLowerCase().includes(searchTerm.toLowerCase()),
     );
 
     const renderProdutos = () => {
+        if (isLoading) {
+            return <CircularProgress color="error" />;
+        }
+
+        if (isError) {
+            return (
+                <Alert variant="filled" severity="error">
+                    <AlertTitle>Erro</AlertTitle>
+                    {error instanceof Error
+                        ? error.message
+                        : "Erro desconhecido"}
+                </Alert>
+            );
+        }
+
         if (!filtProdutos || filtProdutos.length === 0) {
             return (
                 <div className="no-service">
@@ -72,7 +66,7 @@ const Cardapio = () => {
             );
         }
 
-        return filtProdutos.map((produto) => (
+        return filtProdutos.map((produto: Produto) => (
             <div className="food-card" key={produto.id} title={produto.nome}>
                 <div className="img">
                     <img src={produto.imagem} />
@@ -132,30 +126,8 @@ const Cardapio = () => {
             observacoes,
         };
 
-        try {
-            const response = await fetch(apiUrlC, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(produto),
-            });
-            console.log(produto);
-
-            if (!response.ok) {
-                throw new Error("Erro ao adicionar produto ao carrinho");
-            }
-
-            const result = await response.json();
-
-            console.log("Produto adicionado ao carrinho: ", result);
-
-            addProduto(produto, quantidadeCarrinho, observacoes);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            handleCloseModal();
-        }
+        addProduto(produto, quantidadeCarrinho, observacoes);
+        handleCloseModal();
     };
 
     return (

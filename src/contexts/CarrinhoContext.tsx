@@ -1,12 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
-import {
-    createContext,
-    ReactNode,
-    useContext,
-    useEffect,
-    useState,
-} from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { createContext, ReactNode, useContext } from "react";
 
 type Produto = {
     id: number;
@@ -25,6 +19,8 @@ type CarrinhoContextType = {
     carrinho: CarrinhoItem[];
     valorTotal: number;
     valorTotalFrete: number;
+    isLoading: boolean;
+    isError: boolean;
     addProduto: (
         produto: Produto,
         quantidade: number,
@@ -33,13 +29,12 @@ type CarrinhoContextType = {
     updateQuantidade: (id: number, delta: number) => void;
     removeProduto: (id: number) => void;
     clearCarrinho: () => void;
-    fetchCarrinho: () => void;
 };
 
 interface ProdutoAPI {
     id: number;
     nome: string;
-    imagem: string,
+    imagem: string;
     preco: number;
     quantidadeCarrinho: number;
     observacoes?: string;
@@ -55,51 +50,69 @@ const CarrinhoContext = createContext<CarrinhoContextType | undefined>(
     undefined,
 );
 
+const fetchCarrinho = async (): Promise<CarrinhoAPIResponse> => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiUrlC = `${apiUrl}/carrinho`;
+    const response = await fetch(apiUrlC);
+
+    if (!response.ok) {
+        throw new Error("Erro ao recuperar os produtos do carrinho:");
+    }
+
+    return await response.json();
+};
+
 export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
-    const [carrinho, setCarrinho] = useState<CarrinhoItem[]>([]);
-    const [valorTotal, setValorTotal] = useState<number>(0);
-    const [valorTotalFrete, setValorTotalFrete] = useState<number>(0); 
+    const queryClient = useQueryClient();
 
-    useEffect(() => {
-        fetchCarrinho();
-    }, []);
 
-    useEffect(() => {
-        updateValorTotal(carrinho);
-    }, [carrinho]);
+    const { data, isLoading, isError } = useQuery<CarrinhoAPIResponse>({
+        queryFn: fetchCarrinho,
+        queryKey: ["carrinho-data"],
+        staleTime: 10000,
+    });
 
-    useEffect(() => {
-        updateValorTotalFrete(carrinho);
-    }, [carrinho]);
+    console.log(data?.carrinho);
 
-    const addProduto = (
-        produto: Produto,
-        quantidadeCarrinho: number,
-        observacoes: string,
-    ) => {
-        setCarrinho((prevCarrinho) => [
-            ...prevCarrinho,
-            { produto, quantidadeCarrinho, observacoes },
-        ]);
-    };
+    const addProdutoMutation = useMutation({
+        mutationFn: async ({
+            produto,
+            quantidadeCarrinho,
+            observacoes,
+        }: CarrinhoItem) => {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const apiUrlC = `${apiUrl}/carrinho`;
 
-    const removeProduto = async (id: number) => {
-        setCarrinho((prevCarrinho) =>
-            prevCarrinho.filter((item) => item.produto.id !== id),
-        );
-
-        const apiUrl = import.meta.env.VITE_API_URL;
-        const apiUrlC = `${apiUrl}/carrinho/${id}`;
-
-        try {
-            setCarrinho((prevCarrinho) =>{
-                const novoCarrinho = prevCarrinho.filter(
-                    (item) => item.produto.id !== id
-                );
-                updateValorTotal(novoCarrinho);
-                updateValorTotalFrete(novoCarrinho);
-                return novoCarrinho;
+            const response = await fetch(apiUrlC, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id: produto.id,
+                    nome: produto.nome,
+                    preco: produto.preco,
+                    imagem: produto.imagem,
+                    quantidadeCarrinho,
+                    observacoes,
+                }),
             });
+
+            if (!response.ok) {
+                throw new Error("Erro ao adicionar produto ao carrinho");
+            }
+
+            return response.json();
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["carrinho-data"] });
+        },
+    });
+
+    const removeProdutoMutation = useMutation({
+        mutationFn: async (id: number) => {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const apiUrlC = `${apiUrl}/carrinho/${id}`;
 
             const response = await fetch(apiUrlC, {
                 method: "DELETE",
@@ -109,151 +122,220 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
             });
 
             if (!response.ok) {
+                throw new Error("Erro ao remover o produto do carrinho");
+            }
+
+            return response.json();
+        },
+        onMutate: async (id: number) => {
+            await queryClient.cancelQueries({ queryKey: ["carrinho-data"] });
+
+            const previousCartData = queryClient.getQueryData<{
+                carrinho: {
+                    id: number;
+                    quantidadeCarrinho: number;
+                    preco: number;
+                }[];
+            }>(["carrinho-data"]);
+
+            if (previousCartData) {
+                queryClient.setQueryData(["carrinho-data"], {
+                    ...previousCartData,
+                    carrinho: previousCartData.carrinho.filter(
+                        (item) => item.id !== id,
+                    ),
+                });
+            }
+
+            return { previousCartData };
+        },
+        onError: (
+            _err: unknown,
+            _variables: number,
+            context?: {
+                previousCartData?: {
+                    carrinho: {
+                        id: number;
+                        quantidadeCarrinho: number;
+                        preco: number;
+                    }[];
+                };
+            },
+        ) => {
+            if (context?.previousCartData) {
+                queryClient.setQueryData(
+                    ["carrinho-data"],
+                    context.previousCartData,
+                );
+            }
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries({ queryKey: ["carrinho-data"] });
+        },
+    });
+
+    const updateQuantidadeMutation = useMutation({
+        mutationFn: async ({
+            id,
+            quantidadeCarrinho,
+            preco,
+        }: {
+            id: number;
+            quantidadeCarrinho: number;
+            preco: number;
+        }) => {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const apiUrlC = `${apiUrl}/carrinho/${id}`;
+
+            const response = await fetch(apiUrlC, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    quantidadeCarrinho,
+                    preco,
+                }),
+            });
+
+            if (!response.ok) {
                 throw new Error(
-                    "Erro ao remover o produto do carrinho (na API):",
+                    "Erro ao atualizar a quantidade do produto no carrinho",
                 );
             }
 
-            console.log("Produto removido do carrinho com sucesso!");
-        } catch (error) {
-            console.error("Erro ao remover produto do carrinho:", error);
+            return response.json();
+        },
+        onMutate: async ({
+            id,
+            quantidadeCarrinho,
+        }: {
+            id: number;
+            quantidadeCarrinho: number;
+        }) => {
+            await queryClient.cancelQueries({ queryKey: ["carrinho-data"] });
+
+            const previousCartData = queryClient.getQueryData<{
+                carrinho: {
+                    id: number;
+                    quantidadeCarrinho: number;
+                    preco: number;
+                }[];
+            }>(["carrinho-data"]);
+
+            if (previousCartData) {
+                queryClient.setQueryData(["carrinho-data"], {
+                    ...previousCartData,
+                    carrinho: previousCartData.carrinho.map((item) =>
+                        item.id === id ? { ...item, quantidadeCarrinho } : item,
+                    ),
+                });
+            }
+
+            return { previousCartData };
+        },
+        onError: (
+            _err: unknown,
+            _variables: {
+                id: number;
+                quantidadeCarrinho: number;
+                preco: number;
+            },
+            context?: {
+                previousCartData?: {
+                    carrinho: {
+                        id: number;
+                        quantidadeCarrinho: number;
+                        preco: number;
+                    }[];
+                };
+            },
+        ) => {
+            if (context?.previousCartData) {
+                queryClient.setQueryData(
+                    ["carrinho-data"],
+                    context.previousCartData,
+                );
+            }
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries({ queryKey: ["carrinho-data"] });
+        },
+    });
+
+    const addProduto = (
+        produto: Produto,
+        quantidadeCarrinho: number,
+        observacoes: string,
+    ) => {
+        const produtoExistente = data?.carrinho.find(
+            (item) => item.id === produto.id,
+        );
+
+        if (produtoExistente) {
+            console.log("Produto existente encontrado:", produtoExistente);
+            updateQuantidade(produto.id, quantidadeCarrinho);
+        } else {
+            const novoItem: CarrinhoItem = {
+                produto,
+                quantidadeCarrinho,
+                observacoes,
+            };
+            console.log("Adicionando novo item:", novoItem);
+            addProdutoMutation.mutate(novoItem);
         }
+    };
+
+    const removeProduto = (id: number) => {
+        removeProdutoMutation.mutate(id);
     };
 
     const clearCarrinho = () => {
-        setCarrinho([]);
-        setValorTotal(0);
-        setValorTotalFrete(0);
+        queryClient.invalidateQueries({ queryKey: ["carrinho-data"] });
     };
 
-    const fetchCarrinho = async () => {
-        console.log("Fetching carrinho...");
-        const apiUrl = import.meta.env.VITE_API_URL;
-        const apiUrlC = `${apiUrl}/carrinho`;
-
-        try {
-            const response = await fetch(apiUrlC);
-            if (!response.ok) {
-                throw new Error("Erro ao recuperar os produtos do carrinho:");
-            }
-
-            const data: CarrinhoAPIResponse = await response.json();
-            console.log("Dados recebidos:", data);
-
-            const { carrinho, valorTotal, valorTotalFrete } = data;
-
-            const formatData: CarrinhoItem[] = carrinho.map((item) => ({
-                produto: {
-                    id: item.id,
-                    nome: item.nome,
-                    preco: item.preco,
-                    imagem: item.imagem,
-                },
-                quantidadeCarrinho: item.quantidadeCarrinho,
-                observacoes: item.observacoes || "",
-            }));
-
-            setCarrinho(formatData);
-            setValorTotal(valorTotal);
-            setValorTotalFrete(valorTotalFrete);
-        } catch (error) {
-            console.error("Erro ao recuperar o carrinho:", error);
+    const updateQuantidade = (id: number, delta: number) => {
+        const carrinhoItem = data?.carrinho.find((item) => item.id === id);
+        if (carrinhoItem) {
+            const newQuantidade = Math.max(
+                1,
+                carrinhoItem.quantidadeCarrinho + delta,
+            );
+            const novoPreco =
+                (carrinhoItem.preco / carrinhoItem.quantidadeCarrinho) *
+                newQuantidade;
+            updateQuantidadeMutation.mutate({
+                id,
+                quantidadeCarrinho: newQuantidade,
+                preco: novoPreco,
+            });
         }
     };
 
-    const updateQuantidade = async (id: number, delta: number) => {
-        const apiUrl = import.meta.env.VITE_API_URL;
-        const apiUrlC = `${apiUrl}/carrinho/${id}`;
-
-        setCarrinho((prevCarrinho) => {
-            const novoCarrinho = prevCarrinho.map((item) => {
-                if (item.produto.id === id) {
-                    const newQuantidade = Math.max(
-                        1,
-                        item.quantidadeCarrinho + delta,
-                    );
-                    const precoUnitario =
-                        item.produto.preco / item.quantidadeCarrinho;
-                    const novoPreco = precoUnitario * newQuantidade;
-                    return {
-                        ...item,
-                        quantidadeCarrinho: newQuantidade,
-                        produto: {
-                            ...item.produto,
-                            preco: novoPreco,
-                        },
-                    };
-                }
-                return item;
-            });
-
-            updateValorTotal(novoCarrinho);
-            updateValorTotalFrete(novoCarrinho);
-
-            const carrinhoItem = novoCarrinho.find(
-                (item) => item.produto.id === id,
-            );
-            if (carrinhoItem) {
-                fetch(apiUrlC, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        quantidadeCarrinho: carrinhoItem.quantidadeCarrinho,
-                        preco: carrinhoItem.produto.preco,
-                    }),
-                })
-                    .then((response) => {
-                        if (!response.ok) {
-                            throw new Error(
-                                "Erro ao atualizar a quantidade do produto no carrinho na API",
-                            );
-                        }
-                        console.log(
-                            "Quantidade do produto atualizada com sucesso!",
-                        );
-                    })
-                    .catch((error) => {
-                        console.error(
-                            "Erro ao atualizar a quantidade do produto no carrinho:",
-                            error,
-                        );
-                    });
-            }
-            return novoCarrinho;
-        });
-    };
-
-    const updateValorTotal = (novoCarrinho: CarrinhoItem[]) => {
-        const total = novoCarrinho.reduce(
-            (total, item) => total + item.produto.preco,
-            0,
-        );
-        setValorTotal(total);
-    };
-
-    const updateValorTotalFrete = (novoCarrinho: CarrinhoItem[]) => {
-        const total = novoCarrinho.reduce(
-            (total, item) => total + item.produto.preco,
-            0,
-        );
-
-        const totalFrete = total + 5;
-        setValorTotalFrete(totalFrete);
-    };
+    const formatCarrinho: CarrinhoItem[] =
+        data?.carrinho.map((item) => ({
+            produto: {
+                id: item.id,
+                nome: item.nome,
+                preco: item.preco,
+                imagem: item.imagem,
+            },
+            quantidadeCarrinho: item.quantidadeCarrinho,
+            observacoes: item.observacoes || "",
+        })) || [];
 
     return (
         <CarrinhoContext.Provider
             value={{
-                carrinho,
-                valorTotal,
-                valorTotalFrete,
+                carrinho: formatCarrinho,
+                valorTotal: data?.valorTotal || 0,
+                valorTotalFrete: data?.valorTotalFrete || 0,
+                isLoading,
+                isError,
                 addProduto,
                 removeProduto,
                 clearCarrinho,
                 updateQuantidade,
-                fetchCarrinho,
             }}
         >
             {children}

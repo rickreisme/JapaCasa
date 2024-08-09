@@ -18,7 +18,7 @@
         padding-bottom: 0;
 
         span {
-            color: red;
+            color: #cf0505;
             transition:
                 color 0.2s ease-in,
                 transform 0.3s ease-in;
@@ -38,15 +38,9 @@
         }
         h1:hover {
             transform: scale(1.1);
-            color: red;
+            color: #cf0505;
         }
     }
-
-    // .nav-item {
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    // }
 
     .menuItems {
         align-items: center;
@@ -70,7 +64,7 @@
             font-weight: 200;
         }
         a:hover {
-            color: red;
+            color: #cf0505;
         }
     }
 
