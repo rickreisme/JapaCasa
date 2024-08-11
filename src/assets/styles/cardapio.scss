@@ -1,221 +1,222 @@
 @import "vars.scss";
 
-.carda_title {
-    align-items: center;
-    justify-content: center;
-    margin-top: 170px;
-    padding-left: 80px;
-    padding-right: 80px;
-
-    h2 {
-        font-size: 32px;
-        font-family: "Bungee", sans-serif;
-        font-weight: 300;
-        color: white;
-    }
-
-    span {
-        color: red;
-    }
-}
-
-.pesquisa-filtro {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-
-    .pesquisa {
-        display: flex;
-        align-items: center;
-        color: white;
-
-        .pesquisa-box {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding: 3px 20px;
-            border-radius: 20px;
-            margin-left: 20px;
-            background-color: rgb(143, 3, 3);
-
-            input {
-                background: none;
-                border: none;
-                color: white;
-                font-size: 18.5px;
-            }
-            input:focus {
-                outline: none;
-            }
-            input::placeholder {
-                color: #dbdbdbe1;
-            }
-
-            #icon-search {
-                display: flex;
-                padding-left: 5px;
-                color: white;
-            }
-        }
-    }
-
-    .filtros {
-        display: flex;
-        gap: 20px;
-        font-size: 1.2rem;
-
-        span {
-            color: white;
-        }
-
-        .filtro-card {
-            background: rgb(143, 3, 3);
-            color: white;
-            padding: 0 10px;
-            border-radius: 30px;
-        }
-
-        .filtro-card.selected {
-            background-color: rgb(227, 8, 8);
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.749);
-        }
-    }
-}
-
-.content_home {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 80px;
-    padding: 0 80px;
-    color: white;
-    font-family: "Bungee", sans-serif;
-
-    .food-card {
+.container-cardapio {
+    .carda_title {
         display: flex;
         flex-direction: column;
-        justify-items: start;
+        gap: 20px;
         align-items: center;
-        background-color: rgb(207, 5, 5);
-        padding: 10px;
-        border-radius: 15px;
-        max-width: 350px;
-        min-height: 500px;
-        transition: 0.3s ease-in-out;
+        justify-content: center;
+        margin: 170px 0 50px;
+        padding: 0 80px;
 
-        .img {
-            display: flex;
-            align-items: center;
-            min-width: 100%;
-            height: 200px;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 15px;
-            }
-        }
-
-        .nome {
-            font-size: 1.3rem;
-            font-family: $fonte-principal;
-            font-weight: 200;
+        h2 {
+            font-size: 32px;
+            font-family: "Bungee", sans-serif;
+            font-weight: 300;
+            text-align: center;
             color: white;
-            text-align: center;
-            line-height: 1.5;
-            margin-top: 10px;
-            max-width: 95%;
         }
 
-        .preco {
-            font-weight: 600;
+        span {
+            color: red;
         }
 
-        .preco,
-        .qtd {
-            font-size: 1.2rem;
+        img {
+            width: 500px;
+            height: 300px;
         }
+    }
 
-        .detalhe {
-            font-size: 1.2rem;
-            text-align: center;
-            max-width: 100%;
-        }
+    .pesquisa-filtro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
 
-        .preco,
-        .qtd,
-        .detalhe {
-            font-family: $fonte-secundaria;
-        }
-
-        .btnAddCarrinho {
+        .pesquisa {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 5px;
-            font-size: 1.5rem;
-            transition: 0.2s ease-in-out;
+            color: white;
+            font-size: 1.2rem;
 
-            .plusIcon {
-                font-size: 1rem;
+            .pesquisa-box {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 3px 20px;
+                border-radius: 20px;
+                margin-left: 20px;
+                background-color: rgb(143, 3, 3);
+
+                input {
+                    background: none;
+                    border: none;
+                    color: white;
+                    font-size: 18.5px;
+                }
+                input:focus {
+                    outline: none;
+                }
+                input::placeholder {
+                    color: #dbdbdbe1;
+                }
+
+                #icon-search {
+                    display: flex;
+                    padding-left: 5px;
+                    color: white;
+                }
             }
         }
-        .btnAddCarrinho:hover {
-            transform: scale(1.2);
+
+        .filtros {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 1.2rem;
+
+            span {
+                color: white;
+            }
+
+            .filtro-card {
+                background: rgb(143, 3, 3);
+                color: white;
+                padding: 0 10px;
+                border-radius: 30px;
+            }
+
+            .filtro-card.selected {
+                background-color: rgb(227, 8, 8);
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.749);
+            }
         }
     }
-    .food-card:hover {
-        box-shadow: 1px 1px 3px 3px #dbdbdb22;
-    }
-}
 
-.content_bottom {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 100px;
-    margin-top: 100px;
-    padding-left: 80px;
-    padding-right: 80px;
-    color: white;
-    font-family: "Bungee", sans-serif;
-    text-align: center;
-
-    .home_esquerda {
+    .content_home {
         display: flex;
-        flex-direction: column;
-        font-size: 16px;
-        font-family: "Montserrat", sans-serif;
-        margin-bottom: 50px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 80px;
+        padding: 0 80px;
+        color: white;
+        font-family: "Bungee", sans-serif;
 
-        img {
-            width: 100%;
-            height: 300px;
+        .food-card {
+            display: flex;
+            flex-direction: column;
+            justify-items: start;
+            align-items: center;
+            background-color: rgb(207, 5, 5);
+            padding: 10px;
+            border-radius: 15px;
+            max-width: 350px;
+            min-height: 500px;
+            transition: 0.3s ease-in-out;
+
+            .img {
+                display: flex;
+                align-items: center;
+                min-width: 100%;
+                height: 200px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 15px;
+                }
+            }
+
+            .nome {
+                font-size: 1.3rem;
+                font-family: $fonte-principal;
+                font-weight: 200;
+                color: white;
+                text-align: center;
+                line-height: 1.5;
+                margin-top: 10px;
+                max-width: 95%;
+            }
+
+            .preco {
+                font-weight: 600;
+            }
+
+            .preco,
+            .qtd {
+                font-size: 1.2rem;
+            }
+
+            .detalhe {
+                font-size: 1.2rem;
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .preco,
+            .qtd,
+            .detalhe {
+                font-family: $fonte-secundaria;
+            }
+
+            .btnAddCarrinho {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 5px;
+                font-size: 1.5rem;
+                transition: 0.2s ease-in-out;
+
+                .plusIcon {
+                    font-size: 1rem;
+                }
+            }
+            .btnAddCarrinho:hover {
+                transform: scale(1.2);
+            }
+        }
+        .food-card:hover {
+            box-shadow: 1px 1px 3px 3px #dbdbdb22;
         }
     }
 }
 
 .modalCarrinho {
+    
     .quantidade-control {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin: 10px 0;
-        font-size: 1.2rem;
-
-        .icon-quantidade-control{
-           
-        }
+        font-size: 1.3rem;
     }
 
     .modal-buttons {
         display: flex;
         justify-content: space-between;
+
+        .modal_btn{
+            margin-top: 15px;
+            padding: 2px 10px;
+            font-size: 1.1rem;
+            border-radius: 20px;
+            
+        }
+
+        .modal_btn-cancelar{
+            background-color: #6c0202;
+        }
+
+        .modal_btn-add{
+            background-color: #101010;
+        }
     }
 }

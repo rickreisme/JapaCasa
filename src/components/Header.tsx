@@ -45,12 +45,12 @@ const Header: React.FC = () => {
             >
                 <Container>
                     <Navbar.Brand href="/" className="logo">
-                        <h1 id="japacasa">
+                        <span id="japacasa">
                             <span id="spjapa" style={{ color: "red" }}>
                                 Japa
                             </span>
                             Casa!
-                        </h1>
+                        </span>
                     </Navbar.Brand>
 
                     <Navbar.Toggle aria-controls="navbarSupportedContent" />

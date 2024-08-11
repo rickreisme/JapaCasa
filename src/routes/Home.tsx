@@ -27,7 +27,6 @@ const Home = () => {
 
                     <div className="home_direita">
                         <img src={sushiHome} />
-                        
                     </div>
                 </div>
 
@@ -50,10 +49,8 @@ const Home = () => {
                 <div className="content_breve">
                     <h1>EM BREVE</h1>
                     <div className="home_breve">
-                        <h4>EM BREVE</h4>
                         <h2>
                             Você poderá aproveitar sua refeição em um ambiente
-                            <br />
                             tão aconchegante quanto a sua casa.
                         </h2>
                         <h3>
@@ -63,7 +60,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                <ContentLocal/>
+                <ContentLocal />
             </div>
         </>
     );

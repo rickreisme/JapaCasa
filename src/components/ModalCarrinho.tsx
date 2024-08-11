@@ -56,9 +56,16 @@ const ModalCarrinho: React.FC<ModalProps> = ({
             imagem: produtoModal.imagem,
             quantidadeCarrinho,
             precoCarrinho,
-            observacoes
+            observacoes,
         });
-        onConfirm(produtoModal.id, produtoModal.nome, produtoModal.imagem, quantidadeCarrinho, precoCarrinho, observacoes);
+        onConfirm(
+            produtoModal.id,
+            produtoModal.nome,
+            produtoModal.imagem,
+            quantidadeCarrinho,
+            precoCarrinho,
+            observacoes,
+        );
     };
 
     return (
@@ -83,17 +90,13 @@ const ModalCarrinho: React.FC<ModalProps> = ({
                         p: 3,
                     }}
                 >
-                    <Typography
-                        id="modal-modal-title"
-                        marginTop="0"
-                    >
-                        <h2>{produtoModal.nome}</h2>
+                    <Typography id="modal-modal-title" marginTop="0">
+                        <h1>
+                            <strong>{produtoModal.nome}</strong>
+                        </h1>
                     </Typography>
 
-                    <Typography
-                        id="modal-modal-title"
-                        marginTop="0"
-                    >
+                    <Typography id="modal-modal-title" marginTop="0">
                         <h3>{formatCurrency(precoCarrinho)}</h3>
                     </Typography>
 
@@ -131,7 +134,7 @@ const ModalCarrinho: React.FC<ModalProps> = ({
                             sx: {
                                 color: "white",
                                 minHeight: "70px",
-                                fontSize: "1rem",
+                                fontSize: "1.2rem",
                             },
                         }}
                     />
@@ -149,9 +152,17 @@ const ModalCarrinho: React.FC<ModalProps> = ({
                     </div>
 
                     <div className="modal-buttons">
-                        <button onClick={onClose}>Cancelar</button>
+                        <button
+                            onClick={onClose}
+                            className="modal_btn modal_btn-cancelar"
+                        >
+                            Cancelar
+                        </button>
 
-                        <button onClick={handleConfirm}>
+                        <button
+                            onClick={handleConfirm}
+                            className="modal_btn modal_btn-add"
+                        >
                             Adicionar ao carrinho
                         </button>
                     </div>

@@ -2,12 +2,11 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     text-align: center;
     color: white;
     background-color: #0f0f0f;
     font-family: "Montserrat", sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border-top: 1px solid #ff0000;
     margin-top: 100px;
     padding: 0;
@@ -22,7 +21,6 @@ footer {
         .logos {
             display: flex;
             align-items: center;
-            gap: 15px;
 
             span {
                 color: red;
@@ -47,8 +45,13 @@ footer {
 
             .rickreisme {
                 color: #06cd27;
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+                margin-left: 10px;
             }
+        }
+
+        .credits{
+            font-size: 1.1rem;
         }
     }
 }

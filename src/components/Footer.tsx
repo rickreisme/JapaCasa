@@ -15,16 +15,17 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <a target="_blank" href="https://rickreisme-portfolio.vercel.app">
+                        <a
+                            target="_blank"
+                            href="https://rickreisme-portfolio.vercel.app"
+                        >
                             <span className="rickreisme">
                                 &lt;rickreisme/&gt;
                             </span>
                         </a>
                     </div>
 
-                    <div className="credits">
-                        Desenvolvido por Rick Reis
-                    </div>
+                    <div className="credits">Desenvolvido por Rick Reis</div>
                 </div>
             </footer>
         </>

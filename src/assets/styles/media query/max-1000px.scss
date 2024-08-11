@@ -1,0 +1,194 @@
+@media (max-width: 1000px) {
+    .menu {
+        .menuItems {
+            a {
+                margin-left: 0px;
+            }
+        }
+    }
+
+    .container-home {
+        .content_home,
+        .content_carda,
+        .content_breve {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .content_carda {
+            padding: 0;
+        }
+    }
+
+    .content_local {
+        .home_local {
+            flex-direction: column;
+            padding: 40px 10px;
+
+            .dados-local {
+                width: 100%;
+            }
+        }
+    }
+
+    .container-carrinho {
+        .carrinho_title {
+            margin-top: 100px;
+        }
+
+        .content_home {
+            padding: 0;
+            margin-top: 30px;
+
+            .carrinho-card {
+                flex-direction: column;
+                height: auto;
+                max-height: 500px;
+
+                .infos {
+                    justify-content: center;
+                    margin-top: 10px;
+
+                    .img {
+                        margin-right: 10px;
+                        img {
+                            width: 150px;
+                            height: auto;
+                        }
+                    }
+                }
+
+                .controle {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        .carrinho_total {
+            justify-content: center;
+            .total {
+                width: 80%;
+                align-items: center;
+            }
+        }
+
+        .rotas-carrinho {
+            margin: 20px 20px 0px;
+            gap: 15px;
+
+            .btn-rotas {
+                text-align: center;
+                padding: 5px;
+            }
+        }
+    }
+
+    .container-sobre {
+        .content_sobre {
+            flex-direction: column;
+            margin: 100px 0 0;
+
+            .home_esquerda {
+                max-width: 95%;
+                h3 {
+                    text-align: center;
+                    margin-left: 0;
+                }
+
+                h4 {
+                    text-align: center;
+                }
+            }
+
+            .home_direita {
+                img {
+                    width: 400px;
+                    height: auto;
+                }
+            }
+        }
+
+        .content_center {
+            flex-wrap: wrap;
+
+            img {
+                width: 300px;
+                height: auto;
+            }
+        }
+    }
+
+    #menu {
+        display: block;
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        top: 80%;
+        right: 0;
+        z-index: 1;
+        background: black;
+        transition:
+            height 0.6s,
+            visibility 0.4s ease;
+        height: 0;
+        visibility: hidden;
+        overflow-y: hidden;
+    }
+
+    #nav.active #menu {
+        height: calc(80vh - 70px);
+        visibility: visible;
+    }
+
+    #menu a {
+        display: flex;
+        flex-direction: row;
+        margin-left: 0;
+    }
+
+    #menu a i {
+        margin-right: 5px;
+    }
+
+    #btn-mobile {
+        display: flex;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    #hamburger {
+        width: 25px;
+        border-top: 2px solid;
+        color: white;
+        transition: 0.6s;
+    }
+
+    #hamburger::after,
+    #hamburger::before {
+        content: "";
+        display: block;
+        width: 25px;
+        border-top: 2px solid;
+        margin-top: 5px;
+        background: currentColor;
+        transition: 0.6s;
+    }
+
+    #nav.active #hamburger {
+        border-top-color: transparent;
+        transform: rotate(90deg);
+    }
+
+    #nav.active #hamburger::before {
+        transform: rotate(30deg);
+    }
+
+    #nav.active #hamburger::after {
+        transform: rotate(-35deg);
+    }
+
+    .logo {
+        margin-right: 230px;
+    }
+}

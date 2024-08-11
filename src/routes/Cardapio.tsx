@@ -136,23 +136,19 @@ const Cardapio = () => {
                 <title>Cardápio | JapaCasa! </title>
             </Helmet>
 
-            <main>
+            <div className="container-cardapio">
                 <div className="carda_title">
                     <h2>
                         Confira o nosso<span id="spjapa2"> Cardápio</span>
                         <span id="spcasa">!</span>
                     </h2>
-                </div>
 
-                <div className="content_bottom">
-                    <div className="home_esquerda">
-                        <img src={sushi} />
-                    </div>
+                    <img src={sushi} />
                 </div>
 
                 <div className="pesquisa-filtro">
                     <div className="pesquisa">
-                        <span>Pesquisar pelo nome:</span>
+                        <span>Pesquise pelo nome:</span>
 
                         <div className="pesquisa-box">
                             <input
@@ -263,17 +259,17 @@ const Cardapio = () => {
 
                 <BtnCarrinho />
 
-                {modalOpen && selectedProduto && (
-                    <ModalCarrinho
-                        produtoModal={selectedProduto}
-                        onClose={handleCloseModal}
-                        onConfirm={handleConfirmAddToCart}
-                        modalOpen={modalOpen}
-                    />
-                )}
-
                 <ContentLocal />
-            </main>
+            </div>
+
+            {modalOpen && selectedProduto && (
+                <ModalCarrinho
+                    produtoModal={selectedProduto}
+                    onClose={handleCloseModal}
+                    onConfirm={handleConfirmAddToCart}
+                    modalOpen={modalOpen}
+                />
+            )}
         </>
     );
 };

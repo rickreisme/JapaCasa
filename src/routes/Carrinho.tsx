@@ -7,6 +7,7 @@ import {
     FaMotorcycle,
     FaTrash,
 } from "react-icons/fa";
+import { IoReturnDownBack, IoReturnDownForward } from "react-icons/io5";
 import { Helmet } from "react-helmet-async";
 import { useCarrinho } from "../contexts/CarrinhoContext";
 import { Alert, AlertTitle, CircularProgress } from "@mui/material";
@@ -26,14 +27,12 @@ const Carrinho = () => {
     const [, startTransition] = useTransition();
 
     const handleQuantidadeChange = (id: number, delta: number) => {
-        startTransition(() =>{
+        startTransition(() => {
             updateQuantidade(id, delta);
-        })
+        });
     };
-    
 
     const renderCarrinho = () => {
-        
         if (isLoading) {
             return <CircularProgress color="error" />;
         }
@@ -56,7 +55,7 @@ const Carrinho = () => {
         }
 
         return carrinho.map((data) => {
-            console.log(data.quantidadeCarrinho)
+            console.log(data.quantidadeCarrinho);
             return (
                 <div
                     className="carrinho-card"
@@ -74,20 +73,20 @@ const Carrinho = () => {
                             <h5 className="preco">
                                 {formatCurrency(data.produto.preco)}
                             </h5>
-
-                            {data.observacoes && (
-                                <h6 className="obs">
-                                    <b>Observações: </b>
-                                    {data.observacoes}
-                                </h6>
-                            )}
                         </div>
                     </div>
+                    {data.observacoes && (
+                        <h6 className="obs">
+                            <b>Observações: </b>
+                            {data.observacoes}
+                        </h6>
+                    )}
 
                     <div className="controle">
                         <div className="qtd">
                             <button
                                 className="btn-qtd"
+                                title="Retirar um item"
                                 onClick={() =>
                                     handleQuantidadeChange(data.produto.id, -1)
                                 }
@@ -95,10 +94,13 @@ const Carrinho = () => {
                                 <FaMinusCircle className="icon-quantidade-control" />
                             </button>
 
-                            <span>{data.quantidadeCarrinho}</span>
+                            <span title="Quantidade">
+                                {data.quantidadeCarrinho}
+                            </span>
 
                             <button
                                 className="btn-qtd"
+                                title="Adicionar um item"
                                 onClick={() =>
                                     handleQuantidadeChange(data.produto.id, 1)
                                 }
@@ -109,6 +111,7 @@ const Carrinho = () => {
 
                         <button
                             className="btn-remover-item"
+                            title="Remover produto"
                             onClick={() => removeProduto(data.produto.id)}
                         >
                             <FaTrash />
@@ -158,24 +161,36 @@ const Carrinho = () => {
                 <title>Carrinho | JapaCasa! </title>
             </Helmet>
 
-            <div className="carrinho_title">
-                <h2>
-                    Confira o seu <span id="spjapa2"> Carrinho:</span>
-                </h2>
-            </div>
+            <div className="container-carrinho">
+                <div className="carrinho_title">
+                    <h2>
+                        Confira o seu <span id="spjapa2"> Carrinho:</span>
+                    </h2>
+                </div>
 
-            <div className="content_home">{renderCarrinho()}</div>
+                <div className="content_home">{renderCarrinho()}</div>
 
-            <div className="carrinho_total">{renderTotal()}</div>
+                <div className="carrinho_total">{renderTotal()}</div>
 
-            <div className="rotas-carrinho">
-                <a href="/cardapio" className="btn-rotas btn-carrinho-voltar">
-                    Voltar para o cardápio
-                </a>
+                <div className="rotas-carrinho">
+                    <a
+                        href="/cardapio"
+                        className="btn-rotas btn-carrinho-voltar"
+                        title="Voltar para o cardápio"
+                    >
+                        <IoReturnDownBack className="btn-rotas-icon" />
+                        Cardápio
+                    </a>
 
-                <a href="" className="btn-rotas btn-carrinho-continuar">
-                    Continuar para o checkout
-                </a>
+                    <a
+                        href=""
+                        className="btn-rotas btn-carrinho-continuar"
+                        title="Continuar para a próxima etapa"
+                    >
+                        <IoReturnDownForward className="btn-rotas-icon" />
+                        Continuar
+                    </a>
+                </div>
             </div>
         </>
     );

@@ -2,34 +2,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
     background-color: rgb(99, 6, 6);
     color: white;
+    font-size: 1.5rem;
     border-radius: 20px;
     margin: 90px 0 20px 0;
     padding: 0 10px;
-    transition:
-        background-color 0.4s ease,
-        transform 0.4s ease;
+    transition: 0.4s ease-in-out;
 
-    .text-H {
-        display: flex;
-        margin-top: 10px;
-
-        #spjapa2,
-        #spcasa {
-            font-family: "Bungee", sans-serif;
-        }
-
-        #spjapa2 {
-            margin-left: 5px;
-            color: red;
-        }
-
-        #spcasa {
-            color: white;
-        }
+    &:hover {
+        transform: scale(1.1);
     }
-}
-.text-card:hover {
-    transform: scale(1.05);
 }

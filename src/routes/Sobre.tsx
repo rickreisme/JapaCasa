@@ -15,7 +15,7 @@ const Sobre = () => {
                 <title>Sobre | JapaCasa! </title>
             </Helmet>
 
-            <main>
+            <div className="container-sobre">
                 <div className="content_sobre">
                     <div className="home_esquerda">
                         <h3>Sobre nós</h3>
@@ -82,7 +82,7 @@ const Sobre = () => {
                 <TextCardJP/>
 
                 <ContentLocal/>
-            </main>
+            </div>
         </>
     );
 };
