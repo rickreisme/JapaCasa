@@ -20,6 +20,25 @@
         }
     }
 
+    .container-cardapio {
+        .carda_title {
+            img {
+                max-width: 600px;
+                height: auto;
+            }
+        }
+
+        .pesquisa-filtro {
+            .pesquisa {
+                flex-direction: column;
+
+                .pesquisa-box {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
     .content_local {
         .home_local {
             flex-direction: column;

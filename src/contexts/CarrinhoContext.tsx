@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-refresh/only-export-components */
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 type Produto = {
     id: number;
@@ -50,10 +52,35 @@ const CarrinhoContext = createContext<CarrinhoContextType | undefined>(
     undefined,
 );
 
+const getSessionId = () => {
+    let sessionId = sessionStorage.getItem("sessionId");
+
+    if (!sessionId) {
+        sessionId = uuidv4();
+        sessionStorage.setItem("sessionId", sessionId);
+    }
+
+    return sessionId;
+};
+
+const saveCarrinhoSessionStorage = (carrinho: CarrinhoItem[]) => {
+    sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+};
+
+const loadCarrinhoSessionStorage = (): CarrinhoItem[] => {
+    const savedCarrinho = sessionStorage.getItem("carrinho");
+    return savedCarrinho ? JSON.parse(savedCarrinho) : [];
+};
+
 const fetchCarrinho = async (): Promise<CarrinhoAPIResponse> => {
+    const sessionId = getSessionId();
     const apiUrl = import.meta.env.VITE_API_URL;
     const apiUrlC = `${apiUrl}/carrinho`;
-    const response = await fetch(apiUrlC);
+    const response = await fetch(apiUrlC, {
+        headers: {
+            "session-id": sessionId,
+        },
+    });
 
     if (!response.ok) {
         throw new Error("Erro ao recuperar os produtos do carrinho:");
@@ -65,14 +92,48 @@ const fetchCarrinho = async (): Promise<CarrinhoAPIResponse> => {
 export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
     const queryClient = useQueryClient();
 
-
     const { data, isLoading, isError } = useQuery<CarrinhoAPIResponse>({
         queryFn: fetchCarrinho,
         queryKey: ["carrinho-data"],
         staleTime: 10000,
     });
 
-    console.log(data?.carrinho);
+    const formatCarrinho: CarrinhoItem[] =
+        data?.carrinho.map((item) => ({
+            produto: {
+                id: item.id,
+                nome: item.nome,
+                preco: item.preco,
+                imagem: item.imagem,
+            },
+            quantidadeCarrinho: item.quantidadeCarrinho,
+            observacoes: item.observacoes || "",
+        })) || [];
+
+    useEffect(() => {
+        const sessionCarrinho = loadCarrinhoSessionStorage();
+
+        if (sessionCarrinho.length > 0) {
+            queryClient.setQueryData(
+                ["carrinho-data"],
+                (oldData: CarrinhoItem) => ({
+                    ...oldData,
+                    carrinho: sessionCarrinho.map((item) => ({
+                        id: item.produto.id,
+                        nome: item.produto.nome,
+                        preco: item.produto.preco,
+                        imagem: item.produto.imagem,
+                        quantidadeCarrinho: item.quantidadeCarrinho,
+                        observacoes: item.observacoes,
+                    })),
+                }),
+            );
+        }
+    }, [queryClient]);
+
+    useEffect(() => {
+        saveCarrinhoSessionStorage(formatCarrinho);
+    }, [formatCarrinho]);
 
     const addProdutoMutation = useMutation({
         mutationFn: async ({
@@ -82,11 +143,13 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         }: CarrinhoItem) => {
             const apiUrl = import.meta.env.VITE_API_URL;
             const apiUrlC = `${apiUrl}/carrinho`;
+            const sessionId = getSessionId();
 
             const response = await fetch(apiUrlC, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "session-id": sessionId,
                 },
                 body: JSON.stringify({
                     id: produto.id,
@@ -113,11 +176,13 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         mutationFn: async (id: number) => {
             const apiUrl = import.meta.env.VITE_API_URL;
             const apiUrlC = `${apiUrl}/carrinho/${id}`;
+            const sessionId = getSessionId();
 
             const response = await fetch(apiUrlC, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
+                    "session-id": sessionId,
                 },
             });
 
@@ -186,11 +251,13 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         }) => {
             const apiUrl = import.meta.env.VITE_API_URL;
             const apiUrlC = `${apiUrl}/carrinho/${id}`;
+            const sessionId = getSessionId();
 
             const response = await fetch(apiUrlC, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
+                    "session-id": sessionId,
                 },
                 body: JSON.stringify({
                     quantidadeCarrinho,
@@ -291,6 +358,10 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const clearCarrinho = () => {
+        sessionStorage.removeItem("carrinho");
+
+        queryClient.setQueryData(["carrinho-data"], {});
+
         queryClient.invalidateQueries({ queryKey: ["carrinho-data"] });
     };
 
@@ -311,18 +382,6 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
             });
         }
     };
-
-    const formatCarrinho: CarrinhoItem[] =
-        data?.carrinho.map((item) => ({
-            produto: {
-                id: item.id,
-                nome: item.nome,
-                preco: item.preco,
-                imagem: item.imagem,
-            },
-            quantidadeCarrinho: item.quantidadeCarrinho,
-            observacoes: item.observacoes || "",
-        })) || [];
 
     return (
         <CarrinhoContext.Provider
