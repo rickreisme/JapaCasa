@@ -1,4 +1,4 @@
-@media (max-width: 475px) {
+@media (max-width: 900px) {
     .menu {
         .logo {
             span:hover {
@@ -79,7 +79,7 @@
     .container-cardapio {
         .carda_title {
             img {
-                max-width: 375px !important;
+                width: 760px;
                 height: auto;
             }
         }
@@ -118,12 +118,14 @@
                             height: auto;
                         }
                     }
+
+                    
                 }
             }
         }
     }
 
-    .container-sobre {
+    .container-sobre{
         .content_center {
             display: none;
         }
@@ -136,6 +138,8 @@
             flex-direction: column;
             justify-content: center;
             margin: 5px 0 0;
+
+           
         }
     }
 }

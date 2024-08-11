@@ -1,4 +1,4 @@
-@media (max-width: 475px) {
+@media (max-width: 375px) {
     .menu {
         .logo {
             span:hover {
@@ -19,14 +19,13 @@
             flex-direction: column;
             text-align: center;
             padding: 0;
-            margin-top: 50px;
 
             .text-card {
                 flex-direction: column;
                 font-size: 1.3rem;
                 text-align: center;
                 border-radius: 20px;
-                width: 95%;
+                width: 100%;
 
                 &:hover {
                     transform: scale(1.05);
@@ -39,7 +38,7 @@
                 justify-content: center;
                 align-items: center;
                 margin-bottom: 0px;
-                max-width: 95%;
+                max-width: 100%;
             }
 
             .home_direita img {
@@ -53,7 +52,6 @@
         .content_carda {
             margin-top: 100px;
             gap: 10px;
-            max-width: 95%;
 
             img {
                 max-width: 340px;
@@ -66,7 +64,6 @@
         .content_breve {
             width: 90%;
             padding: 4px 8px 30px;
-            margin-top: 100px;
 
             .home_breve {
                 width: 90vw;
@@ -79,7 +76,7 @@
     .container-cardapio {
         .carda_title {
             img {
-                max-width: 375px !important;
+                width: 330px !important;
                 height: auto;
             }
         }
@@ -95,47 +92,13 @@
         }
     }
 
-    .container-carrinho {
-        .carrinho_title {
-            margin-top: 100px;
-        }
-
-        .content_home {
-            padding: 0;
-
-            .carrinho-card {
-                flex-direction: column;
-                max-height: 200px;
-
-                .infos {
-                    justify-content: center;
-                    margin-top: 10px;
-
-                    .img {
-                        margin-right: 10px;
-                        img {
-                            width: 150px;
-                            height: auto;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .container-sobre {
-        .content_center {
-            display: none;
-        }
-    }
-
     footer {
         flex-direction: column;
 
-        .container-footer {
+        .container-footer{
             flex-direction: column;
             justify-content: center;
-            margin: 5px 0 0;
+            margin: 0;
         }
     }
 }
