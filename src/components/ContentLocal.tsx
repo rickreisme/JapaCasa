@@ -7,24 +7,26 @@ const ContentLocal = () => {
                 <div id="endereco" className="dados-local">
                     <h2>Endereço</h2>
                     <p>
-                        Rua Professor Jackson, 1958, Jardim Terra do Nunca,{" "}
-                        <br /> Ribeirão Preto - SP
+                        Rua Professor Jackson, 1958, Jardim Mundo, <br />{" "}
+                        Ribeirão Preto - SP
                     </p>
                 </div>
 
                 <div id="funcionamento" className="dados-local">
                     <h2>Horário de funcionamento</h2>
                     <p>
-                        Segunda a Sábado <br /> Almoço das 11h às 16h00 e Jantar
-                        das 18h às 23h00
+                        <strong>Segunda a Sábado</strong> <br /> Almoço das 11h às 16h00 e Jantar
+                        das 18h às 00h
                     </p>
                 </div>
 
                 <div id="contato" className="dados-local">
-                    <h2>Contato</h2>
+                    <h2>Delivery</h2>
                     <p>
-                        Delivery: (16) 98765-4321 <br />
-                        Peça também pelo WhatsApp ou pelo iFood!
+                        Peça pelo <strong>telefone</strong>:{" "}
+                        <strong>(16) 3111-2222</strong> <br />
+                        Ou pelo <strong>whatsapp</strong>:{" "}
+                        <strong>(16) 91111-3333</strong>
                     </p>
                 </div>
             </div>
