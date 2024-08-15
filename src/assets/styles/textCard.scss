@@ -5,13 +5,13 @@
     gap: 10px;
     background-color: rgb(99, 6, 6);
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     border-radius: 20px;
-    margin: 90px 0 20px 0;
-    padding: 0 10px;
+    margin: 90px 0  0;
+    padding: 0 20px;
     transition: 0.4s ease-in-out;
 
     &:hover {
-        transform: scale(1.1);
+        transform: scale(1.15);
     }
 }

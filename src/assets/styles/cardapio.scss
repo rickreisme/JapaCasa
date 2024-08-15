@@ -4,22 +4,29 @@
     .carda_title {
         display: flex;
         flex-direction: column;
-        gap: 20px;
         align-items: center;
         justify-content: center;
-        margin: 170px 0 50px;
+        gap: 20px;
+        background-image: url("../img/colorful-sushi-in-a-black-box.jpg");
+        background-position: center;
+        background-attachment: fixed;
+        background-size: cover;
+        margin: 70px 0 50px;
         padding: 0 80px;
+        width: 100%;
+        height: 450px;
 
-        h2 {
-            font-size: 32px;
+        h1 {
             font-family: "Bungee", sans-serif;
             font-weight: 300;
             text-align: center;
-            color: white;
+            color: $vermelho-principal;
+            text-shadow: 0px 5px 5px #ffffff;
         }
 
         span {
-            color: red;
+            color: white;
+            text-shadow: 2px 5px 10px $vermelho-principal;
         }
 
         img {
@@ -190,7 +197,6 @@
 }
 
 .modalCarrinho {
-    
     .quantidade-control {
         display: flex;
         justify-content: space-between;
@@ -203,19 +209,18 @@
         display: flex;
         justify-content: space-between;
 
-        .modal_btn{
+        .modal_btn {
             margin-top: 15px;
             padding: 2px 10px;
             font-size: 1.1rem;
             border-radius: 20px;
-            
         }
 
-        .modal_btn-cancelar{
+        .modal_btn-cancelar {
             background-color: #6c0202;
         }
 
-        .modal_btn-add{
+        .modal_btn-add {
             background-color: #101010;
         }
     }

@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import "../assets/styles/cardapio.scss";
-import sushi from "../assets/img/sushi-crop.jpg";
 import { FaSearch } from "react-icons/fa";
 import ContentLocal from "../components/ContentLocal";
 import BtnAddCarinho from "../components/BtnAddCarinho";
@@ -138,12 +137,9 @@ const Cardapio = () => {
 
             <div className="container-cardapio">
                 <div className="carda_title">
-                    <h2>
-                        Confira o nosso<span id="spjapa2"> Cardápio</span>
-                        <span id="spcasa">!</span>
-                    </h2>
-
-                    <img src={sushi} />
+                    <h1>
+                        Nosso<span> Cardápio</span>
+                    </h1>
                 </div>
 
                 <div className="pesquisa-filtro">

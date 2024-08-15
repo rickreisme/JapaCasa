@@ -17,31 +17,38 @@ const Sobre = () => {
 
             <div className="container-sobre">
                 <div className="content_sobre">
-                    <div className="home_esquerda">
-                        <h3>Sobre nós</h3>
-
-                        <h4>
-                            Embarque em uma jornada culinária que celebra os
-                            sabores autênticos do Japão, diretamente para o
-                            conforto da sua casa. Aqui, no JapaCasa, estamos
-                            comprometidos em proporcionar a você uma experiência
-                            gastronômica única, onde a tradição encontra a
-                            inovação.
-                        </h4>
-
-                        <h4>
-                            Com nossa seleção cuidadosamente elaborada de pratos
-                            japoneses clássicos e contemporâneos, cada refeição
-                            é uma oportunidade para explorar uma explosão de
-                            sabores e texturas. Desde nossos sushis frescos e
-                            coloridos até nossos deliciosos pratos quentes, cada
-                            item é preparado com os melhores ingredientes e
-                            amorosos detalhes.
-                        </h4>
+                    <div className="sobre_titulo">
+                        <h1>
+                            Sobre <span>nós</span>
+                        </h1>
                     </div>
 
-                    <div className="home_direita">
-                        <img src={sushi2} />
+                    <div className="sobre_colunas">
+                        <div className="home_esquerda">
+                            <h3>Uma Experiência</h3>
+                            <h4>
+                                Embarque em uma jornada culinária que celebra os
+                                sabores autênticos do Japão, diretamente para o
+                                conforto da sua casa. Aqui, no JapaCasa, estamos
+                                comprometidos em proporcionar a você uma
+                                experiência gastronômica única, onde a tradição
+                                encontra a inovação.
+                            </h4>
+
+                            <h4>
+                                Com nossa seleção cuidadosamente elaborada de
+                                pratos japoneses clássicos e contemporâneos,
+                                cada refeição é uma oportunidade para explorar
+                                uma explosão de sabores e texturas. Desde nossos
+                                sushis frescos e coloridos até nossos deliciosos
+                                pratos quentes, cada item é preparado com os
+                                melhores ingredientes e amorosos detalhes.
+                            </h4>
+                        </div>
+
+                        <div className="home_direita">
+                            <img src={sushi2} />
+                        </div>
                     </div>
                 </div>
 
@@ -52,36 +59,39 @@ const Sobre = () => {
                 </div>
 
                 <div className="content_sobre">
-                    <div className="home_direita">
-                        <img src={niguiri} />
-                    </div>
+                    <div className="sobre_colunas">
+                        <div className="home_direita">
+                            <img src={niguiri} />
+                        </div>
 
-                    <div className="home_esquerda">
-                        <h3>Nosso trabalho</h3>
+                        <div className="home_esquerda">
+                            <h3>Nosso trabalho</h3>
 
-                        <h4>
-                            Atualmente, oferecemos opções de delivery e retirada
-                            no local para garantir que você possa desfrutar do
-                            seu sabor favorito do JapaCasa! onde quer que
-                            esteja. E enquanto nossa unidade física está sendo
-                            reformada, aguardamos ansiosamente a oportunidade de
-                            recebê-lo em nosso novo espaço, onde você poderá
-                            desfrutar não apenas da nossa comida excepcional,
-                            mas também de uma atmosfera acolhedora e
-                            hospitalidade japonesa autêntica.
-                        </h4>
+                            <h4>
+                                Atualmente, oferecemos opções de delivery e
+                                retirada no local para garantir que você possa
+                                desfrutar do seu sabor favorito do JapaCasa!
+                                onde quer que esteja. E enquanto nossa unidade
+                                física está sendo reformada, aguardamos
+                                ansiosamente a oportunidade de recebê-lo em
+                                nosso novo espaço, onde você poderá desfrutar
+                                não apenas da nossa comida excepcional, mas
+                                também de uma atmosfera acolhedora e
+                                hospitalidade japonesa autêntica.
+                            </h4>
 
-                        <h4>
-                            Explore nosso menu, faça seu pedido e deixe-nos
-                            levá-lo em uma jornada gastronômica memorável.
-                            Obrigado por escolher JapaCasa!
-                        </h4>
+                            <h4>
+                                Explore nosso menu, faça seu pedido e deixe-nos
+                                levá-lo em uma jornada gastronômica memorável.
+                                Obrigado por escolher JapaCasa!
+                            </h4>
+                        </div>
                     </div>
                 </div>
 
-                <TextCardJP/>
+                <TextCardJP />
 
-                <ContentLocal/>
+                <ContentLocal />
             </div>
         </>
     );

@@ -14,6 +14,14 @@
         }
     }
 
+    .text-card {
+        font-size: 1rem !important;
+
+        &:hover {
+            transform: none;
+        }
+    }
+
     .container-home {
         .content_home {
             flex-direction: column;

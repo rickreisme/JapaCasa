@@ -1,5 +1,4 @@
 import "../assets/styles/home.scss";
-import sushiHome from "../assets/img/sushi-home.jpeg";
 import sushi from "../assets/img/sushi.jpg";
 import { Helmet } from "react-helmet-async";
 import TextCardJP from "../components/TextCardJP";
@@ -14,19 +13,15 @@ const Home = () => {
 
             <div className="container-home">
                 <div className="content_home">
-                    <div className="home_esquerda">
-                        <TextCardJP />
+                    <h1>
+                        Bem-vindo(a) ao Japa<span>Casa!</span>
+                    </h1>
 
+                    <div className="content_home-text">
                         <p>
-                            Bem-vindo ao restaurante delivery de comida japonesa
-                            mais quente da região! Aqui no JapaCasa! você
-                            encontra as melhores delícias da Terra do Sol
-                            Nascente sem precisar sair de casa.
+                            Somos o restaurante delivery de comida japonesa mais
+                            quente da cidade!
                         </p>
-                    </div>
-
-                    <div className="home_direita">
-                        <img src={sushiHome} />
                     </div>
                 </div>
 
@@ -36,12 +31,15 @@ const Home = () => {
                     </div>
 
                     <div className="home_direita">
-                        <h2>
+                        <p>
+                            Aqui no <span>JapaCasa!</span> você encontra as
+                            melhores delícias da Terra do Sol Nascente sem
+                            precisar sair de casa. <br />
                             Confira o nosso cardápio e escolha a sua próxima
-                            paixão culinária!{" "}
-                        </h2>
+                            paixão culinária!
+                        </p>
                         <a href="cardapio" className="btn1">
-                            Acessar o Cardápio
+                            Ver Cardápio
                         </a>
                     </div>
                 </div>
@@ -50,8 +48,8 @@ const Home = () => {
                     <h1>EM BREVE</h1>
                     <div className="home_breve">
                         <h2>
-                            Você poderá aproveitar sua refeição em um ambiente
-                            tão aconchegante quanto a sua casa.
+                            Você poderá aproveitar sua refeição como se
+                            estivesse na sua casa.
                         </h2>
                         <h3>
                             Estamos reformando nossa unidade física para
@@ -59,6 +57,8 @@ const Home = () => {
                         </h3>
                     </div>
                 </div>
+
+                <TextCardJP />
 
                 <ContentLocal />
             </div>

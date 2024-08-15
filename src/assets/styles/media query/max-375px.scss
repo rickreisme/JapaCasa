@@ -13,6 +13,7 @@
             }
         }
     }
+    
 
     .container-home {
         .content_home {
@@ -92,10 +93,23 @@
         }
     }
 
+    .container-sobre {
+        .content_sobre {
+            .sobre_colunas {
+                .home_direita {
+                    img {
+                        width: 330px !important;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+
     footer {
         flex-direction: column;
 
-        .container-footer{
+        .container-footer {
             flex-direction: column;
             justify-content: center;
             margin: 0;

@@ -15,8 +15,8 @@ const ContentLocal = () => {
                 <div id="funcionamento" className="dados-local">
                     <h2>Horário de funcionamento</h2>
                     <p>
-                        <strong>Segunda a Sábado</strong> <br /> Almoço das 11h às 16h00 e Jantar
-                        das 18h às 00h
+                        <strong>Segunda a Sábado</strong> <br /> Almoço das 11h
+                        às 16h00 e Jantar das 18h às 00h
                     </p>
                 </div>
 

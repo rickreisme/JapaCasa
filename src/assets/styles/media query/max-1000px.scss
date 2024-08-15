@@ -7,6 +7,14 @@
         }
     }
 
+    .text-card {
+        font-size: 1.35rem;
+
+        &:hover {
+            transform: none;
+        }
+    }
+
     .container-home {
         .content_home,
         .content_carda,
@@ -15,13 +23,34 @@
             text-align: center;
         }
 
+        .content_home {
+            background-attachment: scroll;
+
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+
         .content_carda {
             padding: 0;
+
+            .home_esquerda {
+                display: flex;
+                flex-direction: column;
+                width: auto;
+                margin-bottom: 10px;
+            }
         }
     }
 
     .container-cardapio {
         .carda_title {
+            background-attachment: scroll;
+
+            h1 {
+                font-size: 3em;
+            }
+
             img {
                 max-width: 770px;
                 height: auto;
@@ -105,24 +134,38 @@
     .container-sobre {
         .content_sobre {
             flex-direction: column;
-            margin: 100px 0 0;
 
-            .home_esquerda {
-                max-width: 95%;
-                h3 {
-                    text-align: center;
-                    margin-left: 0;
-                }
+            .sobre_titulo {
+                background-attachment: scroll;
 
-                h4 {
-                    text-align: center;
+                h1 {
+                    font-size: 3em;
                 }
             }
 
-            .home_direita {
-                img {
-                    width: 400px;
-                    height: auto;
+            .sobre_colunas {
+                flex-direction: column;
+                justify-content: center;
+                padding: 0;
+                margin-top: 40px;
+                
+                .home_esquerda {
+                    max-width: 95%;
+                    h3 {
+                        text-align: center;
+                        margin-left: 0;
+                    }
+
+                    h4 {
+                        text-align: center;
+                    }
+                }
+
+                .home_direita {
+                    img {
+                        width: 400px;
+                        height: auto;
+                    }
                 }
             }
         }
