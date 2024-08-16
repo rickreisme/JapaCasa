@@ -2,4 +2,15 @@
     .logo h1{
         font-size: 54px;
     }
+
+    .container-sobre {
+        .content_center {
+
+            img {
+                width: 200px !important;
+                height: 150px !important;
+                max-height: auto;
+            }
+        }
+    }
 }

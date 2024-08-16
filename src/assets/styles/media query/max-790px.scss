@@ -125,12 +125,6 @@
         }
     }
 
-    .container-sobre{
-        .content_center {
-            display: none;
-        }
-    }
-
     footer {
         flex-direction: column;
 
@@ -138,8 +132,6 @@
             flex-direction: column;
             justify-content: center;
             margin: 5px 0 0;
-
-           
         }
     }
 }

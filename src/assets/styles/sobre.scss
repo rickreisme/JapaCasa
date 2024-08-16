@@ -61,18 +61,18 @@
                 font-weight: 300;
                 text-align: center;
                 color: $vermelho-principal;
-                text-shadow: 0px 2px 5px #ffffff;
+                text-shadow: 1px 1px 1px #ffffff;
+                font-size: 3.5rem;
             }
 
             span {
                 color: white;
-                text-shadow: 2px 2px 10px $vermelho-principal;
+                text-shadow: 1px 2px 1px $vermelho-principal;
             }
         }
     }
 
     .content_center {
-        text-shadow: 1px 1px 5px $vermelho-principal;
         display: flex;
         align-items: center;
         justify-content: center;

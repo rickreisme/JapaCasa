@@ -7,7 +7,7 @@
         align-items: center;
         justify-content: center;
         gap: 20px;
-        background-image: url("../img/colorful-sushi-in-a-black-box.jpg");
+        background-image: url("../img/StockSnap_BBD3AU9NSR.jpg");
         background-position: center;
         background-attachment: fixed;
         background-size: cover;
@@ -21,12 +21,13 @@
             font-weight: 300;
             text-align: center;
             color: $vermelho-principal;
-            text-shadow: 0px 5px 5px #ffffff;
+            text-shadow: 1px 1px 1px #ffffff;
+            font-size: 3.5rem;
         }
 
         span {
             color: white;
-            text-shadow: 2px 5px 10px $vermelho-principal;
+            text-shadow: 1px 2px 1px $vermelho-principal;
         }
 
         img {
