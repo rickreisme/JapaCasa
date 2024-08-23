@@ -182,14 +182,16 @@ const Carrinho = () => {
                         Cardápio
                     </a>
 
-                    <a
-                        href=""
-                        className="btn-rotas btn-carrinho-continuar"
-                        title="Continuar para a próxima etapa"
-                    >
-                        <IoReturnDownForward className="btn-rotas-icon" />
-                        Continuar
-                    </a>
+                    {carrinho.length > 0 && (
+                        <a
+                            href="/carrinho/endereco"
+                            className="btn-rotas btn-carrinho-continuar"
+                            title="Continuar para a próxima etapa"
+                        >
+                            <IoReturnDownForward className="btn-rotas-icon" />
+                            Continuar
+                        </a>
+                    )}
                 </div>
             </div>
         </>

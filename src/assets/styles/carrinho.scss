@@ -1,4 +1,5 @@
 @import "vars.scss";
+@import "animations";
 
 .container-carrinho {
     .carrinho_title {
@@ -166,6 +167,105 @@
         }
     }
 
+    .form-carrinho {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 0 80px;
+        margin-top: 50px;
+
+        form {
+            width: 100%;
+        }
+
+        .rua {
+            width: 45%;
+        }
+
+        .cep {
+            width: 30%;
+            margin-bottom: 30px;
+        }
+
+        .num {
+            width: 15%;
+        }
+
+        .comp {
+            width: 30%;
+        }
+
+        .cidade {
+            width: 40%;
+        }
+
+        .input-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .custom-input {
+            display: flex;
+            align-items: center;
+            border: 1px solid $vermelho-principal;
+            padding: 5px 13px;
+            border-radius: 20px;
+            color: white;
+            font-size: 1.3rem;
+            transition: 0.2s ease-in-out;
+
+            input {
+                width: 100%;
+                height: 40px;
+                margin-left: 10px;
+            }
+
+            label {
+                color: #b1adad;
+            }
+
+            .input-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2px;
+                background-color: $vermelho-secudario;
+                border-radius: 20px;
+                transition: 0.2s ease-in-out;
+
+                &:hover {
+                    background-color: white;
+                    color: $vermelho-secudario;
+                }
+            }
+
+            &:hover {
+                border: 1px solid white;
+            }
+        }
+
+        .btn-rotas {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: #cf0505;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            border-radius: 50px;
+            transition: 0.2s ease-in-out;
+            color: white;
+
+            &:hover {
+                background: #6e0014;
+            }
+        }
+    }
+
     .carrinho_total {
         display: flex;
         align-items: center;
@@ -226,6 +326,7 @@
             padding: 10px;
             border-radius: 50px;
             transition: 0.2s ease-in-out;
+            color: white;
 
             &:hover {
                 background: #6e0014;
@@ -236,6 +337,7 @@
 
 .btnCarrinho {
     position: relative;
+    animation: fadeInUp 0.5s ease-out;
 
     a {
         cursor: pointer;
@@ -278,4 +380,7 @@
         color: black;
         background-color: whitesmoke;
     }
+}
+
+.animacao {
 }

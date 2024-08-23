@@ -11,6 +11,7 @@ import Home from "./routes/Home.tsx";
 import Cardapio from "./routes/Cardapio.tsx";
 import Sobre from "./routes/Sobre.tsx";
 import Carrinho from "./routes/Carrinho.tsx";
+import Carrinho2 from "./routes/Carrinho2.tsx";
 import "./assets/styles/global.scss";
 import "./assets/styles/media query/max-375px.scss";
 import "./assets/styles/media query/max-425px.scss";
@@ -36,6 +37,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                                 <Route path="cardapio" element={<Cardapio />} />
                                 <Route path="sobre" element={<Sobre />} />
                                 <Route path="carrinho" element={<Carrinho />} />
+                                <Route path="carrinho/endereco" element={<Carrinho2 />} />
                             </Route>
                         </Routes>
                     </Router>

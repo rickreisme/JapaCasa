@@ -32,7 +32,7 @@ const Cardapio = () => {
         null,
     );
     const [modalOpen, setModalOpen] = useState(false);
-    const { addProduto } = useCarrinho();
+    const { addProduto, carrinho } = useCarrinho();
 
     const produtos = data || [];
     const filtProdutos = produtos.filter(
@@ -253,7 +253,7 @@ const Cardapio = () => {
 
                 <div className="content_home">{renderProdutos()}</div>
 
-                <BtnCarrinho />
+                {carrinho.length > 0 && <BtnCarrinho />}
 
                 <ContentLocal />
             </div>

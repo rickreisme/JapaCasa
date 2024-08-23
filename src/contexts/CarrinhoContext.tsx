@@ -3,50 +3,15 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { createContext, ReactNode, useContext, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-
-type Produto = {
-    id: number;
-    nome: string;
-    preco: number;
-    imagem: string;
-};
-
-type CarrinhoItem = {
-    produto: Produto;
-    quantidadeCarrinho: number;
-    observacoes: string;
-};
-
-type CarrinhoContextType = {
-    carrinho: CarrinhoItem[];
-    valorTotal: number;
-    valorTotalFrete: number;
-    isLoading: boolean;
-    isError: boolean;
-    addProduto: (
-        produto: Produto,
-        quantidade: number,
-        observacoes: string,
-    ) => void;
-    updateQuantidade: (id: number, delta: number) => void;
-    removeProduto: (id: number) => void;
-    clearCarrinho: () => void;
-};
-
-interface ProdutoAPI {
-    id: number;
-    nome: string;
-    imagem: string;
-    preco: number;
-    quantidadeCarrinho: number;
-    observacoes?: string;
-}
-
-interface CarrinhoAPIResponse {
-    carrinho: ProdutoAPI[];
-    valorTotal: number;
-    valorTotalFrete: number;
-}
+import {
+    CarrinhoAPIResponse,
+    CarrinhoContextType,
+    CarrinhoItem,
+    Endereco,
+    Produto,
+    Usuario,
+} from "../types/CarrinhoContextTypes";
+import toast from "react-hot-toast";
 
 const CarrinhoContext = createContext<CarrinhoContextType | undefined>(
     undefined,
@@ -330,6 +295,91 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         },
     });
 
+    const clearCarrinhoMutation = useMutation({
+        mutationFn: async () => {
+            const sessionId = getSessionId();
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const apiUrlC = `${apiUrl}/limpar`;
+
+            const response = await fetch(apiUrlC, {
+                method: "DELETE",
+                headers: {
+                    "session-id": sessionId,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error("Erro ao limpar o carrinho");
+            }
+
+            return await response.json();
+        },
+
+        onSuccess: () => {
+            queryClient.setQueryData(["carrinho-data"], {
+                carrinho: [],
+                valorTotal: 0,
+                valorTotalFrete: 0,
+            });
+
+            saveCarrinhoSessionStorage([]);
+        },
+    });
+
+    const confirmarPedidoMutation = useMutation({
+        mutationFn: async ({
+            endereco,
+            usuario,
+        }: {
+            endereco: Endereco;
+            usuario: Usuario;
+        }) => {
+            const sessionId = getSessionId();
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const apiUrlC = `${apiUrl}/pedido/confirmar`;
+
+            const response = await fetch(apiUrlC, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "session-id": sessionId,
+                },
+                body: JSON.stringify({
+                    endereco,
+                    usuario,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Erro ao confirmar o pedido");
+            }
+
+            return response.json();
+        },
+        onSuccess: () => {
+            clearCarrinho();
+            sessionStorage.removeItem("carrinho");
+
+            toast.success('Pedido confirmado com sucesso!', {
+                style: {
+                  borderBottom: '3px solid #03541a',
+                  padding: '10px 15px',
+                  color: 'white',
+                  background: '#cf0000',
+                  fontSize: '1.2rem'
+                },
+                iconTheme: {
+                  primary: '#03541a',
+                  secondary: '#FFFAEE',
+                },
+              });
+        },
+        onError: (error: Error) => {
+            console.error("Erro ao confirmar o pedido:", error.message);
+            alert("Erro ao confirmar o pedido. Por favor, tente novamente.");
+        },
+    });
+
     const addProduto = (
         produto: Produto,
         quantidadeCarrinho: number,
@@ -358,11 +408,7 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const clearCarrinho = () => {
-        sessionStorage.removeItem("carrinho");
-
-        queryClient.setQueryData(["carrinho-data"], {});
-
-        queryClient.invalidateQueries({ queryKey: ["carrinho-data"] });
+        clearCarrinhoMutation.mutate();
     };
 
     const updateQuantidade = (id: number, delta: number) => {
@@ -383,6 +429,19 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const confirmarPedido = ({
+        endereco,
+        usuario,
+    }: {
+        endereco: Endereco;
+        usuario: Usuario;
+    }) => {
+        confirmarPedidoMutation.mutate({
+            endereco,
+            usuario,
+        });
+    };
+
     return (
         <CarrinhoContext.Provider
             value={{
@@ -395,6 +454,7 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
                 removeProduto,
                 clearCarrinho,
                 updateQuantidade,
+                confirmarPedido,
             }}
         >
             {children}
