@@ -2,24 +2,57 @@ import "../assets/styles/dados-pedido.scss";
 import { usePedido } from "../hooks/usePedido";
 import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import formatCurrency from "../utils/formatCurrency";
+import { DataArrayOutlined } from "@mui/icons-material";
+
+interface ApiError extends Error {
+    status?: number;
+}
 
 const DadosPedidos = () => {
     const { data, error, isLoading, isError } = usePedido();
 
     if (isLoading) {
-        return <CircularProgress color="error" />;
+        return (
+            <CircularProgress
+                color="error"
+                sx={{
+                    display: 'flex',
+                    width: "90%",
+                    margin: "25px auto",
+                }}
+            />
+        );
     }
 
     if (isError) {
+        const apiError = error as ApiError;
+        const statusCode = apiError?.status;
+
+        if (statusCode === 404) {
+            return (
+                <Alert variant="filled" severity="warning">
+                    <AlertTitle>Aguardando Pedido</AlertTitle>Estamos aguardando
+                    a confirmação do pedido!
+                </Alert>
+            );
+        }
+
         return (
-            <Alert variant="filled" severity="error">
-                <AlertTitle>Erro</AlertTitle>
-                {error instanceof Error ? error.message : "Erro desconhecido"}
+            <Alert
+                variant="filled"
+                severity="error"
+                sx={{
+                    width: "90%",
+                    margin: "25px auto",
+                }}
+            >
+                <AlertTitle>Aguardando Pedido</AlertTitle>
+                Estamos aguardando a confirmação do pedido!
             </Alert>
         );
     }
 
-    if (!data || data.carrinho.length === 0) {
+    if (!data?.endereco || !data.usuario || data.carrinho.length === 0) {
         return (
             <div className="no-service">
                 <h6>Nenhum produto encontrado...</h6>
@@ -27,7 +60,7 @@ const DadosPedidos = () => {
         );
     }
 
-    if (!data) {
+    if (!DataArrayOutlined) {
         return (
             <div className="no-service">
                 <h6>Nenhum pedido encontrado.</h6>

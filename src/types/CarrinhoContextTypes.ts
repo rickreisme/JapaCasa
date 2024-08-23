@@ -14,6 +14,7 @@ export type Endereco = {
 };
 
 export type Usuario = {
+    id: string;
     nome: string;
     celular: string;
 };

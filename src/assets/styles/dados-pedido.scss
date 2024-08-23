@@ -1,4 +1,23 @@
 @import "vars.scss";
+.no-service {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #cf0505;
+    color: whitesmoke;
+    margin: 20px auto;
+    padding: 10px 0;
+    width: 50%;
+    border-radius: 20px;
+    font-family: $fonte-secundaria;
+    font-size: 1.2rem;
+
+    h6 {
+        margin: 0;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+}
 
 .dados-pedido {
     display: flex;
@@ -20,24 +39,6 @@
         color: white;
         font-weight: normal;
         font-size: 1.15rem;
-    }
-
-    .no-service {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #cf0505;
-        height: auto;
-        max-width: 90%;
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-family: $fonte-secundaria;
-        font-size: 1.2rem;
-
-        p {
-            margin: 0;
-            text-align: center;
-        }
     }
 
     .dados-pedido_content {

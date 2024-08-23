@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { ProdutoAPI } from "../types/CarrinhoContextTypes";
+import { ProdutoAPI, Usuario } from "../types/CarrinhoContextTypes";
 
 interface CarrinhoResponse {
     carrinho: ProdutoAPI[];
@@ -8,17 +8,23 @@ interface CarrinhoResponse {
 }
 
 const fetchInfoPedido = async () => {
-    const sessionId = sessionStorage.getItem("sessionId");
-    if (!sessionId) {
-        throw new Error("Session ID não encontrado.");
-    }
+    const getUserId = () => {
+        const user = localStorage.getItem("usuario");
+        if (user) {
+            const parsedUser = JSON.parse(user) as Usuario;
+            return parsedUser.id;
+        }
+        throw new Error("Usuário não encontrado");
+    };
+
+    const userId = getUserId();
 
     const carrinhoResponse = await fetch(
         "https://japacasa-api.onrender.com/carrinho",
         {
             headers: {
                 "Content-Type": "application/json",
-                "session-id": sessionId,
+                "user-id": userId,
             },
         },
     );
@@ -36,7 +42,7 @@ const fetchInfoPedido = async () => {
         {
             headers: {
                 "Content-Type": "application/json",
-                "session-id": sessionId,
+                "user-id": userId,
             },
         },
     );
@@ -58,5 +64,7 @@ export function usePedido() {
     return useQuery({
         queryKey: ["pedido-data"],
         queryFn: fetchInfoPedido,
+        refetchInterval: 3000,
+        staleTime: 90000,
     });
 }

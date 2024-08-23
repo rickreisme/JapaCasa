@@ -2,7 +2,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { createContext, ReactNode, useContext, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 import {
     CarrinhoAPIResponse,
     CarrinhoContextType,
@@ -17,33 +16,31 @@ const CarrinhoContext = createContext<CarrinhoContextType | undefined>(
     undefined,
 );
 
-const getSessionId = () => {
-    let sessionId = sessionStorage.getItem("sessionId");
-
-    if (!sessionId) {
-        sessionId = uuidv4();
-        sessionStorage.setItem("sessionId", sessionId);
+const getUserId = () => {
+    const user = localStorage.getItem("usuario");
+    if (user) {
+        const parsedUser = JSON.parse(user) as Usuario;
+        return parsedUser.id;
     }
-
-    return sessionId;
+    throw new Error("Usuário não encontrado");
 };
 
-const saveCarrinhoSessionStorage = (carrinho: CarrinhoItem[]) => {
-    sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+const saveCarrinholocalStorage = (carrinho: CarrinhoItem[]) => {
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
 };
 
-const loadCarrinhoSessionStorage = (): CarrinhoItem[] => {
-    const savedCarrinho = sessionStorage.getItem("carrinho");
+const loadCarrinholocalStorage = (): CarrinhoItem[] => {
+    const savedCarrinho = localStorage.getItem("carrinho");
     return savedCarrinho ? JSON.parse(savedCarrinho) : [];
 };
 
 const fetchCarrinho = async (): Promise<CarrinhoAPIResponse> => {
-    const sessionId = getSessionId();
+    const userId = getUserId();
     const apiUrl = import.meta.env.VITE_API_URL;
     const apiUrlC = `${apiUrl}/carrinho`;
     const response = await fetch(apiUrlC, {
         headers: {
-            "session-id": sessionId,
+            "user-id": userId,
         },
     });
 
@@ -76,7 +73,7 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         })) || [];
 
     useEffect(() => {
-        const sessionCarrinho = loadCarrinhoSessionStorage();
+        const sessionCarrinho = loadCarrinholocalStorage();
 
         if (sessionCarrinho.length > 0) {
             queryClient.setQueryData(
@@ -97,7 +94,7 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
     }, [queryClient]);
 
     useEffect(() => {
-        saveCarrinhoSessionStorage(formatCarrinho);
+        saveCarrinholocalStorage(formatCarrinho);
     }, [formatCarrinho]);
 
     const addProdutoMutation = useMutation({
@@ -108,13 +105,13 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         }: CarrinhoItem) => {
             const apiUrl = import.meta.env.VITE_API_URL;
             const apiUrlC = `${apiUrl}/carrinho`;
-            const sessionId = getSessionId();
+            const userId = getUserId();
 
             const response = await fetch(apiUrlC, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "session-id": sessionId,
+                    "user-id": userId,
                 },
                 body: JSON.stringify({
                     id: produto.id,
@@ -141,13 +138,13 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         mutationFn: async (id: number) => {
             const apiUrl = import.meta.env.VITE_API_URL;
             const apiUrlC = `${apiUrl}/carrinho/${id}`;
-            const sessionId = getSessionId();
+            const userId = getUserId();
 
             const response = await fetch(apiUrlC, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "session-id": sessionId,
+                    "user-id": userId,
                 },
             });
 
@@ -216,13 +213,13 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         }) => {
             const apiUrl = import.meta.env.VITE_API_URL;
             const apiUrlC = `${apiUrl}/carrinho/${id}`;
-            const sessionId = getSessionId();
+            const userId = getUserId();
 
             const response = await fetch(apiUrlC, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "session-id": sessionId,
+                    "user-id": userId,
                 },
                 body: JSON.stringify({
                     quantidadeCarrinho,
@@ -297,14 +294,14 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
 
     const clearCarrinhoMutation = useMutation({
         mutationFn: async () => {
-            const sessionId = getSessionId();
+            const userId = getUserId();
             const apiUrl = import.meta.env.VITE_API_URL;
             const apiUrlC = `${apiUrl}/limpar`;
 
             const response = await fetch(apiUrlC, {
                 method: "DELETE",
                 headers: {
-                    "session-id": sessionId,
+                    "user-id": userId,
                 },
             });
 
@@ -322,7 +319,7 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
                 valorTotalFrete: 0,
             });
 
-            saveCarrinhoSessionStorage([]);
+            saveCarrinholocalStorage([]);
         },
     });
 
@@ -332,9 +329,9 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
             usuario,
         }: {
             endereco: Endereco;
-            usuario: Usuario;
+            usuario: Usuario & { id: string };
         }) => {
-            const sessionId = getSessionId();
+            const userId = getUserId();
             const apiUrl = import.meta.env.VITE_API_URL;
             const apiUrlC = `${apiUrl}/pedido/confirmar`;
 
@@ -342,7 +339,7 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "session-id": sessionId,
+                    "user-id": userId,
                 },
                 body: JSON.stringify({
                     endereco,
@@ -357,22 +354,19 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
             return response.json();
         },
         onSuccess: () => {
-            clearCarrinho();
-            sessionStorage.removeItem("carrinho");
-
-            toast.success('Pedido confirmado com sucesso!', {
+            toast.success("Pedido confirmado com sucesso!", {
                 style: {
-                  borderBottom: '3px solid #03541a',
-                  padding: '10px 15px',
-                  color: 'white',
-                  background: '#cf0000',
-                  fontSize: '1.2rem'
+                    borderBottom: "3px solid #03541a",
+                    padding: "10px 15px",
+                    color: "white",
+                    background: "#cf0000",
+                    fontSize: "1.2rem",
                 },
                 iconTheme: {
-                  primary: '#03541a',
-                  secondary: '#FFFAEE',
+                    primary: "#03541a",
+                    secondary: "#FFFAEE",
                 },
-              });
+            });
         },
         onError: (error: Error) => {
             console.error("Erro ao confirmar o pedido:", error.message);
@@ -434,7 +428,7 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         usuario,
     }: {
         endereco: Endereco;
-        usuario: Usuario;
+        usuario: Usuario & { id: string };
     }) => {
         confirmarPedidoMutation.mutate({
             endereco,

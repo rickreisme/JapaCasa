@@ -7,14 +7,16 @@ import { Helmet } from "react-helmet-async";
 import { useCarrinho } from "../contexts/CarrinhoContext";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DadosPedidos from "../components/DadosPedidos";
 import toast from "react-hot-toast";
+import ContentLocal from "../components/ContentLocal";
 
 const Carrinho2 = () => {
     const navigate = useNavigate();
-    const { valorTotal, valorTotalFrete, confirmarPedido } = useCarrinho();
+    const { valorTotal, valorTotalFrete, confirmarPedido, clearCarrinho } = useCarrinho();
 
     const [cep, setCep] = useState("");
     const [logradouro, setLogradouro] = useState("");
@@ -27,8 +29,8 @@ const Carrinho2 = () => {
     const [dadosEndereco, setDadosEndereco] = useState(false);
 
     useEffect(() => {
-        const enderecoJSON = sessionStorage.getItem("endereco");
-        const userJSON = sessionStorage.getItem("usuario");
+        const enderecoJSON = localStorage.getItem("endereco");
+        const userJSON = localStorage.getItem("usuario");
 
         if (enderecoJSON) {
             const { cep, logradouro, bairro, numero, complemento } =
@@ -154,7 +156,7 @@ const Carrinho2 = () => {
             return;
         }
 
-        sessionStorage.setItem(
+        localStorage.setItem(
             "endereco",
             JSON.stringify({
                 cep,
@@ -182,12 +184,45 @@ const Carrinho2 = () => {
         setDadosEndereco(true);
     };
 
-    const handleSubmitUser = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleConfirmPedido = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        sessionStorage.setItem("usuario", JSON.stringify({ nome, celular }));
+        const userId = uuidv4()
+
+        localStorage.setItem("usuario", JSON.stringify({ id: userId, nome, celular }));
+
+        const enderecoJSON = localStorage.getItem("endereco");
+        const userJSON = localStorage.getItem("usuario");
+        const enderecoPedido = enderecoJSON ? JSON.parse(enderecoJSON) : null;
+        const userPedido = userJSON ? JSON.parse(userJSON) : null;
+
+        if (!enderecoPedido) {
+            console.error("Endereço não encontrado no localStorage");
+            return;
+        }
+
+        if (!userPedido) {
+            console.error("Usuario não encontrado no localStorage");
+        }
 
         if (!nome || !celular) {
+            toast.error("Por favor, preencha todos os campos obrigatórios!", {
+                style: {
+                    borderBottom: "3px solid #d2b900",
+                    padding: "10px 15px",
+                    color: "white",
+                    background: "#cf0000",
+                    fontSize: "1.2rem",
+                },
+                iconTheme: {
+                    primary: "#d2b900",
+                    secondary: "#0b0b0a",
+                },
+            });
+            return;
+        }
+
+        if (!cep || !logradouro || !bairro || !numero) {
             toast.error("Por favor, preencha todos os campos obrigatórios!", {
                 style: {
                     borderBottom: "3px solid #d2b900",
@@ -217,24 +252,17 @@ const Carrinho2 = () => {
                 secondary: "#FFFAEE",
             },
         });
+
+        const pedido = {
+            endereco: enderecoPedido,
+            usuario: userPedido,
+        };
+
+        confirmarPedido(pedido);
     };
 
-    const handleConfirmPedido = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleFinalPedido = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-
-        const enderecoJSON = sessionStorage.getItem("endereco");
-        const userJSON = sessionStorage.getItem("usuario");
-        const enderecoPedido = enderecoJSON ? JSON.parse(enderecoJSON) : null;
-        const userPedido = userJSON ? JSON.parse(userJSON) : null;
-
-        if (!enderecoPedido) {
-            console.error("Endereço não encontrado no sessionStorage");
-            return;
-        }
-
-        if (!userPedido) {
-            console.error("Usuario não encontrado no sessionStorage");
-        }
 
         if (!nome || !celular) {
             toast.error("Por favor, preencha todos os campos obrigatórios!", {
@@ -253,12 +281,39 @@ const Carrinho2 = () => {
             return;
         }
 
-        const pedido = {
-            endereco: enderecoPedido,
-            usuario: userPedido,
-        };
+        if (!cep || !logradouro || !bairro || !numero) {
+            toast.error("Por favor, preencha todos os campos obrigatórios!", {
+                style: {
+                    borderBottom: "3px solid #d2b900",
+                    padding: "10px 15px",
+                    color: "white",
+                    background: "#cf0000",
+                    fontSize: "1.2rem",
+                },
+                iconTheme: {
+                    primary: "#d2b900",
+                    secondary: "#0b0b0a",
+                },
+            });
+            return;
+        }
 
-        confirmarPedido(pedido);
+        toast.success("Pedido finalizado com sucesso!", {
+            style: {
+                borderBottom: "3px solid #03541a",
+                padding: "10px 15px",
+                color: "white",
+                background: "#cf0000",
+                fontSize: "1.2rem",
+            },
+            iconTheme: {
+                primary: "#03541a",
+                secondary: "#FFFAEE",
+            },
+        });
+
+        clearCarrinho();
+        localStorage.removeItem("carrinho");
         setDadosEndereco(false);
         navigate("/cardapio");
     };
@@ -425,10 +480,10 @@ const Carrinho2 = () => {
                             </form>
 
                             <button
-                                onClick={handleSubmitUser}
+                                onClick={handleConfirmPedido}
                                 className="btn-rotas"
                             >
-                                Enviar
+                                Confirmar Pedido
                             </button>
                         </div>
                     </>
@@ -461,13 +516,15 @@ const Carrinho2 = () => {
                         <button
                             className="btn-rotas btn-carrinho-continuar"
                             title="Continuar para a próxima etapa"
-                            onClick={handleConfirmPedido}
+                            onClick={handleFinalPedido}
                         >
                             <IoReturnDownForward className="btn-rotas-icon" />
-                            Confirmar Pedido
+                            Finalizar
                         </button>
                     )}
                 </div>
+
+                <ContentLocal />
             </div>
         </>
     );

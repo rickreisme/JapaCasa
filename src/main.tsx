@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { CarrinhoProvider } from "./contexts/CarrinhoContext.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import App from "./App.tsx";
 import Home from "./routes/Home.tsx";
 import Cardapio from "./routes/Cardapio.tsx";
@@ -36,8 +37,22 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                                 <Route path="/" element={<Home />} />
                                 <Route path="cardapio" element={<Cardapio />} />
                                 <Route path="sobre" element={<Sobre />} />
-                                <Route path="carrinho" element={<Carrinho />} />
-                                <Route path="carrinho/endereco" element={<Carrinho2 />} />
+                                <Route
+                                    path="carrinho"
+                                    element={
+                                        <ProtectedRoute
+                                            element={<Carrinho />}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="carrinho/confirmacao"
+                                    element={
+                                        <ProtectedRoute
+                                            element={<Carrinho2 />}
+                                        />
+                                    }
+                                />
                             </Route>
                         </Routes>
                     </Router>

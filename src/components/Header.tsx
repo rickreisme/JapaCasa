@@ -56,17 +56,17 @@ const Header: React.FC = () => {
                     <Navbar.Toggle aria-controls="navbarSupportedContent" />
                     <Navbar.Collapse id="navbarSupportedContent">
                         <Nav className="me-auto mb-2 mb-lg-0 ms-lg-5 menuItems">
-                            <Nav.Link href="/" id="home" aria-current="page">
+                            <Nav.Link href="/" id="/home" aria-current="page">
                                 <i className="fa-solid fa-house menu-icons"></i>{" "}
                                 Home
                             </Nav.Link>
 
-                            <Nav.Link href="cardapio" id="carda">
+                            <Nav.Link href="/cardapio" id="carda">
                                 <i className="fa-solid fa-utensils menu-icons"></i>{" "}
                                 Cardápio
                             </Nav.Link>
 
-                            <Nav.Link href="sobre" id="sobre">
+                            <Nav.Link href="/sobre" id="sobre">
                                 <i className="fa-solid fa-circle-info menu-icons"></i>{" "}
                                 Sobre
                             </Nav.Link>

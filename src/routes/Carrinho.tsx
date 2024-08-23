@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet-async";
 import { useCarrinho } from "../contexts/CarrinhoContext";
 import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import { useTransition } from "react";
+import ContentLocal from "../components/ContentLocal";
 
 const Carrinho = () => {
     const {
@@ -184,7 +185,7 @@ const Carrinho = () => {
 
                     {carrinho.length > 0 && (
                         <a
-                            href="/carrinho/endereco"
+                            href="/carrinho/confirmacao"
                             className="btn-rotas btn-carrinho-continuar"
                             title="Continuar para a próxima etapa"
                         >
@@ -193,6 +194,7 @@ const Carrinho = () => {
                         </a>
                     )}
                 </div>
+                <ContentLocal />
             </div>
         </>
     );
