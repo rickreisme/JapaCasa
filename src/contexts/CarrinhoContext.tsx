@@ -20,6 +20,7 @@ const getUserId = () => {
     const user = localStorage.getItem("usuario");
     if (user) {
         const parsedUser = JSON.parse(user) as Usuario;
+        console.log(parsedUser)
         return parsedUser.id;
     }
     throw new Error("Usuário não encontrado");
@@ -370,7 +371,22 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         },
         onError: (error: Error) => {
             console.error("Erro ao confirmar o pedido:", error.message);
-            alert("Erro ao confirmar o pedido. Por favor, tente novamente.");
+            toast.error(
+                "Erro ao confirmar o pedido. Por favor, tente novamente.",
+                {
+                    style: {
+                        borderBottom: "3px solid #d2b900",
+                        padding: "10px 15px",
+                        color: "white",
+                        background: "#cf0000",
+                        fontSize: "1.2rem",
+                    },
+                    iconTheme: {
+                        primary: "#d2b900",
+                        secondary: "#0b0b0a",
+                    },
+                },
+            );
         },
     });
 
@@ -382,6 +398,20 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
         const produtoExistente = data?.carrinho.find(
             (item) => item.id === produto.id,
         );
+
+        toast.success("Produto adicionado ao carrinho!", {
+            style: {
+                borderBottom: "3px solid #03541a",
+                padding: "10px 15px",
+                color: "white",
+                background: "#cf0000",
+                fontSize: "1.2rem",
+            },
+            iconTheme: {
+                primary: "#03541a",
+                secondary: "#FFFAEE",
+            },
+        });
 
         if (produtoExistente) {
             console.log("Produto existente encontrado:", produtoExistente);
@@ -399,6 +429,19 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
 
     const removeProduto = (id: number) => {
         removeProdutoMutation.mutate(id);
+        toast.success("Produto removido do carrinho!", {
+            style: {
+                borderBottom: "3px solid #03541a",
+                padding: "10px 15px",
+                color: "white",
+                background: "#cf0000",
+                fontSize: "1.2rem",
+            },
+            iconTheme: {
+                primary: "#03541a",
+                secondary: "#FFFAEE",
+            },
+        });
     };
 
     const clearCarrinho = () => {

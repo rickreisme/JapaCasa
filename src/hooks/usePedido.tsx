@@ -12,8 +12,12 @@ const fetchInfoPedido = async () => {
         const user = localStorage.getItem("usuario");
         if (user) {
             const parsedUser = JSON.parse(user) as Usuario;
+            console.log(parsedUser.id)
             return parsedUser.id;
+            
         }
+
+        console.log(user)
         throw new Error("Usuário não encontrado");
     };
 

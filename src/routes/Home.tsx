@@ -3,8 +3,20 @@ import sushi from "../assets/img/sushi.jpg";
 import { Helmet } from "react-helmet-async";
 import TextCardJP from "../components/TextCardJP";
 import ContentLocal from "../components/ContentLocal";
+import { Usuario } from "../types/CarrinhoContextTypes";
 
 const Home = () => {
+    const getNome = () => {
+        const user = localStorage.getItem("usuario");
+        if (user) {
+            const parsedUser = JSON.parse(user) as Usuario;
+            return parsedUser.nome;
+        }
+        return null;
+    };
+
+    const nome = getNome();
+
     return (
         <>
             <Helmet>
@@ -15,6 +27,10 @@ const Home = () => {
                 <div className="content_home">
                     <h1>
                         Bem-vindo(a) ao Japa<span>Casa!</span>
+                        <br />
+                        {nome &&(
+                            `${nome}`
+                        )}
                     </h1>
 
                     <div className="content_home-text">

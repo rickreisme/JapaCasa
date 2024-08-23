@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 import { useCarrinho } from "../contexts/CarrinhoContext";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DadosPedidos from "../components/DadosPedidos";
@@ -16,21 +16,25 @@ import ContentLocal from "../components/ContentLocal";
 
 const Carrinho2 = () => {
     const navigate = useNavigate();
-    const { valorTotal, valorTotalFrete, confirmarPedido, clearCarrinho } = useCarrinho();
+    const { valorTotal, valorTotalFrete, confirmarPedido, clearCarrinho } =
+        useCarrinho();
 
     const [cep, setCep] = useState("");
     const [logradouro, setLogradouro] = useState("");
     const [bairro, setBairro] = useState("");
     const [numero, setNumero] = useState("");
     const [complemento, setComplemento] = useState("");
-    const [nome, setNome] = useState("");
-    const [celular, setCelular] = useState("");
+    const [, setNome] = useState("");
+    const [, setCelular] = useState("");
 
     const [dadosEndereco, setDadosEndereco] = useState(false);
+    const [confirma, setConfirma] = useState(false);
 
     useEffect(() => {
         const enderecoJSON = localStorage.getItem("endereco");
         const userJSON = localStorage.getItem("usuario");
+
+        setConfirma(true);
 
         if (enderecoJSON) {
             const { cep, logradouro, bairro, numero, complemento } =
@@ -187,13 +191,12 @@ const Carrinho2 = () => {
     const handleConfirmPedido = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        const userId = uuidv4()
-
-        localStorage.setItem("usuario", JSON.stringify({ id: userId, nome, celular }));
+        setConfirma(true);
 
         const enderecoJSON = localStorage.getItem("endereco");
-        const userJSON = localStorage.getItem("usuario");
         const enderecoPedido = enderecoJSON ? JSON.parse(enderecoJSON) : null;
+
+        const userJSON = localStorage.getItem("usuario");
         const userPedido = userJSON ? JSON.parse(userJSON) : null;
 
         if (!enderecoPedido) {
@@ -203,23 +206,6 @@ const Carrinho2 = () => {
 
         if (!userPedido) {
             console.error("Usuario não encontrado no localStorage");
-        }
-
-        if (!nome || !celular) {
-            toast.error("Por favor, preencha todos os campos obrigatórios!", {
-                style: {
-                    borderBottom: "3px solid #d2b900",
-                    padding: "10px 15px",
-                    color: "white",
-                    background: "#cf0000",
-                    fontSize: "1.2rem",
-                },
-                iconTheme: {
-                    primary: "#d2b900",
-                    secondary: "#0b0b0a",
-                },
-            });
-            return;
         }
 
         if (!cep || !logradouro || !bairro || !numero) {
@@ -264,7 +250,7 @@ const Carrinho2 = () => {
     const handleFinalPedido = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        if (!nome || !celular) {
+        if (!cep || !logradouro || !bairro || !numero) {
             toast.error("Por favor, preencha todos os campos obrigatórios!", {
                 style: {
                     borderBottom: "3px solid #d2b900",
@@ -281,8 +267,8 @@ const Carrinho2 = () => {
             return;
         }
 
-        if (!cep || !logradouro || !bairro || !numero) {
-            toast.error("Por favor, preencha todos os campos obrigatórios!", {
+        if (confirma == false) {
+            toast.error("Por favor, confirme o pedido primeiro!", {
                 style: {
                     borderBottom: "3px solid #d2b900",
                     padding: "10px 15px",
@@ -295,7 +281,6 @@ const Carrinho2 = () => {
                     secondary: "#0b0b0a",
                 },
             });
-            return;
         }
 
         toast.success("Pedido finalizado com sucesso!", {
@@ -432,62 +417,14 @@ const Carrinho2 = () => {
                                 />
                             </div>
                         </div>
+                        <button
+                            onClick={handleConfirmPedido}
+                            className="btn-rotas"
+                        >
+                            Confirmar Pedido
+                        </button>
                     </form>
                 </div>
-
-                {dadosEndereco && (
-                    <>
-                        <div className="carrinho_title">
-                            <h2>
-                                Preecnha os seus dados de{" "}
-                                <span id="spjapa2"> contato:</span>
-                            </h2>
-                        </div>
-
-                        <div className="form-carrinho">
-                            <form action="">
-                                <div className="input-row">
-                                    <div className="custom-input comp">
-                                        <label htmlFor="complemento">
-                                            Nome:
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="nome"
-                                            value={nome}
-                                            onChange={(e) =>
-                                                setNome(e.target.value)
-                                            }
-                                            required
-                                        />
-                                    </div>
-
-                                    <div className="custom-input comp">
-                                        <label htmlFor="celular">
-                                            Celular:
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            id="celular"
-                                            value={celular}
-                                            onChange={(e) =>
-                                                setCelular(e.target.value)
-                                            }
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                            </form>
-
-                            <button
-                                onClick={handleConfirmPedido}
-                                className="btn-rotas"
-                            >
-                                Confirmar Pedido
-                            </button>
-                        </div>
-                    </>
-                )}
 
                 {dadosEndereco && <DadosPedidos />}
 

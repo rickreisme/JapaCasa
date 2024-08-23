@@ -2,7 +2,6 @@ import "../assets/styles/dados-pedido.scss";
 import { usePedido } from "../hooks/usePedido";
 import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import formatCurrency from "../utils/formatCurrency";
-import { DataArrayOutlined } from "@mui/icons-material";
 
 interface ApiError extends Error {
     status?: number;
@@ -60,7 +59,7 @@ const DadosPedidos = () => {
         );
     }
 
-    if (!DataArrayOutlined) {
+    if (!data) {
         return (
             <div className="no-service">
                 <h6>Nenhum pedido encontrado.</h6>

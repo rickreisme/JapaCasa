@@ -10,6 +10,9 @@ import BtnCarrinho from "../components/BtnCarrinho";
 import { useProdutos } from "../hooks/useProdutos";
 import { useState, useTransition } from "react";
 import { Alert, AlertTitle, CircularProgress } from "@mui/material";
+import { Usuario } from "../types/CarrinhoContextTypes";
+import ModalUser from "../components/ModalUser";
+import toast from "react-hot-toast";
 
 type Produto = {
     id: number;
@@ -32,6 +35,7 @@ const Cardapio = () => {
         null,
     );
     const [modalOpen, setModalOpen] = useState(false);
+    const [modalUserOpen, setModalUserOpen] = useState(false);
     const { addProduto, carrinho } = useCarrinho();
 
     const produtos = data || [];
@@ -40,6 +44,17 @@ const Cardapio = () => {
             (!selectedTipo || produto.tipo === selectedTipo) &&
             produto.nome.toLowerCase().includes(searchTerm.toLowerCase()),
     );
+
+    const getUserId = () => {
+        const user = localStorage.getItem("usuario");
+        if (user) {
+            const parsedUser = JSON.parse(user) as Usuario;
+            return parsedUser.id;
+        }
+        return null;
+    };
+
+    const userId = getUserId();
 
     const renderProdutos = () => {
         if (isLoading) {
@@ -96,8 +111,34 @@ const Cardapio = () => {
     };
 
     const handleOpenModal = (produto: Produto) => {
-        setSelectedProduto(produto);
-        setModalOpen(true);
+        if (!userId) {
+            setModalUserOpen(true);
+        } else {
+            setSelectedProduto(produto);
+            setModalOpen(true);
+        }
+    };
+
+    const handleUserSubmit = () => {
+        toast.success("Usuário criado com sucesso!", {
+            style: {
+                borderBottom: "3px solid #03541a",
+                padding: "10px 15px",
+                color: "white",
+                background: "#cf0000",
+                fontSize: "1.2rem",
+            },
+            iconTheme: {
+                primary: "#03541a",
+                secondary: "#FFFAEE",
+            },
+        });
+
+        if (selectedProduto) {
+            setModalOpen(true);
+        }
+        
+        setModalUserOpen(false);
     };
 
     const handleCloseModal = () => {
@@ -264,6 +305,14 @@ const Cardapio = () => {
                     onClose={handleCloseModal}
                     onConfirm={handleConfirmAddToCart}
                     modalOpen={modalOpen}
+                />
+            )}
+
+            {modalUserOpen && (
+                <ModalUser
+                    modalOpen={modalUserOpen}
+                    onConfirm={handleUserSubmit}
+                    onClose={() => setModalUserOpen(false)}
                 />
             )}
         </>
