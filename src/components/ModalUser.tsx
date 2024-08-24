@@ -55,6 +55,7 @@ const ModalUser: React.FC<ModalProps> = ({ modalOpen, onClose, onConfirm }) => {
             <Modal
                 className="modalUser"
                 open={modalOpen}
+                disableScrollLock={true}
                 aria-labelledby="Preenchimento dos dados do usuário"
             >
                 <Box
@@ -81,7 +82,9 @@ const ModalUser: React.FC<ModalProps> = ({ modalOpen, onClose, onConfirm }) => {
                 >
                     <Typography id="modal-modal-title" marginTop="0">
                         <h1>
-                            <strong>Por favor, preencha os seus dados primeiro:</strong>
+                            <strong>
+                                Por favor, preencha os seus dados primeiro:
+                            </strong>
                         </h1>
                     </Typography>
 

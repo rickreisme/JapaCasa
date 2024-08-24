@@ -73,6 +73,7 @@ const ModalCarrinho: React.FC<ModalProps> = ({
             <Modal
                 className="modalCarrinho"
                 open={modalOpen}
+                disableScrollLock={true}
                 aria-labelledby="Confirmação de adição ao carrinho"
             >
                 <Box

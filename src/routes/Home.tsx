@@ -26,17 +26,15 @@ const Home = () => {
             <div className="container-home">
                 <div className="content_home">
                     <h1>
-                        Bem-vindo(a) ao Japa<span>Casa!</span>
+                        Bem-vindo(a) ao Japa<span>Casa!</span>{nome && `,`}
                         <br />
-                        {nome &&(
-                            `${nome}`
-                        )}
+                        {nome && `${nome}`}
                     </h1>
 
                     <div className="content_home-text">
                         <p>
-                            Somos o restaurante delivery de comida japonesa mais
-                            quente da cidade!
+                            O melhor restaurante delivery de comida japonesa da
+                            cidade!
                         </p>
                     </div>
                 </div>
