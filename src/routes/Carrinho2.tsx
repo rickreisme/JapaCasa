@@ -347,6 +347,8 @@ const Carrinho2 = () => {
                     <h2>
                         Digite o seu <span id="spjapa2"> endereço:</span>
                     </h2>
+
+                    <h3>Confirme o seu endereço para confirmar o pedido</h3>
                 </div>
 
                 <div className="form-carrinho">
@@ -434,7 +436,7 @@ const Carrinho2 = () => {
                     <a
                         href="/carrinho"
                         className="btn-rotas btn-carrinho-voltar"
-                        title="Voltar para o cardápio"
+                        title="Voltar para o carrinho"
                     >
                         <IoReturnDownBack className="btn-rotas-icon" />
                         Voltar

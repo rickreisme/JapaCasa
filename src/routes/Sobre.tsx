@@ -29,7 +29,7 @@ const Sobre = () => {
                             <h4>
                                 Embarque em uma jornada culinária que celebra os
                                 sabores autênticos do Japão, diretamente para o
-                                conforto da sua casa. Aqui, no JapaCasa, estamos
+                                conforto da sua casa. Aqui, no JapaCasa!, estamos
                                 comprometidos em proporcionar a você uma
                                 experiência gastronômica única, onde a tradição
                                 encontra a inovação.
@@ -83,7 +83,7 @@ const Sobre = () => {
                             <h4>
                                 Explore nosso menu, faça seu pedido e deixe-nos
                                 levá-lo em uma jornada gastronômica memorável.
-                                Obrigado por escolher JapaCasa!
+                                Obrigado por escolher o JapaCasa!
                             </h4>
                         </div>
                     </div>

@@ -9,9 +9,14 @@
         padding: 0 80px;
 
         h2 {
-            font-size: 32px;
-            font-family: "Bungee", sans-serif;
+            font-family: $fonte-principal;
             font-weight: 300;
+            color: white;
+            text-align: center;
+        }
+
+        h3 {
+            font-family: $fonte-secundaria;
             color: white;
             text-align: center;
         }
@@ -252,10 +257,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            margin-top: 35px;
             background: #cf0505;
-            font-size: 1.2rem;
-            padding: 5px 10px;
+            font-size: 1.3rem;
+            padding: 5px 15px;
             border-radius: 50px;
             transition: 0.2s ease-in-out;
             color: white;
@@ -322,8 +327,8 @@
             justify-content: center;
             gap: 5px;
             background: #cf0505;
-            font-size: 1.2rem;
-            padding: 10px;
+            font-size: 1.3rem;
+            padding: 5px 25px;
             border-radius: 50px;
             transition: 0.2s ease-in-out;
             color: white;

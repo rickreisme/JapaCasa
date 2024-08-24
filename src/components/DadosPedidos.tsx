@@ -1,6 +1,7 @@
 import "../assets/styles/dados-pedido.scss";
 import { usePedido } from "../hooks/usePedido";
 import { Alert, AlertTitle, CircularProgress } from "@mui/material";
+import { FaInfoCircle } from "react-icons/fa";
 import formatCurrency from "../utils/formatCurrency";
 
 interface ApiError extends Error {
@@ -15,7 +16,7 @@ const DadosPedidos = () => {
             <CircularProgress
                 color="error"
                 sx={{
-                    display: 'flex',
+                    display: "flex",
                     width: "90%",
                     margin: "25px auto",
                 }}
@@ -74,6 +75,10 @@ const DadosPedidos = () => {
             {carrinho && endereco && usuario ? (
                 <>
                     <h1>Revise o seu pedido</h1>
+                    <h3>
+                        Confira se os dados estão corretos e clique em
+                        finzalizar
+                    </h3>
                     <div className="dados-pedido_content">
                         <div className="itens-pedido">
                             <h3>Itens no carrinho</h3>
@@ -165,6 +170,7 @@ const DadosPedidos = () => {
                     <h6>Nenhum pedido encontrado.</h6>
                 </div>
             )}
+            <h4><FaInfoCircle /> Pagamento na retirada/entrega do pedido</h4>
         </div>
     );
 };

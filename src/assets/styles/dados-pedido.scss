@@ -32,13 +32,20 @@
     h3 {
         color: whitesmoke;
         text-align: start;
-        font-family: $fonte-principal;
+        font-family: $fonte-secundaria;
+    }
+
+    h4 {
+        color: whitesmoke;
+        text-align: center;
+        font-family: $fonte-secundaria;
+        margin-top: 50px;
     }
 
     h6 {
         color: white;
         font-weight: normal;
-        font-size: 1.15rem;
+        font-size: 1.22rem;
     }
 
     .dados-pedido_content {
@@ -48,6 +55,11 @@
         align-items: center;
         gap: 25px;
         margin-top: 20px;
+
+        h3 {
+            text-align: center;
+            font-family: $fonte-principal;
+        }
 
         .itens-pedido,
         .endereco-pedido,
@@ -59,7 +71,7 @@
             padding: 15px 20px;
             width: 40%;
             max-width: 80%;
-            min-height: 450px;
+            min-height: 50px;
             border-radius: 25px;
         }
 
@@ -74,7 +86,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
+
                 width: 100%;
                 padding: 10px 15px;
                 min-height: 70px;
@@ -87,11 +99,11 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+
             border-radius: 20px;
             background: $vermelho-principal;
             width: 100%;
-            height: 300px;
+            height: 200px;
             padding: 10px 15px;
         }
 
@@ -99,11 +111,10 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
             border-radius: 20px;
             background: $vermelho-principal;
             width: 100%;
-            height: 300px;
+            height: 200px;
             padding: 10px 15px;
         }
     }
