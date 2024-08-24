@@ -421,7 +421,7 @@ const Carrinho2 = () => {
                             onClick={handleConfirmPedido}
                             className="btn-rotas"
                         >
-                            Confirmar Pedido
+                            Confirmar Endereço
                         </button>
                     </form>
                 </div>
