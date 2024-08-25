@@ -115,7 +115,7 @@ const Carrinho = () => {
                             title="Remover produto"
                             onClick={() => removeProduto(data.produto.id)}
                         >
-                            <FaTrash />
+                            <FaTrash icon-remover-item />
                         </button>
                     </div>
                 </div>

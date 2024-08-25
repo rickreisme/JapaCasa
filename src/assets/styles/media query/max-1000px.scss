@@ -66,6 +66,22 @@
                 }
             }
         }
+
+        .content_home {
+            padding: 0 20px;
+        }
+    }
+
+    .modalCarrinho {
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+
+            .modal_btn {
+                padding: 2px 5.5px;
+                font-size: 1.15rem;
+            }
+        }
     }
 
     .content_local {
@@ -155,7 +171,11 @@
         padding: 0 80px;
         margin: 50px 0;
 
-        h3{
+        h1{
+            text-align: center;
+        }
+
+        h3 {
             text-align: center;
         }
 
@@ -170,7 +190,8 @@
                 display: flex;
                 flex-direction: column;
                 padding: 15px 20px;
-                min-width: 400px;
+                width: 400px;
+                max-width: 95%;
                 min-height: 150px;
             }
         }

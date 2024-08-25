@@ -13,4 +13,48 @@
             }
         }
     }
+
+    .container-carrinho{
+        .carrinho-card{
+            max-height: 650px !important;
+
+            .infos{
+                flex-direction: column;
+                align-items: center;
+                height: 200px !important;
+            }
+        }
+        .carrinho_total{
+            .total{
+                .total-frete{
+                    font-size: 1.33rem;
+                }
+            }
+        }
+
+        .controle{
+            justify-content: center;
+            margin-bottom: 20px !important;
+        }
+    }
+
+    .dados-pedido{
+        .dados-pedido_content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .itens-pedido,
+            .endereco-pedido,
+            .contato-pedido {
+                display: flex;
+                flex-direction: column;
+                padding: 15px 20px;
+                max-width: 340px !important;
+                min-height: 150px;
+            }
+        }
+    }
+
+    
 }

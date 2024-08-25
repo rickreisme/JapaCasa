@@ -1,3 +1,4 @@
+@import './vars.scss';
 footer {
     display: flex;
     justify-content: center;
@@ -9,7 +10,7 @@ footer {
     font-size: 1.2rem;
     border-top: 1px solid #ff0000;
     margin-top: 100px;
-    padding: 0;
+    padding: 0px;
 
     .container-footer {
         display: flex;
@@ -32,7 +33,7 @@ footer {
                 gap: 10px;
 
                 .jpc-logo {
-                    font-family: "Bungee", sans-serif;
+                    font-family: $fonte-principal;
                 }
 
                 &::after {

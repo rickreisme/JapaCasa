@@ -113,7 +113,8 @@
 
             .carrinho-card {
                 flex-direction: column;
-                max-height: 200px;
+                min-height: 300px;
+                max-height: auto;
 
                 .infos {
                     justify-content: center;
@@ -128,16 +129,35 @@
                     }
                 }
             }
+
+            .carrinho-total {
+                .total {
+                    .total-frete {
+                        font-size: 1.1rem;
+                    }
+                }
+            }
         }
     }
 
     footer {
         flex-direction: column;
+        font-size: 1.1rem;
 
         .container-footer {
             flex-direction: column;
             justify-content: center;
-            margin: 5px 0 0;
+            margin: 5px 0 ;
+
+            .logos {
+                .rickreisme {
+                    font-size: 1.1rem;
+                }
+            }
+
+            .credits {
+                font-size: 1rem;
+            }
         }
     }
 }

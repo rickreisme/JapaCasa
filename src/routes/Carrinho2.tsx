@@ -27,12 +27,15 @@ const Carrinho2 = () => {
     const [, setNome] = useState("");
     const [, setCelular] = useState("");
 
-    const [dadosEndereco, setDadosEndereco] = useState(false);
+    const [dadosPedido, setDadosPedido] = useState(false);
     const [confirma, setConfirma] = useState(false);
 
     useEffect(() => {
         const enderecoJSON = localStorage.getItem("endereco");
         const userJSON = localStorage.getItem("usuario");
+
+        const enderecoPedido = enderecoJSON ? JSON.parse(enderecoJSON) : null;
+        const userPedido = userJSON ? JSON.parse(userJSON) : null;
 
         setConfirma(true);
 
@@ -44,7 +47,7 @@ const Carrinho2 = () => {
             setBairro(bairro || "");
             setNumero(numero || "");
             setComplemento(complemento || "");
-            setDadosEndereco(true);
+            setDadosPedido(true);
         }
 
         if (userJSON) {
@@ -52,6 +55,14 @@ const Carrinho2 = () => {
             setNome(nome || "");
             setCelular(celular || "");
         }
+
+        const pedido = {
+            endereco: enderecoPedido,
+            usuario: userPedido,
+        };
+
+        confirmarPedido(pedido);
+        setDadosPedido(true);
     }, []);
 
     const fetchCEP = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -171,28 +182,6 @@ const Carrinho2 = () => {
             }),
         );
 
-        toast.success("Dados salvos com suceso!", {
-            style: {
-                borderBottom: "3px solid #03541a",
-                padding: "10px 15px",
-                color: "white",
-                background: "#cf0000",
-                fontSize: "1.2rem",
-            },
-            iconTheme: {
-                primary: "#03541a",
-                secondary: "#FFFAEE",
-            },
-        });
-
-        setDadosEndereco(true);
-    };
-
-    const handleConfirmPedido = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-
-        setConfirma(true);
-
         const enderecoJSON = localStorage.getItem("endereco");
         const enderecoPedido = enderecoJSON ? JSON.parse(enderecoJSON) : null;
 
@@ -206,23 +195,6 @@ const Carrinho2 = () => {
 
         if (!userPedido) {
             console.error("Usuario não encontrado no localStorage");
-        }
-
-        if (!cep || !logradouro || !bairro || !numero) {
-            toast.error("Por favor, preencha todos os campos obrigatórios!", {
-                style: {
-                    borderBottom: "3px solid #d2b900",
-                    padding: "10px 15px",
-                    color: "white",
-                    background: "#cf0000",
-                    fontSize: "1.2rem",
-                },
-                iconTheme: {
-                    primary: "#d2b900",
-                    secondary: "#0b0b0a",
-                },
-            });
-            return;
         }
 
         toast.success("Dados salvos com suceso!", {
@@ -245,6 +217,7 @@ const Carrinho2 = () => {
         };
 
         confirmarPedido(pedido);
+        setDadosPedido(true);
     };
 
     const handleFinalPedido = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -299,7 +272,7 @@ const Carrinho2 = () => {
 
         clearCarrinho();
         localStorage.removeItem("carrinho");
-        setDadosEndereco(false);
+        setDadosPedido(false);
         navigate("/cardapio");
     };
 
@@ -419,16 +392,10 @@ const Carrinho2 = () => {
                                 />
                             </div>
                         </div>
-                        <button
-                            onClick={handleConfirmPedido}
-                            className="btn-rotas"
-                        >
-                            Confirmar Endereço
-                        </button>
                     </form>
                 </div>
 
-                {dadosEndereco && <DadosPedidos />}
+                {dadosPedido && <DadosPedidos />}
 
                 <div className="carrinho_total">{renderTotal()}</div>
 
@@ -442,7 +409,7 @@ const Carrinho2 = () => {
                         Voltar
                     </a>
 
-                    {!dadosEndereco ? (
+                    {!dadosPedido ? (
                         <button
                             className="btn-rotas btn-carrinho-continuar"
                             title="Continuar para a próxima etapa"
