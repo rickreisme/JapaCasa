@@ -109,10 +109,18 @@
     .content_local {
         .home_local {
             flex-direction: column;
-            padding: 40px 10px;
+            height: 55vh !important;
+            
+            gap: 0px !important;
 
             .dados-local {
-                width: 100%;
+                width: auto !important;
+                flex-grow: none;
+                margin-top: 20px;
+            }
+
+            p{
+                font-size: 1.1rem;
             }
         }
     }
