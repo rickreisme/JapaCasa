@@ -467,7 +467,7 @@ const Carrinho2 = () => {
                             </div>
                         </div>
 
-                        {!confirma && (
+                        {dadosPedido && (
                             <button
                                 className="btn-rotas"
                                 onClick={handleConfirma}
