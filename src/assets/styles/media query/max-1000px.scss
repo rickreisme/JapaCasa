@@ -2,7 +2,7 @@
     .menu {
         .menuItems {
             a {
-                margin-left: 0px;
+                margin-left: 0px !important;
             }
         }
     }
@@ -32,13 +32,35 @@
         }
 
         .content_carda {
-            padding: 0;
+            padding: 0 !important;
+            flex-direction: column !important;
+
+            .home_direita {
+                width: auto !important;
+            }
 
             .home_esquerda {
                 display: flex;
                 flex-direction: column;
-                width: auto;
+                width: auto !important;
                 margin-bottom: 10px;
+            }
+        }
+
+        .content_breve {
+            padding: 0 !important;
+            gap: 0px !important;
+            flex-direction: column !important;
+
+            h1 {
+                text-align: center;
+                margin-right: 0 !important;
+            }
+
+            .home_breve {
+                padding: 0 10px !important;
+                width: 90%;
+                max-height: 250px;
             }
         }
     }
@@ -107,7 +129,7 @@
             .carrinho-card {
                 flex-direction: column;
                 height: auto;
-                max-height: 500px;
+                max-height: 600px !important;
 
                 .infos {
                     justify-content: center;
@@ -129,18 +151,18 @@
         }
 
         .form-carrinho {
-            padding: 0 20px;
+            padding: 0 20px !important;
 
             .rua,
             .cep,
             .num,
             .comp,
             .cidade {
-                width: 100%;
+                width: 100% !important;
             }
 
             .input-row {
-                flex-direction: column;
+                flex-direction: column !important;
             }
         }
 
@@ -165,18 +187,18 @@
 
     .dados-pedido {
         display: flex;
-        flex-direction: column;
+        flex-direction: column !important;
         justify-content: center;
 
-        padding: 0 80px;
+        padding: 0 15px !important;
         margin: 50px 0;
 
-        h1{
+        h1 {
             text-align: center;
         }
 
         h3 {
-            text-align: center;
+            text-align: center !important;
         }
 
         .dados-pedido_content {
@@ -190,9 +212,9 @@
                 display: flex;
                 flex-direction: column;
                 padding: 15px 20px;
-                width: 400px;
-                max-width: 95%;
-                min-height: 150px;
+                width: 400px !important;
+                max-width: 95% !important;
+                min-height: 150px !important;
             }
         }
     }

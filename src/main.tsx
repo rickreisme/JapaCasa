@@ -1,18 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { CarrinhoProvider } from "./contexts/CarrinhoContext.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import ProtectedRoute from "./components/ProtectedRoute.tsx";
-import App from "./App.tsx";
-import Home from "./routes/Home.tsx";
-import Cardapio from "./routes/Cardapio.tsx";
-import Sobre from "./routes/Sobre.tsx";
-import Carrinho from "./routes/Carrinho.tsx";
-import Carrinho2 from "./routes/Carrinho2.tsx";
 import "./assets/styles/global.scss";
 import "./assets/styles/media query/max-375px.scss";
 import "./assets/styles/media query/max-425px.scss";
@@ -23,6 +16,7 @@ import "./assets/styles/media query/max-790px.scss";
 import "./assets/styles/media query/max-900px.scss";
 import "./assets/styles/media query/max-1000px.scss";
 import "./assets/styles/media query/max-1125px.scss";
+import AnimatedRoutes from "./components/AnimatedRoutes.tsx";
 
 const client = new QueryClient();
 
@@ -32,29 +26,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <HelmetProvider>
                 <CarrinhoProvider>
                     <Router>
-                        <Routes>
-                            <Route path="/" element={<App />}>
-                                <Route path="/" element={<Home />} />
-                                <Route path="cardapio" element={<Cardapio />} />
-                                <Route path="sobre" element={<Sobre />} />
-                                <Route
-                                    path="carrinho"
-                                    element={
-                                        <ProtectedRoute
-                                            element={<Carrinho />}
-                                        />
-                                    }
-                                />
-                                <Route
-                                    path="carrinho/confirmacao"
-                                    element={
-                                        <ProtectedRoute
-                                            element={<Carrinho2 />}
-                                        />
-                                    }
-                                />
-                            </Route>
-                        </Routes>
+                        <AnimatedRoutes />
                     </Router>
                 </CarrinhoProvider>
             </HelmetProvider>

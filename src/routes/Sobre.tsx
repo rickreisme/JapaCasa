@@ -7,21 +7,36 @@ import hotroll from "../assets/img/hotroll.png";
 import niguiri from "../assets/img/niguiri-urumaki.jpg";
 import TextCardJP from "../components/TextCardJP";
 import ContentLocal from "../components/ContentLocal";
+import { motion } from "framer-motion";
 
 const Sobre = () => {
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+        >
             <Helmet>
                 <title>Sobre | JapaCasa! </title>
             </Helmet>
 
             <div className="container-sobre">
                 <div className="content_sobre">
-                    <div className="sobre_titulo">
+                    <motion.div
+                        className="sobre_titulo"
+                        style={{
+                            backgroundImage: `url(https://dygt0xe7szzk0.cloudfront.net/pexels-chudesabyvaut.webp)`,
+                        }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.1 }}
+                    >
                         <h1>
                             Sobre <span>nós</span>
                         </h1>
-                    </div>
+                    </motion.div>
 
                     <div className="sobre_colunas">
                         <div className="home_esquerda">
@@ -29,8 +44,8 @@ const Sobre = () => {
                             <h4>
                                 Embarque em uma jornada culinária que celebra os
                                 sabores autênticos do Japão, diretamente para o
-                                conforto da sua casa. Aqui, no JapaCasa!, estamos
-                                comprometidos em proporcionar a você uma
+                                conforto da sua casa. Aqui, no JapaCasa!,
+                                estamos comprometidos em proporcionar a você uma
                                 experiência gastronômica única, onde a tradição
                                 encontra a inovação.
                             </h4>
@@ -93,7 +108,7 @@ const Sobre = () => {
 
                 <ContentLocal />
             </div>
-        </>
+        </motion.div>
     );
 };
 

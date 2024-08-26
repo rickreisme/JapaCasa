@@ -6,12 +6,6 @@
                 transform: scale(1.05) !important;
             }
         }
-
-        .menuItems {
-            a {
-                margin-left: 40px;
-            }
-        }
     }
 
     .container-home {
@@ -76,6 +70,24 @@
         }
     }
 
+    .content_local {
+        .home_local {
+            height: 55vh !important;
+            
+            gap: 0px !important;
+
+            .dados-local {
+                width: auto !important;
+                flex-grow: none;
+                margin-top: 20px;
+            }
+
+            p{
+                font-size: 1.1rem;
+            }
+        }
+    }
+
     .container-cardapio {
         .carda_title {
             img {
@@ -93,26 +105,35 @@
                 }
             }
         }
+
+        .content_home{
+            padding:  0 !important;
+        }
     }
 
     .container-carrinho {
         .carrinho_title {
             margin-top: 100px;
+            
+            h2{
+                font-size: 1.8rem !important;
+            }
         }
 
         .content_home {
-            padding: 0;
+            padding: 0 !important;
 
             .carrinho-card {
-                flex-direction: column;
-                max-height: 200px;
+                flex-direction: column !important;
+                height: auto !important;
+                max-height: 550px !important;
 
                 .infos {
                     justify-content: center;
-                    margin-top: 10px;
+                    margin-top: 20px !important;
 
                     .img {
-                        margin-right: 10px;
+                        margin: 0 !important;
                         img {
                             width: 150px;
                             height: auto;
@@ -121,6 +142,15 @@
 
                     
                 }
+            }
+        }
+
+        .carrinho_total{
+            justify-content: center !important;
+            margin: 40px 0 !important;
+
+            .total{
+                width: 90% !important;
             }
         }
     }

@@ -6,12 +6,6 @@
                 transform: scale(1.05) !important;
             }
         }
-
-        .menuItems {
-            a {
-                margin-left: 40px;
-            }
-        }
     }
 
     .text-card {
@@ -40,22 +34,6 @@
                     transform: scale(1.05);
                 }
             }
-
-            .home_esquerda {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                margin-bottom: 0px;
-                max-width: 95%;
-            }
-
-            .home_direita img {
-                max-width: 340px;
-                height: auto;
-                border: 1px #7d0202 solid;
-                box-shadow: 0px 0px 10px rgb(114, 5, 5);
-            }
         }
 
         .content_carda {
@@ -64,10 +42,10 @@
             max-width: 95%;
 
             img {
-                max-width: 340px;
+                max-width: 400px !important;
                 height: auto;
                 border: 1px #7d0202 solid;
-                box-shadow: 0px 0px 10px rgb(114, 5, 5);
+                box-shadow: 0px 0px 10px rgb(114, 5, 5) !important;
             }
         }
 

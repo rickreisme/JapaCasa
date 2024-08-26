@@ -1,3 +1,5 @@
+@import '../styles/vars.scss';
+
 .content_local {
     display: flex;
     justify-content: center;
@@ -5,7 +7,7 @@
     margin-top: 100px;
     width: 100%;
     color: rgb(194, 190, 190);
-    font-family: "Bungee", sans-serif;
+    font-family: $fonte-principal;
     text-align: center;
 
     .home_local {
@@ -22,6 +24,7 @@
         box-shadow: 5px 5px 20px rgb(114, 5, 5);
 
         .dados-local {
+            flex-grow: 1;
             width: 50%;
         }
 
@@ -29,11 +32,13 @@
             font-size: 1.5rem;
             line-height: 20px;
             max-height: 40px;
+            margin: auto;
         }
 
         p {
-            font-family: "Montserrat", sans-serif;
+            font-family: $fonte-secundaria;
             color: black;
+            margin: auto;
         }
     }
 }

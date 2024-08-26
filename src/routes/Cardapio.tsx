@@ -13,6 +13,7 @@ import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import { Usuario } from "../types/CarrinhoContextTypes";
 import ModalUser from "../components/ModalUser";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 type Produto = {
     id: number;
@@ -137,7 +138,7 @@ const Cardapio = () => {
         if (selectedProduto) {
             setModalOpen(true);
         }
-        
+
         setModalUserOpen(false);
     };
 
@@ -171,13 +172,24 @@ const Cardapio = () => {
     };
 
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+        >
             <Helmet>
                 <title>Cardápio | JapaCasa! </title>
             </Helmet>
 
             <div className="container-cardapio">
-                <div className="carda_title">
+                <div
+                    className="carda_title"
+                    style={{
+                        backgroundImage: `url(https://dygt0xe7szzk0.cloudfront.net/StockSnap_BBD3AU9NSR.webp)`,
+                    }}
+                
+                >
                     <h1>
                         Nosso<span> Cardápio</span>
                     </h1>
@@ -315,7 +327,7 @@ const Cardapio = () => {
                     onClose={() => setModalUserOpen(false)}
                 />
             )}
-        </>
+        </motion.div>
     );
 };
 

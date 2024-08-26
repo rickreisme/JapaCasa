@@ -3,6 +3,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../assets/styles/menu.scss";
+import { motion } from "framer-motion";
 
 const Header: React.FC = () => {
     useEffect(() => {
@@ -35,7 +36,11 @@ const Header: React.FC = () => {
     }, []);
 
     return (
-        <header>
+        <motion.header
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
             <Navbar
                 variant="dark"
                 expand="lg"
@@ -79,7 +84,7 @@ const Header: React.FC = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-        </header>
+        </motion.header>
     );
 };
 

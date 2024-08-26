@@ -354,21 +354,6 @@ export const CarrinhoProvider = ({ children }: { children: ReactNode }) => {
 
             return response.json();
         },
-        onSuccess: () => {
-            toast.success("Pedido confirmado com sucesso!", {
-                style: {
-                    borderBottom: "3px solid #03541a",
-                    padding: "10px 15px",
-                    color: "white",
-                    background: "#cf0000",
-                    fontSize: "1.2rem",
-                },
-                iconTheme: {
-                    primary: "#03541a",
-                    secondary: "#FFFAEE",
-                },
-            });
-        },
         onError: (error: Error) => {
             console.error("Erro ao confirmar o pedido:", error.message);
             toast.error(

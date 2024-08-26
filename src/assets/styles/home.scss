@@ -14,9 +14,8 @@
         gap: 50px;
         margin: 73px 70px 0;
         padding: 200px 0;
-        background-image: url("../img/sushi-home.jpeg");
         background-position: center;
-        background-attachment: fixed;
+        background-attachment: scroll;
         background-size: cover;
         width: 100%;
         height: 550px;
@@ -153,7 +152,7 @@
             transition: 0.3s ease-in-out;
 
             h2 {
-                line-height: 35px;
+                line-height: 25px;
                 font-family: $fonte-secundaria;
                 font-weight: 600;
             }

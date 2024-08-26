@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import TextCardJP from "../components/TextCardJP";
 import ContentLocal from "../components/ContentLocal";
 import { Usuario } from "../types/CarrinhoContextTypes";
+import { motion } from "framer-motion";
 
 const Home = () => {
     const getNome = () => {
@@ -18,15 +19,26 @@ const Home = () => {
     const nome = getNome();
 
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+        >
             <Helmet>
                 <title>JapaCasa! | Comida Japonesa e Delivery</title>
             </Helmet>
 
             <div className="container-home">
-                <div className="content_home">
+                <div
+                    className="content_home"
+                    style={{
+                        backgroundImage: `url(https://dygt0xe7szzk0.cloudfront.net/sushi-home.webp)`,
+                    }}
+                >
                     <h1>
-                        Bem-vindo(a) ao Japa<span>Casa!</span>{nome && `,`}
+                        Bem-vindo(a) ao Japa<span>Casa!</span>
+                        {nome && `,`}
                         <br />
                         {nome && `${nome}`}
                     </h1>
@@ -62,12 +74,12 @@ const Home = () => {
                     <h1>EM BREVE</h1>
                     <div className="home_breve">
                         <h2>
-                            Você poderá aproveitar sua refeição como se
+                            Aqui você vai aproveitar sua refeição como se
                             estivesse na sua casa.
                         </h2>
                         <h3>
-                            Estamos reformando nossa unidade física para
-                            recebê-lo!
+                            Estamos reformando nosso restaurante para te
+                            receber!
                         </h3>
                     </div>
                 </div>
@@ -76,7 +88,7 @@ const Home = () => {
 
                 <ContentLocal />
             </div>
-        </>
+        </motion.div>
     );
 };
 

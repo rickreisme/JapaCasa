@@ -1,6 +1,7 @@
 @media (max-width: 375px) {
     .menu {
         .logo {
+            font-size: 1.5rem !important;
             span:hover {
                 color: white;
                 transform: scale(1.05) !important;
@@ -8,8 +9,10 @@
         }
 
         .menuItems {
-            a {
-                margin-left: 40px;
+            font-size: 1.1rem !important;
+
+            .menu-icons {
+                font-size: 1rem !important;
             }
         }
     }
@@ -90,10 +93,7 @@
                 }
             }
         }
-
-    
     }
-
 
     .container-sobre {
         .content_sobre {
@@ -108,12 +108,29 @@
         }
     }
 
+    .content_local {
+        .home_local {
+            min-height: 80vh !important;
+        }
+    }
+
     footer {
         flex-direction: column;
 
         .container-footer {
             flex-direction: column;
             justify-content: center;
+
+            .logos {
+                font-size: 0.85rem !important;
+                .rickreisme {
+                    font-size: 0.95rem !important;
+                }
+            }
+
+            .credits {
+                font-size: 0.95rem !important;
+            }
         }
     }
 }

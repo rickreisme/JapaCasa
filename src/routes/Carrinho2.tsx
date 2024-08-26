@@ -7,15 +7,14 @@ import { Helmet } from "react-helmet-async";
 import { useCarrinho } from "../contexts/CarrinhoContext";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
-
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import DadosPedidos from "../components/DadosPedidos";
 import toast from "react-hot-toast";
 import ContentLocal from "../components/ContentLocal";
+import { motion } from "framer-motion";
+import { formatCEP } from "../utils/formatCEP";
 
 const Carrinho2 = () => {
-    const navigate = useNavigate();
     const { valorTotal, valorTotalFrete, confirmarPedido, clearCarrinho } =
         useCarrinho();
 
@@ -60,7 +59,7 @@ const Carrinho2 = () => {
             endereco: enderecoPedido,
             usuario: userPedido,
         };
-
+        confirmaPedido();
         confirmarPedido(pedido);
         setDadosPedido(true);
     }, []);
@@ -68,8 +67,7 @@ const Carrinho2 = () => {
     const fetchCEP = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        const cepValido = /^[0-9]{5}-?[0-9]{3}$/.test(cep);
-        if (!cepValido) {
+        if (!cep) {
             toast.error(
                 "CEP inválido. Por favor, insira um CEP no formato 00000-000 ou 00000000.",
                 {
@@ -151,8 +149,73 @@ const Carrinho2 = () => {
         }
     };
 
+    const handleCEPChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const formattedValue = formatCEP(e.target.value);
+        setCep(formattedValue);
+    };
+
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
+
+        if (!cep || !logradouro || !bairro || !numero) {
+            toast.error("Por favor, preencha todos os campos obrigatórios!", {
+                style: {
+                    borderBottom: "3px solid #d2b900",
+                    padding: "10px 15px",
+                    color: "white",
+                    background: "#cf0000",
+                    fontSize: "1.2rem",
+                },
+                iconTheme: {
+                    primary: "#d2b900",
+                    secondary: "#0b0b0a",
+                },
+            });
+            return;
+        }
+
+        localStorage.setItem(
+            "endereco",
+            JSON.stringify({
+                cep,
+                logradouro,
+                bairro,
+                numero,
+                complemento,
+            }),
+        );
+
+        setConfirma(true);
+
+        const enderecoJSON = localStorage.getItem("endereco");
+        const enderecoPedido = enderecoJSON ? JSON.parse(enderecoJSON) : null;
+
+        const userJSON = localStorage.getItem("usuario");
+        const userPedido = userJSON ? JSON.parse(userJSON) : null;
+
+        if (!enderecoPedido) {
+            console.error("Endereço não encontrado no localStorage");
+            return;
+        }
+
+        if (!userPedido) {
+            console.error("Usuario não encontrado no localStorage");
+        }
+
+        const pedido = {
+            endereco: enderecoPedido,
+            usuario: userPedido,
+        };
+
+        confirmaPedido();
+        confirmarPedido(pedido);
+        setDadosPedido(true);
+    };
+
+    const handleConfirma = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        setConfirma(true);
 
         if (!cep || !logradouro || !bairro || !numero) {
             toast.error("Por favor, preencha todos os campos obrigatórios!", {
@@ -197,27 +260,34 @@ const Carrinho2 = () => {
             console.error("Usuario não encontrado no localStorage");
         }
 
-        toast.success("Dados salvos com suceso!", {
-            style: {
-                borderBottom: "3px solid #03541a",
-                padding: "10px 15px",
-                color: "white",
-                background: "#cf0000",
-                fontSize: "1.2rem",
-            },
-            iconTheme: {
-                primary: "#03541a",
-                secondary: "#FFFAEE",
-            },
-        });
-
         const pedido = {
             endereco: enderecoPedido,
             usuario: userPedido,
         };
 
+        confirmaPedido();
         confirmarPedido(pedido);
         setDadosPedido(true);
+    };
+
+    const confirmaPedido = () => {
+        if (confirma) {
+            toast.success("Pedido confirmado com suceso!", {
+                style: {
+                    borderBottom: "3px solid #03541a",
+                    padding: "10px 15px",
+                    color: "white",
+                    background: "#cf0000",
+                    fontSize: "1.2rem",
+                },
+                iconTheme: {
+                    primary: "#03541a",
+                    secondary: "#FFFAEE",
+                },
+            });
+
+            return;
+        }
     };
 
     const handleFinalPedido = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -273,7 +343,6 @@ const Carrinho2 = () => {
         clearCarrinho();
         localStorage.removeItem("carrinho");
         setDadosPedido(false);
-        navigate("/cardapio");
     };
 
     const renderTotal = () => {
@@ -310,7 +379,12 @@ const Carrinho2 = () => {
     };
 
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+        >
             <Helmet>
                 <title>Carrinho | JapaCasa! </title>
             </Helmet>
@@ -332,7 +406,7 @@ const Carrinho2 = () => {
                                 type="text"
                                 id="cep"
                                 value={cep}
-                                onChange={(e) => setCep(e.target.value)}
+                                onChange={handleCEPChange}
                                 required
                             />
                             <button className="input-icon" onClick={fetchCEP}>
@@ -392,6 +466,15 @@ const Carrinho2 = () => {
                                 />
                             </div>
                         </div>
+
+                        {!confirma && (
+                            <button
+                                className="btn-rotas"
+                                onClick={handleConfirma}
+                            >
+                                Confirmar Endereço
+                            </button>
+                        )}
                     </form>
                 </div>
 
@@ -432,7 +515,7 @@ const Carrinho2 = () => {
 
                 <ContentLocal />
             </div>
-        </>
+        </motion.div>
     );
 };
 

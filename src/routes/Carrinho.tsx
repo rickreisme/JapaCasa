@@ -8,11 +8,13 @@ import {
     FaTrash,
 } from "react-icons/fa";
 import { IoReturnDownBack, IoReturnDownForward } from "react-icons/io5";
+import { TiShoppingCart } from "react-icons/ti";
 import { Helmet } from "react-helmet-async";
 import { useCarrinho } from "../contexts/CarrinhoContext";
 import { Alert, AlertTitle, CircularProgress } from "@mui/material";
 import { useTransition } from "react";
 import ContentLocal from "../components/ContentLocal";
+import { motion } from "framer-motion";
 
 const Carrinho = () => {
     const {
@@ -56,7 +58,6 @@ const Carrinho = () => {
         }
 
         return carrinho.map((data) => {
-            console.log(data.quantidadeCarrinho);
             return (
                 <div
                     className="carrinho-card"
@@ -157,13 +158,19 @@ const Carrinho = () => {
     };
 
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+        >
             <Helmet>
                 <title>Carrinho | JapaCasa! </title>
             </Helmet>
 
             <div className="container-carrinho">
                 <div className="carrinho_title">
+                    <TiShoppingCart className="carrinho-icon" />
                     <h2>
                         Confira o seu <span id="spjapa2"> Carrinho:</span>
                     </h2>
@@ -196,7 +203,7 @@ const Carrinho = () => {
                 </div>
                 <ContentLocal />
             </div>
-        </>
+        </motion.div>
     );
 };
 
