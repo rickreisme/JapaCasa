@@ -7,7 +7,7 @@ const ContentLocal = () => {
                 <div id="endereco" className="dados-local">
                     <h2>Endereço</h2>
                     <p>
-                        Rua Professor Jackson, 1958, Jardim Mundo, <br />{" "}
+                        Rua Professor Jackson, 1958, Jardim Novo Mundo, <br />{" "}
                         Ribeirão Preto - SP
                     </p>
                 </div>
