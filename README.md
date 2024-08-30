@@ -6,33 +6,38 @@ O **JapaCasa!** se trata de um site de delivery para um restaurante de comida ja
 
 Para criar a identidade visual do JapaCasa, escolhi cores que fazem referência à bandeira do Japão, mas que também são coerentes com a estética dos restaurantes de comida japonesa. Esse design visa proporcionar uma experiência visualmente agradável e imersiva para os usuários.
 
-O cardápio do site é alimentado por uma API desenvolvida com **Node.js** e **Express**, hospedada no [Render](https://render.com). 
+O cardápio do site é alimentado por uma API desenvolvida com **Node.js** e **Express**, hospedada no [Render](https://render.com).
 
 ## Tecnologias Utilizadas
 
-- **Vite**: Ferramenta de construção rápida para desenvolvimento moderno.
-- **React**: Biblioteca para construção da interface (incluindo Context API, Router e Hooks).
-- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
-- **REST API**: Para comunicação entre frontend e backend.
-- **Node.js**: Ambiente de execução JavaScript no backend.
-- **Express**: Framework para construção de APIs.
-- **Axios**: Cliente HTTP para fazer requisições.
-- **React Query**: Biblioteca para gerenciamento de estado e sincronização de dados.
-- **Bootstrap**: Framework de design para componentes responsivos.
-- **Sass (SCSS)**: Pré-processador CSS para melhor gerenciamento de estilos.
-- **Material UI**: Biblioteca de componentes React para design moderno.
-- **Material Icons**: Conjunto de ícones para melhorar a UI.
-- **React Icons**: Biblioteca para adicionar ícones ao projeto.
-- **React Helmet**: Para gerenciar e manipular a tag `<head>` do HTML.
-- **React Hot Toast**: Biblioteca para exibir notificações toast.
-- **UUID**: Geração de identificadores únicos.
-- **Framer Motion**: Biblioteca para animações e transições em React.
+-   **Vite**: Ferramenta de construção rápida para desenvolvimento moderno.
+-   **React**: Biblioteca para construção da interface (incluindo Context API, Router e Hooks).
+-   **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
+-   **REST API**: Para comunicação entre frontend e backend.
+-   **Node.js**: Ambiente de execução JavaScript no backend.
+-   **Express**: Framework para construção de APIs.
+-   **Axios**: Cliente HTTP para fazer requisições.
+-   **React Query**: Biblioteca para gerenciamento de estado e sincronização de dados.
+-   **Bootstrap**: Framework de design para componentes responsivos.
+-   **Sass (SCSS)**: Pré-processador CSS para melhor gerenciamento de estilos.
+-   **Material UI**: Biblioteca de componentes React para design moderno.
+-   **Material Icons**: Conjunto de ícones para melhorar a UI.
+-   **React Icons**: Biblioteca para adicionar ícones ao projeto.
+-   **React Helmet**: Para gerenciar e manipular a tag `<head>` do HTML.
+-   **React Hot Toast**: Biblioteca para exibir notificações toast.
+-   **UUID**: Geração de identificadores únicos.
+-   **Framer Motion**: Biblioteca para animações e transições em React.
 
 ## Imagens
 
 ![Home Page JapaCasa](/src/assets/img/japacasa.png)
 
 ![Cardápio JapaCasa](/src/assets/img/japacasa2.png)
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="./src/assets/img/japacasaM.png" alt="Home Page JapaCasa" style="width: 48%;" />
+    <img src="./src/assets/img/japacasaM2.png" alt="Cardápio JapaCasa" style="width: 48%;" />
+</div>
 
 ---
 
