@@ -1,10 +1,14 @@
 # JapaCasa!
 
-### Uma página na web para um restaurante de comida japonesa (fictício) focado em delivery, chamado 'JapaCasa!'.
+### JapaCasa! é um site de delivery para um restaurante de comida japonesa, desenvolvido com React no frontend e Node.js no backend. O projeto, que inicialmente parecia simples, acabou sendo uma experiência muito enriquecedora na minha jornada como desenvolvedor. 
+
+### Para a identidade visual, pensei em cores que remetiam a bandeira do Japão mas que ao mesmo tempo faziam sentido com a estética dos restaurantes de comida japonesa que eu observei.
+
+### Para preencher os dados dos produtos disponíveis no cardápio do site, utilizei uma API que está hospedada no Render e foi feita com Node.js e Express.
 
 ## Tecnologias utilizadas.
 
--   Vite React
+-   Vite
 -   React (Context API, Router, Hooks, Icons, Helmet)
 -   Typescript
 -   REST API
@@ -13,10 +17,4 @@
 -   Node.js
 -   Express
 
-Para preencher os produtos disponíveis no cardápio do site, utilizei uma api que está foi hospedada no Render e foi feita com Node.js e Express.
-
-## Créditos
-
-Para fazer esta versão, me ispirei em sites como os do restaurantes: [Ashin Sushi Bar](https://anshinsushibar.com.br), [Shogá Holl](https://www.shogaholl.com.br), [Ohayo Japanese Food](https://ohayojapanesefood.com.br).
-
-Algumas imagens ilustrativas foram retiradas de ou inspiradas por: Japa Temakeria, link do site do [Japa Temakeria](https://japatemakeria.com.br/cardapio/categoria/combinados/).
+![home page JapaCasa](/src/assets/img/japacasa.png)
