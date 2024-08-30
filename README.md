@@ -18,3 +18,5 @@
 -   Express
 
 ![home page JapaCasa](/src/assets/img/japacasa.png)
+
+![cardápio JapaCasa](/src/assets/img/japacasa2.png)
