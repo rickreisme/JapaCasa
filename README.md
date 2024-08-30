@@ -14,6 +14,7 @@ O cardápio do site é alimentado por uma API desenvolvida com **Node.js** e **E
 -   **React**: Biblioteca para construção da interface (incluindo Context API, Router e Hooks).
 -   **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
 -   **REST API**: Para comunicação entre frontend e backend.
+-   **Local Storage**: Para persistência dos dados do usuário e dos pedidos registrados na API.
 -   **Node.js**: Ambiente de execução JavaScript no backend.
 -   **Express**: Framework para construção de APIs.
 -   **Axios**: Cliente HTTP para fazer requisições.
