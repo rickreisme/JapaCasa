@@ -17,7 +17,7 @@ const Footer = () => {
 
                         <a
                             target="_blank"
-                            href="https://rickreisme-portfolio.vercel.app"
+                            href="https://rickreisme.vercel.app"
                         >
                             <span className="rickreisme">
                                 &lt;rickreisme/&gt;
